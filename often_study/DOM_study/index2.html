@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dom</title>
+</head>
+<body>   
+        <!-- onmousedown="getEventType(event)" -->
+        <!-- onmousedown="whichE(event)" -->
+        <!-- onmousedown="coordinates(event)" -->
+    <!-- onkeyup="whichButton(event)" -->
+        <!-- onmousedown="whichbutton(event)" -->
+        <!-- onload="accesskey()" -->
+
+    <!-- <a href="http://www.microsoft.com" id="myAnchor">访问Microsoft</a>
+    <input type="button" onclick="changeLink()" value="改变链接">
+    <p>在本例中，我们会改变超链接的文本和URL。我们也改变target 属性。
+        target 属性的默认设置是“
+        _self”，意味着会在相同的窗口中打开链接。通过把target属性设置为“_blank”，
+        链接将在新的窗口中打开
+    </p>
+    <script>
+    function changeLink () {
+        document.getElementById('myAnchor').innerHTML="访问W3School";        
+        document.getElementById('myAnchor').href="http://www.w3school.com.cn";
+        // document.getElementById('myAnchor').href="http://www.microsoft.com";
+        document.getElementById('myAnchor').target="_blank"
+    }
+    </script> -->
+
+    <!-- <a href="http://www.w3schoo.com.cn" id="myAnchor">访问W3School</a>
+    <br/> 
+    <br/>
+    <input type="button" onclick="getfocus()" value="获得焦点">
+    <input type="button" onclick="losefocus()" value="失去焦点">
+    <style>
+    a:active {
+        color:blue;
+    }
+    </style>
+    <script>
+    function getfocus() {
+        document.getElementById('myAnchor').focus()
+    }
+    function losefocus () {
+        document.getElementById('myAnchor').blur()
+    }
+    </script> -->
+
+    <!-- <p><a href="http://www.w3school.com.cn/" id="w3">w3school</a>使用alt+w给该链接赋予焦点</p>
+    <p><a href="http://www.w3school.com.cn/htmldom" id="w3dom">Html dom</a>使用alt+d赋予链接焦点</p>
+    <script>
+    function accesskey() { 
+        document.getElementById('w3dom').accessKey="d";
+        document.getElementById('w3').accessKey="w";      
+    }
+    </script> -->
+
+    <!-- <script>
+    document.write("nihao!")
+    </script> -->
+
+    <!-- <script>
+    document.write("<h1>nihaohahaha</h1>");
+    </script> -->
+
+    <!-- <script>
+    document.write(document.title);
+    </script> -->
+
+    <!-- 该文档的url 是：
+    <script>
+    document.write(document.URL)
+    </script> -->
+
+    <!-- <P>referrer 属性返回加载本文档的 URL.</P>
+    本文档的 referrer 是：
+    <script>
+    document.write(document.referrer)
+    </script> -->
+
+    <!-- <script>
+    document.write(document.domain)  //返回当前文档的域名
+    </script> -->
+
+    <!-- <h1 id="myHeader" onclick="getValue()">标题</h1>
+    <p>点击标题，会提示出它的值</p>
+    <script>
+    function getValue() {
+        var x = document.getElementById('myHeader');
+        alert(x.innerHTML)
+    }
+    </script> -->
+     
+    <!-- <input type="text" name="myinput"size="20"/><br/>  
+    <input type="text" name="myinput"size="20"/><br/>
+    <input type="text" name="myinput"size="20"/><br/>
+    <input type="text" name="myinput"size="20"/><br/>
+    <br/>
+    <input type="button" onclick="getElements()" value="名为'myinput'的元素有多少个">
+    <script>
+    function getElements () {
+        var x = document.getElementsByTagName('input');
+        alert(x.length);
+    }
+    </script> -->
+
+    <!-- <input type="button" onclick="createnewdoc()" value="打开写入一个新的文档">
+    <script>
+    function createnewdoc () {
+        var newDoc = document.open('replace');
+        var txt="<html><body>学习 dom 非常有趣！</body></html>";
+        newDoc.write(txt);
+        newDoc.close();
+    }
+    </script> -->
+
+    <!-- <a href="#" name="first">第一个猫</a><br/>
+    <a href="#" name="first">第一个猫</a><br/>
+    <a href="#" name="first">第一个猫</a><br/>
+    <a href="#" name="first">第一个猫</a><br/>
+    文档中猫的数目:
+    <script>
+    document.write(document.anchors.length)
+    </script> -->
+
+    <!-- <a name="first">第一个锚</a><br/>
+    <a name="second">第二个锚</a><br/>
+    <script>
+    document.write(document.anchors[1].innerHTML)
+    </script> -->
+
+    <!-- <form name=""></form>
+    <form name=""></form>
+    <form name=""></form>
+    <script>
+    document.write("文档包含："+ document.forms.length + "个表单")
+    </script> -->
+
+    <!-- <form id="form" name="form1">
+        你的名字：<input type="text"/>
+    </form>
+    <form id="form2" name="form2">
+        你的汽车：<input type="text"/>
+    </form>
+    <script>
+    document.write("<p>第一个表单名称是：" + document.forms[0].id + "</p>");
+    document.write(document.getElementById('form2').name);
+    </script> -->
+
+    <!-- <img src="/i/eg_smile.gif" alt=""> -->
+     
+    <!-- <p>在文档中点击鼠标</p>
+    <script>
+    function whichbutton(event) {
+        var btnNum = event.button;
+            if (btnNum==2) {
+                alert("点击了右键");
+            } else if (btnNum==0) {
+                alert ('点击了左键');
+            } else if (btnNum==1) {
+                alert ('点击了中键');
+            } else {
+                alert('你点击了' + btnNum + "号键，我不能确定它的名称。");
+            }
+        }
+     </script> -->
+
+    <!-- <p onmousedown="show_corrds(event)">在文档中点击，显示坐标</p>
+    <script>
+    function show_corrds(event) {
+        x=event.clientX;
+        y=event.clientY;
+        alert("X的坐标：" + x +","+ "Y坐标：" + y)
+    }
+    </script> -->
+
+    <!-- <p>在键盘上按一个键，消息框会提示出按键的Unicode。</p>
+    <script>
+    function whichButton(event) {
+        alert(event.keyCode)
+    }
+    </script> -->
+
+    <!-- <p onmousedown="isKeyPressed(event)">在文档中点击某个位置，消息框告诉你是否按下了shift键</p>
+    <script>
+    function isKeyPressed(event) {
+        if (event.shiftKey==1)
+        {
+            alert("shift")
+        } else {
+            alert('!shift')
+        }
+    }
+    </script> -->
+
+    <!-- <p>在文档中点击某个位置，消息框会提示你所点击的标签</p>
+    <h3>这是标题</h3>
+    <p>这是段落</p>
+    <a href="#"><img src="#" alt="#"/>这是图片</a>
+    <script>
+    function whichE(e) {
+        var targ;
+        if(!e) {var e=window.event}
+        if(e.targ) {targ = e.target}
+        else if (e.srcElement) {targ = e.srcElement}
+        if(targ.nodeType == 2)  //defeat Safari bug
+        {targ = targ.parentNode} 
+        var tname 
+        tname = targ.tagName
+        alert("you clicken on a" + tname + "element.")
+    }
+    </script> -->
+    
+    <!-- <p>在文档中点击 </p>
+    <script>
+    function getEventType(even) {
+        alert(even.type);
+    }
+    </script> -->
+
+    <!-- <form action="#" id="myForm">
+        名称：<input type="text" value="米老鼠"/>
+        <input type="button" onclick="changeAction()" value="改变" action="属性并提交表单"/>
+    </form>
+    <script>
+    function changeAction() {
+        var x = document.getElementById('myForm')
+        alert("action:"+ x.action)
+        x.action= "http://baidu.com"
+        alert("new action:" + x.action)
+        x.submit()
+    }
+    </script> -->
+
+    <!-- <form action="#" id="myForm" method="post">
+            名称：<input type="text" value="米老鼠"/>
+            <input type="button" onclick="showMethod()" value="显示method" action="属性并提交表单"/>
+    </form>
+    <script>
+    function showMethod() {
+        var x= document.getElementById('myForm');
+        alert(x.method)
+    }
+    </script> -->
+</body>
+
+
+<!-- <script type="text/javascript">
+    function coordinates(event)
+    {
+    x=event.screenX
+    y=event.screenY
+    alert("X=" + x + " Y=" + y)
+    }
+    console.log('aaa');
+    </script> -->
+    
+    
+</html>

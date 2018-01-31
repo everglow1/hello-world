@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dom</title>
+</head>
+<body >
+    <!-- onload="checkCookies()" -->
+
+    <!-- <p id="intro">hello world!</p>
+    <p>DOM很有用</p>
+    <p>本例演示<b>getElementById</b>方法</p> -->
+    <!-- <h3>本例展示<b>appendChild</b>方法</h3> -->
+
+    <!-- <p>hello world!</p>
+    <div id="main">
+       <p>DOM很有用</p>
+       <p>展示<b>getElementsByTagName方法</b></p>
+    </div> -->
+
+    <!-- <p id="p1">hello world</p>
+    <p id="p2">hellow world</p> -->
+  
+    <!-- <div id="div1">
+            <p id="p1">你的</p>
+            <p id="p2">我的</p>
+     </div>
+     <div id="d">
+
+     </div> -->
+
+     <!-- <input type="button" onclick="document.body.style.backgroundColor='lavender';" value="改变背景颜色">
+     <input type="button" onclick="ChangeBackground()" value="change color"> -->
+
+     <!-- <p id="p1" onclick="ChangeText()" >hello world!</p>
+     <input type="button" value="改变文本"> -->
+
+     <!-- <div id="d1">
+         <p id="p1">zhe shi yi duan hua</p>
+         <p id="p2">zhe ye shi yi duan hua a</p>
+     </div> -->
+
+     <!-- <div id="d1">
+        <p id="p1">zhe shi yi duan hua</p>
+        <p id="p2">zhe ye shi yi duan hua a</p>
+    </div> -->
+
+    <!-- <h1 onclick="ChangeText(this)">hahaha</h1> -->
+
+    <!-- <p >点击按钮执行<b>displayDate()</b>函数</p>
+    <button onclick="displayDate()" >试一试</button>
+    <p id="demo"></p> -->
+
+    <!-- <p >点击按钮执行<b>displayDate()</b>函数</p>
+    <button id="myBtn">试一试</button>
+    <p id="demo"></p> -->
+    
+    <!-- 请输入：<input type="text" id ="fname" onchange="myFunction()">
+    <p>当离开输入框时，文本变大写字母</p> -->
+
+    <!-- <div onmouseover="mOver(this)" onmouseout="mOut(this)" style="background-color:red;width:200px;height:50px;padding-top:25px;text-align:center;">mouse over me </div> -->
+    <!-- <div onmouseover="mOver(this)" onmouseout="mOut(this)" style="background-color:#D94A38;width:200px;height:50px;padding-top:25px;text-align:center;">
+    Mouse Over Me
+    </div> -->
+
+    <!-- <div onmousedown="mDown(this)" onmouseup="mUp(this)"style="background-color:red;width:200px;height:50px;padding-top:25px;text-align:center;">点击这里</div> -->
+    
+    <!-- <p>hello world</p>
+    <p>dom 很有用！</p> -->
+
+    <!-- <p>hello world</p>
+    <p>dom 很有用！</p>
+    <p>本例展示<b>length</b>属性</p> -->
+
+    <!-- <p id="intro"> bu hao!</p>
+    <div>
+        <p>tade </p>
+        <p>haode </p>
+    </div> -->
+
+    <!-- <p id="intro">hello world!</p>
+    <div id="gg">wode
+        
+    </div>
+    <p id="ll">haode</p>
+    <script>
+    txt = document.getElementById("gg").childNodes[0].nodeValue;
+    document.write(txt);
+    </script> -->
+
+    <!-- <p>hello world!</p>
+    <div>
+        <p>dom 很有用！</p>
+        <p>本例<b>domcunment.body</b>属性。</p>
+    </div>
+    <script>
+    alert(document.body.innerText);
+    </script> -->
+
+    <a href="http://www.microsoft.com" id="myAnchor">Microsoft</a>
+    <input type="text">
+
+</body>
+<script>
+    // var txt = document.getElementById("intro").innerHTML;
+    // document.write(txt);
+    // x = document.getElementById("intro");
+    // document.write(x.firstChild.nodeValue);
+    // y = document.getElementsByTagName("p");
+    // document.write("第一段的文本：" + y[2].innerHTML);
+
+    // x = document.getElementById("main").getElementsByTagName("p");
+    // document.write("div中的第一段文本：" + x[1].innerHTML);
+
+    // document.getElementById("p1").innerHTML = "new hello!"
+    // document.getElementById("p2").style.color = "blue";
+    // document.getElementById("p2").style.fontFamily ="Arial";
+    // document.getElementById("p2").style.fontSize="larger";
+    
+//  var para=document.createElement("h1");  //创建一个标签
+//  var node=document.createTextNode("这是新的");  //创建标签内的文档
+//  para.appendChild(node);    //追加文本结点
+
+//  var element=document.getElementById("d");  //在id为d 的标签下创建
+//  element.appendChild(para);   //  把文档放进该结点下
+
+    // function ChangeBackground () {
+    //     document.body.style.backgroundColor="lavender";
+    // }
+
+    // function ChangeText() {
+    //     document.getElementById("p1").innerHTML="新的文本！";
+    // }
+
+    // var para = document.createElement("h2");
+    // var node = document.createTextNode("zhe shi xin de");
+    // para.appendChild(node);
+    // var element = document.getElementById('d1');
+    // var child = document.getElementById('p2');
+    // element.insertBefore(para,child);
+
+    // var parent = document.getElementById('d1');
+    // var child = document.getElementById('p1'); 
+    // parent.removeChild(child);  //重父元素中删除子元素
+
+    
+    // var parent = document.getElementById("d1");
+    // var child = document.getElementById("p2"); 
+    // var para =document.createElement("p");
+    // var node = document.createTextNode("ZHE S XIN DE ");
+    // para.appendChild(node);
+    // parent.replaceChild(para,child);
+
+    // function ChangeText (id){
+    //    id.innerHTML="hello!";
+    // }
+
+    // function displayDate () {
+    //     document.getElementById("demo").innerHTML=Date();
+    // }
+
+    // document.getElementById("myBtn").onclick= function () {
+    //     displayDate();
+    // }
+    // function displayDate () {
+    //     document.getElementById("demo").innerHTML=Date();
+    // }
+
+    // function checkCookies () {
+    //     if (navigator.cookieEnabled == true) {
+    //         alert("Cookies are enabled")
+    //     } else {
+    //         alert("Cookies are not enabled!")
+    //     }
+    // }
+
+    // function myFunction () {
+    //     var x = document.getElementById("fname");
+    //     x.value = x.value.UpperCase();
+    // }
+    
+    // function mOver(obj) {
+    //     obj.innerHTML="thanks";
+    // }
+    // function mOut(obj) {
+    //     obj.innerHTML="把鼠标放在上面";
+    // }
+
+    // function mDown(obj) {
+    //     obj.innerHTML="松开鼠标";
+    // }
+    // function mUp(obj1) {
+    //     obj1.innerHTML="xiexei";
+    // }
+
+    // x=document.getElementsByTagName("p");
+    // document.write("第二段的 innerHTML 是：" + x[0].innerHTML);
+
+    // x=document.getElementsByTagName("p");
+    // for (const i=0;i<x.length;i++) {
+    //     document.write(x[2].innerHTML);
+    //     document.write("<br>");
+    // }
+
+    x= document.getElementsByTagName("p");
+    document.write(x.firstChild.nodeValue);
+
+
+    
+</script>
+</html>
