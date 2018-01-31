@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML</title>
+</head>
+<body>
+     <!-- 布局 浮动 清理 -->
+    <!-- <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #header {
+            background-color: black;
+            color:white;
+            text-align: center;
+            padding: 5px;
+        }
+        #nav {
+            line-height: 30px;
+            background-color: #eeeeee;
+            height: 300px;
+            width: 100px;
+            float:left;
+            padding: 5px;
+        }
+        #section {
+            width: 350px;
+            float: left;
+            padding: 10px;
+        }
+        #footer {
+            background-color: black;
+            color: white;
+            clear: left;
+            padding: 5px;
+            text-align: center;
+        }
+    </style>
+    <div id="header">
+        <h1>City Gallery</h1>
+    </div>
+    <div id="nav">
+        london<br/>
+        paris<br/>
+        tokyo<br/>
+    </div>
+    <div id="section">
+        <h2>London</h2>
+        <p>
+        London is the capital city of England. It is the most populous city in the United Kingdom,
+        with a metropolitan area of over 13 million inhabitants.
+        </p>
+        <p>
+        Standing on the River Thames, London has been a major settlement for two millennia,
+        its history going back to its founding by the Romans, who named it Londinium.
+        </p>
+    </div>    
+    <div id="footer">
+        CopyRight? W3schools.com
+    </div> -->
+
+    
+    <!-- <div id="coorfiv" style="width:198px;height:98px;border:2px red solid;"
+     onmousemove="cnvs_getCoordinates(event)"
+     onmouseout="cnvs_clearCoordinates()"></div>
+     <br/>
+     <br/>
+     <div id="xycoordinates"></div>
+     <script type="text/javascript"> 
+        function cnvs_getCoordinates(e)
+        {
+        x=e.clientX;
+        y=e.clientY;
+        document.getElementById("xycoordinates").innerHTML="Coordinates: (" + x + "," + y + ")";
+        }
+         
+        function cnvs_clearCoordinates()
+        {
+        document.getElementById("xycoordinates").innerHTML="";
+        }
+        </script> -->
+
+        <style>
+        div {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            /* flex-direction: column-reverse; */
+            flex-direction: row;
+            /* flex-direction: row-reverse; */
+            /* flex-wrap:wrap;    */
+            flex-wrap: nowrap;
+            justify-content: center;
+            justify-content: flex-start;
+            /* justify-content: space-around; */
+            /* justify-content: space-between; */
+            /*处理剩余空间*/
+            /* align-items: baseline;
+            align-items: center;
+            align-items: flex-end;
+            align-items:flex-start;
+            align-items: inherit; */
+        }
+        p {
+            width: 150px;
+            border:1px solid red;
+            background: #929292;
+            margin: 20px;
+            padding: 50px;
+            color: white;
+            font-weight: bold;
+        }
+        p:nth-child(1) {
+            /*flex：1；分配空间*/
+            order: 3;
+        }
+        p:nth-child(2) {
+            align-self: center;
+            /*flex: 3;*/
+            order: 2;
+        }
+        p:nth-child(3) {
+            /*align-self:flex-start;*/
+            /*flex:3;*/
+            order: 1;
+        }
+        </style>
+        <div id="demo">
+            <p>Uber此前营收和利润的爆发式增长只是由于摘到了最低处的果实。如果希望继续以当前速度增长，Uber将需要开拓郊区和二线城市市场。这些地区的居民更分散，其他的交通出行选择也较少。这意味着，Uber无法通过这些人群获得足够多的收入，而单均价格可能也不如人口众多的大城市。</p>  
+            <p>与此同时，Uber还将面临更大的竞争压力，这将导致Uber在美国的利润率下降。桑达拉拉简表示：“从长期来看，分享出行是一项廉价服务，因此未来多家公司都可以获得发展空间。”</p>  
+            <p>Uber的另一大增长领域在于美国国外市场。Uber已覆盖了72个国家的400多座城市。Uber将关闭中国业务，不过消息人士表示，Uber正在重新分配资源，此前从事中国项目的150名工程师将被分配至其他市场，包括拉美和东南亚。</p>  
+        </div>
+
+</body>
+</html>
