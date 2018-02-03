@@ -1,0 +1,21 @@
+{
+  "name": "webpack-my-app",
+  "version": "0.1.0",
+  "description": "应用于webpack",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --entry ./src/js/app.js --output-filename ./dist/bundle.js",
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "youzhijun <1530305055.@qq.com> (https://github.com/Everglow1)",
+  "license": "ISC",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2017": "^6.24.1",
+    "css-loader": "^0.28.9",
+    "jquery": "^3.3.1",
+    "style-loader": "^0.20.1"
+  }
+}
