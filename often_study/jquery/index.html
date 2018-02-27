@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  
+<script src="http://libs.baidu.com/jquery/1.7.2/jquery.min.js"></script>
+
+</head>
+
+<body>  
+  <!-- <script type="text/javascript">
+    $(document).ready(function(){
+    $("button").click(function(){
+    $("p").hide();
+    });
+    });
+    </script>
+  <h2>This is a heading</h2>
+  <p>This is a paragraph.</p>
+  <p>This is another paragraph.</p>
+  <button type="button">Click me</button> -->
+
+  <!-- <script>
+  $(document).ready(function() {
+    $('button').click(function() {
+      $(this).hide();
+    });
+  });
+  </script> -->
+  <!-- <button>Click me</button>
+  <br/>
+  <button>Click me to</button> -->
+
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        $('.test').hide();
+      });
+    });
+  </script> -->
+  <!-- <h2>This is a heading</h2>
+  <p>This is a paragraph</p>
+  <p class="test">This is another paragraph</p>
+  <button>Click me</button> -->
+
+  <!-- <script>
+  $(document).ready(function() {
+    $('p').click(function(){
+      $('p').css('background-color','red');
+    });
+  });
+  </script> -->
+  <!-- <h2>This is a heading</h2>
+  <p>This is a paragraph</p>
+  <p>This is another paragraph</p>
+  <button>Click me</button> -->
+
+  <!-- <script>
+  $.noConflict();
+  jQuery(document).ready(function() {
+    jQuery('button').click(function() {
+      jQuery('p').text('jQuery 仍然在运行');
+    });
+  });
+  </script> -->
+  <!-- <p>这是一个段落</p>
+  <button>测试 jquery</button> -->
+
+  <!-- <script>
+    $(document).ready(function() {
+      $('p').click(function() {
+        $('button').hide();
+      });
+    });
+  </script> -->
+  <!-- <h2>This is a heading</h2>
+  <p>This is a paragraph.</p>
+  <p>This is a another</p>
+  <button>Click me</button> -->
+
+  <!-- <script>
+  $(document).ready(function() {
+    $('p').click(function() {
+      $(this).hide(1000);
+    });
+  });
+  </script> -->
+  <!-- <p>如果点我，我会消失</p>
+  <p>点我，我也会消失</p> -->
+
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        $('p').toggle();
+      });
+    });
+  </script> -->
+  <!-- <button>change</button>
+  <p>This is a paragraph</p> -->
+<!-- 
+  <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        $('#div1').toggle().fadeIn();
+        $('#div2').fadeIn('slow');
+        $('#div3').fadeIn(3000);
+      });
+    });
+  </script> -->
+  <!-- <p>演示带有不同参数的fadein方法</p>
+  <button>点击这里，使三个矩形淡入</button>
+  <br><br>
+  <div id="div1" style="width:80px;height:80px;display:none;background-color:red;"></div><br>
+  <div id="div2" style="width:80px;height:80px;display:none;background-color:black;"></div><br>
+  <div id="div3" style="width:80px;height:80px;display:none;background-color:blue;"></div><br> -->
+
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        $('#div1').fadeOut();
+        $('#div2').fadeOut();
+        $('#div3').fadeOut();
+      });
+    });
+  </script> -->
+  <!-- <p>fadeOut方法</p>
+  <button>点击</button>
+  <br><br>
+  <div id="div1" style="width:80px;height:80px;background-color:red;"></div>
+  <br>
+  <div id="div2" style="width:80px;height:80px;background-color:green;"></div>
+  <br>
+  <div id="div3" style="width:80px;height:80px;background-color:blue;"></div> -->
+
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        $('#div1').fadeToggle();
+      });
+    });
+  </script> -->
+  <!-- <button>点击</button>
+  <br><br><br>
+  <div id="div1" style="width:80px;height:80px;background-color:red;"></div> -->
+
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        $('div').fadeTo('slow',0.1);
+      });
+    });
+  </script> -->
+  <!-- <button>Click me</button>
+  <div id="div" style="width:90px;height:90px;background-color:red;"></div> -->
+
+  <!-- <script>
+    $(document).ready(function() {
+      $('.flip').click(function() {
+        $('.panel').slideDown('slow');
+      });
+    });
+  </script> -->
+  <!-- <style>
+    div.panel,p.flip {
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background: #e5eecc;
+      border:solid 1px #c3c3c3;
+    }
+    div.panel {
+      height: 130px;
+      display: none;
+    }
+  </style> -->
+  <!-- <div class="panel">
+    <p>领先的web技术教程站点</p>
+    <p>在该站点，你可以找到你所需要的所有网站建设教程</p> 
+  </div>
+  <p class="flip">点击</p> -->
+
+  <!-- <script>
+    $(document).ready(function() {
+      $('.flip').click(function() {
+        $('.panel').slideToggle(3000);  // slow,fast
+      });
+    });
+  </script> -->
+  <!-- <style>
+    div.panel,p.flip {
+      margin: 0;
+      padding: 5px;
+      text-align: center;
+      background: #e5eecc;
+      border: solid 1px #c3c3c3;
+    }
+    div.panel{
+      height: 120px;
+      display: none;
+    }
+  </style> -->
+  <!-- <div class="panel">
+    <p>web技术领先</p>
+    <p>你可以在这里找到所有需要的额网站建设教程</p>
+  </div>
+  <p class="flip">点击</p> -->
+
+  <!-- 动画 -->
+  <!-- <script>
+    // $(document).ready(function() {
+    //   $('button').click(function () {
+    //     $('div').animate({top:'300px'});
+    //   });
+    // });
+
+    $(document).ready(function() {
+      $('button').click(function() {
+        $('div').animate({
+          left:'250px',
+          opacity:'0.5',
+          height:'159px',
+          width:'150px'
+        })
+      })
+    })
+  </script> -->
+  <!-- <button>开始</button>
+  <p>默认情况下，所有html元素的位置都是静态的，并且无法移动，如需对位置进行操作，首先要把元素的css postion属性设置为relative，fixed或者absolute</p>
+  <div style="background:#98bf21;height:100px;width:100px;position:absolute;"></div> -->
+
+  <!-- 使用动画相对值 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        $('div').animate({
+          // top:'200px',
+          height:'+=100px',
+          width:'+=100px'
+        });
+      });
+    });
+
+    // $(document).ready(function() {
+    //   $('button').click(function() {
+    //     $('div').animate({
+    //       left:'toggle'
+    //     })
+    //   })
+    // })
+  </script> -->
+    <!-- <button>开始</button>
+    <p>默认情况下，所有html元素的位置都是静态的，并且无法移动，如需对位置进行操作，首先要把元素的css postion属性设置为relative，fixed或者absolute</p>
+    <div style="background:#98bf21;height:100px;width:100px;position:absolute;"></div> -->
+  
+  <!-- 动画使用队列 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        var div = $('div');
+        div.animate({height:'300px',opacity:'0.5'},"slow");
+        div.animate({width:'300px',opacity:'0.9'},"slow");
+        div.animate({height:'100px',opacity:'0.5'},"slow");
+        div.animate({width:'100px',opacity:'0.9'},"slow");
+      })
+    })
+  </script> -->
+  <!-- <button>开始</button>
+  <p>默认情况下，所有html元素的位置都是静态的，并且无法移动，如需对位置进行操作，首先要把元素的css postion属性设置为relative，fixed或者absolute</p>
+  <div style="background:#98bf21;height:100px;width:100px;position:absolute;"></div> -->
+  
+  <!-- 增加文本字号 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        var div = $('div');
+        div.animate({left:'200px'},'slow');
+        div.animate({fontSize:'30px'},'slow');
+      });
+    });
+  </script> -->
+  <!-- <button>开始</button>
+  <p>默认情况下，所有html元素的位置都是静态的，并且无法移动，如需对位置进行操作，首先要把元素的css postion属性设置为relative，fixed或者absolute</p>
+  <div style="background:#98bf21;height:100px;width:100px;position:absolute;">hello</div> -->
+
+  <!-- 停止滑动 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('#flip').click(function() {
+        $('#panel').slideDown(2000);
+      });
+      $('#stop').click(function() {
+        $("#panel").stop();
+      });
+    });
+  </script> -->
+  <!-- <style>
+    #panel,#flip{
+      padding: 5px;
+      text-align: center;
+      background-color: #eeeeee;
+      border:solid 1px #c3c3c3;
+    }
+    #panel {
+      padding: 50px;
+      display: none;
+    }
+  </style> -->
+  <!-- <button id="stop">停止滑动</button>
+  <div id="flip">点击这里，向下滑动</div>
+  <div id="panel">hello world</div> -->
+
+  <!-- callback 隐藏 -->
+  <!-- <script>
+    // $(document).ready(function() {
+    //   $('button').click(function() {
+    //     $('p').hide(1000);
+    //     alert('This is a paragraph.')
+    //   })
+    // })
+    $(document).ready(function() {
+      $('button').click(function() {
+        $('p').hide(1000,function() {
+          alert('This is a paragraph.')
+        })
+      })
+    })
+  </script> -->
+  <!-- <button>Hide</button>
+  <p>This is a paragraph</p> -->
+
+  <!-- 连接，一个方法接一个方法 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        $('#p1').css('color','red')
+          .slideUp(2000)
+          .slideDown(2000);
+      });
+    });
+  </script> -->
+  <!-- <p id="p1">乐趣十足</p>
+  <button>点击这里</button> -->
+
+  <!-- 获得内容 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('#btn1').click(function() {
+        alert('Text:' + $('#test').text());
+      });
+      $('#btn2').click(function() {
+        alert('HTML:' + $('#test').html())
+      })
+    })
+  </script> -->
+  <!-- <p id="test">这是段落中的<b>粗体</b>文本</p>
+  <button id="btn1">显示文本</button>
+  <button id="btn2">显示HTML</button> -->
+
+  <!-- 获取字段值 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        alert('Value:'+$('#test').val())
+      })
+    })
+  </script> -->
+  <!-- <p>姓名：<input type="text" id="test" value="咔咔咔"></p>
+  <button>显示</button> -->
+
+  <!-- 获取attr -->
+  <!-- <script>
+    $(document).ready(function(){
+      $('button').click(function() {
+        alert($('#w3s').attr('href'));
+      });
+    });
+  </script> -->
+  <!-- <p><a href="http://www.w3school.com.cn" id="w3s">w3school.com.cn</a></p>
+  <button>显示href值</button> -->
+
+  <!-- 设置text 设置html val -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('#btn1').click(function() {
+        $('#test1').text('Hello world!');
+      });
+      $('#btn2').click(function() {
+        $('#test2').html('<b>Hello world!</b>');
+      });
+      $('#btn3').click(function() {
+        $('#test3').val('Dolly DUCK');
+      })
+    });
+  </script> -->
+  <!-- <P id="test1">这是一个段落</P>
+  <p id="test2">这是另一个段落</p>
+  <p><input type="text" id="test3" value="Mickey Mouse"></p>
+  <button id="btn1">设置文本</button>
+  <button id="btn2">设置</button>
+  <button id="btn3">设置值</button> -->
+
+  <!-- 回调text(),html(),val() -->
+  <!-- <script>
+    $(document).ready(function(){
+      $('#btn1').click(function() {
+        $('#test1').text(function(i,origText) {
+          return 'Old text:' +origText + 'New text:Hello world!(index:'+ i + ')'
+        });
+      });
+      $('#btn2').click(function() {
+        $('#test2').html(function(i, origText) {
+          return 'Old htmml:' + origText + "New html:Hello <b>world!</b>(index:" + i + ')'
+        })
+      })
+    })
+  </script> -->
+  <!-- <p id="test1">这是<b>粗体</b>文本</p>
+  <p id="test2">这是另一段<b>粗体</b>文本</p>
+  <button id="btn1">显示旧/新文本</button>
+  <button id="btn2">显示旧/HTML</button> -->
+
+  <!-- 改变attr的值 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        // $('#w3s').attr('href','http://www.baidu.com');
+        $('#w3s').attr({
+          'href': 'http://www.baidu.com',
+          'title': '百度'
+        })
+      })
+    })
+  </script> -->
+  <!-- <p><a href="http://www.w3school.com.cn" id="w3s">w3school</a></p>
+  <button>改变href的值</button> -->
+
+  <!-- attr也有回调函数 -->
+
+  <!-- append添加元素末尾 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('#btn1').click(function() {
+        // $('p').append('<b>Append text</b>.');
+        $('p').prepend('<b>Prepend text</b>')
+      });
+      $('#btn2').click(function() {
+        $('ol').append('<li>Append item</li>');
+      })
+    })
+  </script> -->
+  <!-- <p>This is a paragraph.</p>
+  <p>This is a another paragraph.</p>
+  <ol>
+    <li>List item</li>
+  </ol>
+  <button id="btn1">添加文本</button>
+  <button id="btn2">添加列表</button> -->
+
+  <!-- 通过append和prepend追加新元素 -->
+  <!-- <script>
+    function appendText() {
+      var txt1 = '<h1>Text.</h1>';   //以html创建元素
+      var txt2 = $('<h2></h2>').text('Text.');   //以jQuery创建元素
+      var txt3 = document.createElement('p');    //以dom创建元素
+      txt3.innerHTML="Text.";
+      $('body').append(txt1,txt2,txt3);      //追加新元素
+    }
+  </script> -->
+  <!-- <p>This is a paragraph.</p>
+  <button onclick="appendText()">追加文本</button> -->
+
+  <!-- before  after方法 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('#btn1').click(function(){
+        $('img').before('<b>Before</b>')
+      });
+      $('#btn2').click(function() {
+        $('img').after('<i>After</i>')
+      })
+    })
+  </script> -->
+  <!-- <img src="#" alt="#">
+  <br>
+  <br>
+  <button id="btn1">在图片前面添加</button>
+  <button id="btn2">在图片后面添加</button> -->
+
+  <!-- after  before添加新元素 -->
+  <!-- <script>
+    function afterText() {
+      var txt1 = '<b>I</b>';      //html创建元素
+      var txt2 = $('<i></i>').text('love');    //通过jQuery创建元素
+      var txt3 = document.createElement('big');  //通过Dom创建元素
+      txt3.innerHTML='jquery!';        
+      // $('img').after(txt1,txt2,txt3);        //在img后面插入元素
+      $('img').before(txt1,txt2,txt3);
+    }
+  </script> -->
+  <!-- <img src=" " alt="#">
+  <br><br>
+  <button onclick="afterText()">在图片后面添加文本</button> -->
+
+  <!-- 删除元素 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        // $('#div1').remove();   //删除被选元素及其子元素
+        // $('#div1').empty();       //删除被选元素的子元素
+        $('p').remove('#italic')
+      })
+    })
+  </script> -->
+  <!-- <div id="div1" style="height:100px;width:300px;border:1px solid black;background-color:yellow;">
+    This is some text in the div.
+    <p id="italic">This is a paragraph in the div.</p>
+    <p id="italic">This is a another paragraph</p>
+  </div>
+  <br><br>
+  <button>删除div元素</button> -->
+
+  <!-- css类 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        $('h1,h2').addClass('blu');
+        $('div').addClass('important')
+      })
+    })
+  </script> -->
+  <!-- <style>
+    .important{
+      font-weight: bold;
+      font-size: xx-large;
+    }
+    .blu {
+      color:blue;
+    }
+  </style> -->
+  <!-- <h1>标题</h1>
+  <h2>标题2</h2>
+  <div>这是非常重要的文本</div>
+  <br>
+  <button>向元素添加类</button> -->
+
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        $('#div1').addClass('important blue');
+      });
+    });
+  </script> -->
+  <!-- <style>
+    .important {
+      font-weight: bold;
+      font-size: xx-large;
+    }
+    .blue {
+      color:blue;
+    }
+  </style> -->
+  <!-- <div id="div1">这是一些文本</div>
+  <div id="div2">这是一些文本</div>
+  <br>
+  <button>向第一个div元素添加类</button> -->
+
+  <!-- 向文本移除类 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        // $('h1,h2').removeClass('blue');   //移除类
+        $('h1,h2').toggleClass('blue');     //切换移除与添加
+      });
+    });
+  </script> -->
+  <!-- <style>
+      .important {
+        font-weight: bold;
+        font-size: xx-large;
+      }
+      .blue {
+        color:blue;
+      }
+  </style> -->
+  <!-- <h1 class="blue">no1</h1>
+  <h2 class="important">No 2</h2> -->
+    <!-- <h1>标题一</h1>
+    <h2>标题2</h2>
+  <button>从元素上删除类</button> -->
+
+  <!-- 返回指定css属性值 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        alert('Background color = ' + $('p').css('background-color'));
+      });
+    });
+  </script> -->
+  <!-- <h2>这是标题</h2>
+  <p style="background-color:aliceblue;">这是一个段落</p>
+  <p>这是另一个段落</p>
+  <button>返回p元素的背景色</button> -->
+
+  <!-- 设置css -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        // $('p').css('background-color','white'); 
+        $('p').css({'background-color':'yellow','font-size':'100px'})
+      });
+    });
+  </script> -->
+  <!-- <h2>这是标题</h2>
+  <p style="background-color:red">这是一个段落</p>
+  <p style="background-color:red">这是另一个段落</p>
+  <button>设置p元素的背景</button> -->
+
+  <!-- jquery尺寸 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        // var txt = '';
+        // txt+='width of div:' + $('#div1').width() + '</br>';
+        // txt += 'height of div:' + $('#div1').height();
+        // $('#div1').html(txt);
+
+        var txt = '';
+        txt += 'width of div:' + $('#div1').width() + '</br>';
+        txt += 'height of div:' + $('#div1').height() + '</br>';
+        // txt += 'inner width of div:' + $('#div1').innerWidth() + '</br>';
+        // txt += 'inner height of div:' + $('#div1').innerHeight() + '</br>';
+        txt += 'inner width of div:' + $('#div1').outerWidth() + '</br>';
+        txt += 'inner height of div:' + $('#div1').outerHeight() + '</br>';
+        $('#div1').html(txt);
+      });
+    });
+  </script> -->
+  <!-- <div id="div1" style="height:100px;width:300px;padding:10px;margin:5px;border:1px solid blue;background-color:lavender"></div>
+  <button>显示div的尺寸</button> -->
+
+  <!-- 返回浏览器的窗口的宽度和高度 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        var txt='';
+        txt +='Document width/height:' + $(document).width();
+        txt +='x' + $(document).height() + '\n';
+        txt += 'window width/height:' + $(window).width();
+        txt += 'x' + $(window).height();
+        alert(txt);
+      });
+    });
+  </script> -->
+  <!-- <button>显示文档和窗口的尺寸</button> -->
+
+  <!-- 调整div的大小 -->
+  <!-- <script>
+    $(document).ready(function() {
+      $('button').click(function() {
+        $('#div1').width(320).height(320);
+      });
+    });
+  </script> -->
+  <!-- <button>调整div大小</button>
+  <div id="div1" style="height:100px;width:100px;padding:10px;margin:10px;border:1px solid blue;background-color:lightblue;"></div> -->
+  
+  <!-- jQuery遍历 -->  
+  <!-- <style>
+    .ancestores *{
+      display: block;
+      border:2px solid lightgray;
+      color: lightgray;
+      padding: 5px;
+      margin: 5px;
+    }
+  </style> -->
+  <!-- <script>
+    $(document).ready(function() {
+      // $('span').parent().css({'color':'red','border':'2px solid red'});    //返回父元素
+      // $('span').parents().css({'color':'red','border':'2px solid red'});     //返回祖先元素
+      // $('span').parents('ul').css({'color':'red','border':'2px solid red'});   //返回是ul的祖先元素
+      // $('span').parentsUntil('div').css({'color':'red','border':'2px solid red'}); //返回div与span之间的元素
+      // $('div').children().css({'color':'red','border':'2px solid red'});   //返回子元素
+    });
+  </script> -->
+
+  <!-- <div id="ancestores">
+    <div style="width:500px;"> div(曾祖父)
+      <ul> ul祖父
+        <li> li(直接父)
+          <span>span</span>
+        </li>
+      </ul>
+    </div>
+    <div style="width:500px;"> div（祖父）
+      <p> p(直接父)
+        <span>span</span>
+      </p>
+    </div>
+  </div> -->
+
+  <!-- 返回子元素 -->
+  <!-- <style>
+      .descendants *
+      { 
+        display: block;
+        border: 2px solid lightgrey;
+        color: lightgrey;
+        padding: 5px;
+        margin: 15px;
+      }
+  </style> -->
+  <!-- <script>
+    $(document).ready(function(){
+        $("div").children().css({"color":"red","border":"2px solid red"});
+      });
+  </script>      -->
+  <!-- <div class="descendants" style="width:500px;">div (当前元素) 
+    <p>p (子)
+      <span>span (孙)</span>     
+    </p>
+    <p>p (child)
+      <span>span (孙)</span>
+    </p> 
+   </div> -->
+
+   <!-- 返回class为1的子元素 -->
+   <!-- <style>
+     .descendants * {
+       display: block;
+       border:2px solid lightgrey;
+       color:lightgrey;
+       padding: 5px;
+       margin: 5px;
+     }
+   </style> -->
+   <!-- <script>
+     $(document).ready(function() {
+      //  $('div').children('p#2').css({'color':'red','border':'2px solid red'});  //返回id为2的子元素
+      // $('div').find('p').css({'color':'red','border':'2px solid red'});   //返回后代所有p元素
+      $('div').find('*').css({'color':'red','border':'2px solid red'})      //返回div后代所有元素
+     })
+   </script> -->
+   <!-- <div class="descendants" style="width:500px;">div(当前元素)
+    <p id="1">p(子)
+      <span>span(孙)</span>
+    </p>
+    <p id="2">p(子)
+      <span>span(孙)</span>
+    </p>
+  </div> -->
+
+  <!-- 遍历同行元素 -->
+  <!-- <style>
+      .descendants * {
+        display: block;
+        border:2px solid lightgrey;
+        color:lightgrey;
+        padding: 5px;
+        margin: 5px;
+      }
+  </style> -->
+  <!-- <script>
+      $(document).ready(function() {
+        // $('p').siblings().css({'color':'red','border':'2px solid red'});   //返回与p同级的元素
+        // $('h2').siblings('p').css({'color':'red','border':'2px solid red'});    //返回与h2同级的p元素
+        // $('h2').next().css({'color':'red','border':'2px solid red'});   //返回h2下一个同级元素
+        // $('h2').nextAll().css({'color':'red','border':'2px solid red'});   //返回h2后的所有同级元素
+        $('h2').nextUntil('p').css({'color':'red','border':'2px solid red'});  //返回h2与p之间所有的同级元素
+      })
+  </script> -->
+  <!-- <div class="descendants" style="width:500px;">div(当前元素)
+      <p id="1">p(子)
+        <span>span(孙)</span>
+      </p>
+      <h2>h2(同p)
+      </h2>
+      <h3>h3</h3>
+      <h4>h4</h4>
+      <p id="2">p(子)
+        <span>span(孙)</span>
+      </p>
+  </div> -->
+
+  <!-- jquery过滤 -->
+  <!-- <script>
+    $(document).ready(function(){
+      // $('div').first('p').css('background-color','red');   //选择第一个p元素
+      $('div').last('p').css('background-color','red')        //选择div里面的最后一个p元素
+    })
+  </script> -->
+  <!-- <h1>欢迎来到我的主页</h1>
+  <div>
+    <p>这是div中的第一个段落</p>
+  </div>
+  <div>
+    <p>这是另一个同级div中的另一个段落</p>
+  </div>
+  <p>这是与div同级的段落</p> -->
+
+  <!-- <script>
+    $(document).ready(function() {
+      $('p').eq(2).css('background-color','red');  //选择p的索引为2的元素
+    })
+  </script> -->
+  <!-- <h1>欢迎来到我的主页</h1>
+  <p>我是唐老鸭（index 0 ）</p>
+  <p>唐老鸭（index 1）</p>
+  <p>我住在（index 2）</p>
+  <p>我最好的朋友（index 3）</p> -->
+
+  <!-- 过滤filter -->
+  <!-- <script>
+    $(document).ready(function() {
+      // $('p').filter('.intro').css('background-color','red');  //选中p中类为intro的元素
+      $('p').not('.intro').css('background-color','red');     //选中不匹配intro的元素
+    })
+  </script> -->
+  <!-- <h1>My page</h1>
+  <p class="intro">我住在 duck</p>
+  <p class="intro">我爱duck </p>
+  <p>我最好的朋友</p> -->
+
+  <script>
+      $(document).ready(function(){
+        $("#btn1").click(function(){
+          $('#test').load('/example/jquery/demo_test.txt');
+        })
+      })
+  </script>
+  <h3 id="test">点击按钮，通过ajax改变这段文本</h3>
+  <button id="btn1" type="button">获得外部内容</button>
+  
+</body>
+</html>
