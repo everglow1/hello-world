@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>注册</title>
+  <link rel="stylesheet" href="../css/fonts/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/regist/regist.css">
+  <script src="../js/regist.js"></script>
+</head>
+<body>
+  <!-- <i class="fa fa-lock" style="font-size:400px"></i>
+  <i class="fa fa-spin fa-spinner" style="color:red; font-size:400px"></i> -->
+  <div class="align-center-container">
+    <div class="align-center regist-container">
+      <div class="regist-title">
+        <img src="http://wd.malajava.org/images/logo-red.png" alt="#"/>
+        <br>
+        <b>注册问道，求学问道</b>
+      </div>
+      <!-- 表单 -->
+      <form action="/customer/regist.do" method="post">
+        <div class="regist-form shadow-outside">
+          <!-- 用户名区域 -->
+          <div class="regist-row row">
+            <label for="" class="cell-1">
+              <i class="fa fa-user"></i>
+            </label>
+            <span class="cell-11">
+              <!-- 如果注册失败，就通过 EL 表达式取出 在 session 中存储的 用户名直接显示到输入框中  -->
+              <input type="text" name="username" value placeholder="请输入用户名">
+              <!-- 如果注册失败，则在 session 中存在上次输入的用户名 ( 已经在输入框中显示过 )，则删除它 -->
+            </span>
+          </div>
+          <!-- 密码区域 -->
+          <div class="regist-row row">
+            <label for="" class="cell-1">
+              <i class="fa fa-lock"></i>
+            </label>
+            <span class="cell-11">
+              <!-- 如果注册失败，就通过 EL 表达式取出 在 session 中存储的 用户名直接显示到输入框中  -->
+              <input type="text" name="password" value placeholder="请输入密码"/>
+              <!-- 如果注册失败，则在 session 中存在上次输入的密码 ( 已经在输入框中 )，则删除它 -->
+            </span>
+          </div>
+          <!-- 确认密码区域 -->
+          <div class="regist-row row">
+            <label for="" class="cell-1">
+              <i class="fa fa-keyboard-o"></i>
+            </label>
+            <span class="cell-11">
+                  <!-- 如果注册失败，就通过 EL 表达式取出 在 session 中存储的 用户名直接显示到输入框中  -->
+              <input type="text" name="password" value placeholder="请确认密码" class="inputed"/>
+                  <!-- 如果注册失败，则在 session 中存在上次输入的密码 ( 已经在输入框中 )，则删除它 -->
+            </span>
+          </div>
+          <!-- 校检码区域 -->
+          <div class="identify-row row">
+            <span class="identify-input cell-6">
+                <input type="text" name="identifyCode" placeholder="验证码">
+            </span>
+            <span class="identify-image cell-6">
+                <img src="http://wd.malajava.org/customer/identify/regist.do" alt="验证码图片" title="验证码图片">
+            </span>
+          </div>
+          <!-- 按钮区域 -->
+          <div class="regist-form-button row">
+              <span class="reset-button cell-6">
+                  <input type="reset" value="重置"/>
+              </span>
+              <span class="submit-button cell-6">
+                  <input type="submit" value="注册"/>
+              </span>
+          </div>
+        </div>
+      </form>
+      <!-- 表单结束 -->
+      <div class="regist-fail-message">
+        <!-- 如果存在注册失败的提示信息，则先显示后，再删除它 -->
+      </div>
+      <div class="regist-helper-link">
+        <a href="./login.html">已注册账号，请点击登录</a>
+        <em>|</em>
+        <a href="#">返回首页</a>
+      </div>
+      <div class="regist-copyright">
+        <b class="font-normal">
+          "@2018"
+          <a href="http://wd.malajava.org" target="_blank">问道</a>
+        </b>
+        <br>
+        <a href="http://www.malajava.org/" target="_blank" class="malajava-logo">malajava
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

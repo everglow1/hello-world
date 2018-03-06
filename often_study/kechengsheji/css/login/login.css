@@ -1,0 +1,277 @@
+body {
+  background-color: wheat;
+  margin: 0 0;
+  padding: 0 0;
+  font-size: 14px;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  font-weight: lighter;
+  display: block;
+  background: url()
+}
+div {
+  display: block;
+}
+.align-center {
+  margin: 0px auto;
+  text-align: left;
+  border: 0px;
+}
+.align-center-container {
+  text-align: center;
+  display: block;
+}
+.align-center-container .login-container {
+  margin: 2% auto;
+  width: 400px;
+  text-align: left;
+}
+.align-center-container .login-title {
+  text-align: center;
+}
+.login-title img {
+  margin: 5px auto;
+  height: 60px;
+  border: none;
+}
+.login-title b {
+  margin: 10px auto;
+  font-weight: normal;
+  letter-spacing: 0.25em;
+  color: #333;
+}
+form {
+  display: block;
+  margin-top: 0em;
+}
+.login-form.shadow-outside {
+  margin: 10px 10px;
+  border: 1px solid #d3d3d3;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px 4px #eeeeee;
+  background-color: white;  
+}
+.login-row, .identify-row {
+  margin: 10px 0px;
+  border: 1px solid #eee;
+}
+
+.row {
+  width: 100%;
+  height: auto !important;
+  overflow: hidden;
+}
+.login-row label {
+  text-align: center;
+  line-height: 50px;
+}
+
+.login-row label, .login-row span {
+  height: 50px;
+  line-height: 50px;
+}
+.cell-1 {
+  width: 8.3333333333%;
+  float: left;
+}
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.login-row label, .login-row span {
+  height: 50px;
+  line-height: 50px;
+}
+.cell-11 {
+  width: 91.6666666667%;  
+  float: left;
+}
+.login-row span input {
+  background-color: transparent;  
+  height: 48px;
+  line-height: 48px;
+  width: 96%;
+  border: none;
+  outline: none;
+}
+input, textarea, select, button {
+  text-rendering: auto;
+  color: initial;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  margin: 0em;
+  font: 400 13.3333px Arial;
+}
+user agent stylesheet
+input, textarea, select, button, meter, progress {
+  -webkit-writing-mode: horizontal-tb;
+}
+.login-form-button span, .identify-row span {
+  height: 50px;
+  line-height: 50px;
+}
+.identify-row input {
+  height: 48px;
+  line-height: 48px;
+  width: 96%;
+  text-align: center;
+  letter-spacing: 0.1em;
+  border: none;
+  outline: none;
+}
+
+user agent stylesheet
+input {
+    -webkit-appearance: textfield;
+    background-color: white;
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    padding: 1px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: initial;
+    border-image: initial;
+}
+user agent stylesheet
+input, textarea, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+}
+.inputed :hover {
+  border-color: blue;
+}
+user agent stylesheet
+input, textarea, select, button, meter, progress {
+    -webkit-writing-mode: horizontal-tb;
+}
+.cell-6 {
+  width: 50%;
+  float: left;
+}
+.login-form-button {
+  margin: 10px 0px;
+}
+.login-form-button span, .identify-row span {
+  height: 50px;
+  line-height: 50px;
+}
+.login-form-button .reset-button input {
+  float: left;
+}
+.login-form-button input {
+  height: 48px;
+  line-height: 48px;
+  width: 96%;
+  font-size: 16px;
+  letter-spacing: 0.25em;
+  border: 1px solid #eee;
+  outline: none;
+  background: #F5F5F5;
+  padding: 1px 6px;
+  -webkit-appearance: push-button;
+  user-select: none;
+  white-space: pre;
+  align-items: flex-start;
+  text-align: center;
+  cursor: default;
+  color: buttontext;
+  background-color: buttonface;
+  box-sizing: border-box;
+  padding: 2px 6px 3px;
+  border-width: 2px;
+  border-style: outset;
+  border-color: buttonface;
+  border-image: initial;
+}
+.login-form-button .submit-button input {
+  float: right;
+}
+.login-form-button input {
+  height: 48px;
+  line-height: 48px;
+  width: 96%;
+  font-size: 16px;
+  letter-spacing: 0.25em;
+  border: 1px solid #eee;
+  outline: none;
+  background: #F5F5F5;
+  padding: 1px 6px;
+}
+.login-fail-message {
+  text-align: center;
+  height: 40px;
+  line-height: 40px;
+  font-size: 12px;
+  font-weight: bold;
+  color: red;
+}
+.login-helper-link {
+  text-align: center;
+  height: 20px;
+  line-height: 30px;
+  letter-spacing: 0.1em;
+}
+.login-helper-link a {
+  color: #333;
+  text-decoration: none;
+}
+.login-helper-link em {
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+user agent stylesheet
+a:-webkit-any-link {
+  color: -webkit-link;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.login-copyright {
+  margin-top: 20px;
+  text-align: center;
+  color: #333;
+}
+.login-copyright b {
+  margin: 10px auto;
+  font-size: 12px;
+}
+.font-normal {
+  font-weight: normal;
+}
+.login-copyright a {
+  color: #333;
+  text-decoration: none;
+  outline: none;
+}
+.login-copyright .malajava-logo {
+  display: inline-block;
+  margin: 10px auto;
+  width: 60px;
+  height: 15px;
+  color:#cc6b6f;
+  background: url(http://www.malajava.org/) center no-repeat;
+  background-size: cover;
+  font-weight: border;
+}
+a:-webkit-any-link {
+  /* color: -webkit-link; */
+  cursor: pointer;
+  /* text-decoration: underline; */
+}
