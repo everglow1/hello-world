@@ -2,12 +2,13 @@
   <div class="shopcart">
     <div class="content">
       <div class="content-left">
-        <div class="logo-wrapper">
-          <div class="logo">
-            <span class="icon-shopping_cart"></span>
+        <div class="logo-wrapper" >
+          <div class="logo" :class="{hightlight: totalCount > 0}">
+            <span class="icon-shopping_cart" :class="{hightlight: totalCount > 0}"></span>
           </div>
+          <div class="num">{{totalCount}}</div>
         </div>
-        <div class="price">0元</div>
+        <div class="price">￥{{totalPrice}}</div>
         <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
       </div>
       <div class="content-right">
@@ -22,13 +23,48 @@
 <script>
 export default {
   props: {
+    // 从goods组件获得选择的food，传给子组件shopcart ，selectFoods获得food的价格和数量
+    selectFoods: {
+      type: Array,
+      default() {
+        return [
+          {
+            price: 10,
+            count: 1
+          }
+        ];
+      }
+    },
+    // 配送费
     deliveryPrice: {
       type: Number,
       default: 0
     },
+    // 起送费
     minPrice: {
       type: Number,
       default: 0
+    }
+  },
+  // 通过计算，动态获取价格 ，数量 ， 价格= prcie* count
+  computed: {
+    // 总价
+    totalPrice() {
+      let total = 0;
+      // 遍历selecFoods
+      this.selectFoods.forEach((food) => {
+        total += food.price * food.count;
+      });
+      return total;
+    },
+    // 选择的总数
+    totalCount() {
+      let count = 0;
+      // 遍历selectFoods
+      this.selectFoods.forEach((food) => {
+        count += food.count;
+      });
+      return count;
     }
   }
 };
@@ -66,10 +102,28 @@ export default {
             border-radius: 50%
             background: #2b343c
             text-align: center
+            &.hightlight
+              background: rgb(0, 160, 220)
             .icon-shopping_cart
               font-size: 24px
               color: #80858a
               line-height: 44px
+              &.hightlight
+                color: #fff
+        .num
+          position: absolute
+          top: 0
+          right: 0
+          width: 24px
+          height: 16px
+          line-height: 16px
+          text-align: center
+          border-radius: 16px;
+          font-size: 9px
+          font-weight: 700
+          color: #fff
+          background: rgb(240, 20, 20)
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4)
         .price
           display: inline-block
           vertical-align: top
