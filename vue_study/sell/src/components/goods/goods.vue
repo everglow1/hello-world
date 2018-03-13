@@ -2,7 +2,7 @@
   <div class="goods">
   <div class="menu-wrapper" ref="menuWrapper">
     <ul class="menu">
-      <li v-for="item in goods" :key="item.index" class="menu-item">
+      <li v-for="(item, index) in goods" :key="item.index" class="menu-item" @click="selectMenu(index, $event)" :class="{current: currentIndex == index}">
         <span class="text" border-1px>
           <span v-show="item.type > 0" class="icon" :class="classMap[item.type]"></span>
           {{item.name}}
@@ -12,7 +12,7 @@
   </div>
   <div class="foods-wrapper" ref="foodsWrapper">
     <ul class="food-left">
-      <li v-for="item in goods" :key="item.index" class="food-list">
+      <li v-for="item in goods" :key="item.index" class="food-list food-list-hook">
         <h1 class="title">{{item.name}}</h1>
         <ul class="food-left">
           <li v-for="food in item.foods" :key="food.index" class="food-item border-1px">
@@ -34,11 +34,14 @@
       </li>
     </ul>
   </div>
+  <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
   </div>
 </template>
 
 <script>
 import BScroll from 'better-scroll';
+import shopcart from '../shopcart/shopcart';
+
 const ERR_OK = 0;
 export default {
   props: {
@@ -48,8 +51,25 @@ export default {
   },
   data() {
     return {
-      goods: []
+      goods: [],
+      listHeight: [],
+      scrollY: 0// 跟踪这个变量
     };
+  },
+  components: {
+    shopcart
+  },
+  computed: {
+    currentIndex() {
+      for (let i = 0; i < this.listHeight.length; i++) {
+        let height1 = this.listHeight[i];
+        let height2 = this.listHeight[i + 1];
+        if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
+          return i;
+        }
+      }
+      return 0;
+    }
   },
   created() {
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
@@ -61,14 +81,44 @@ export default {
         // console.log(this.goods);
         this.$nextTick(() => {
           this._initScroll();
+          this._calculateHeight();
         });
       }
     });
   },
   methods: {
     _initScroll() {
-      this.memuScroll = new BScroll(this.$refs.menuWrapper, {});
-      this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {});
+      this.memuScroll = new BScroll(this.$refs.menuWrapper, {
+        click: true
+      });
+      this.foodsScroll = new BScroll(this.$refs.foodsWrapper, {
+        click: true,
+        // 监听到位置
+        probeType: 3
+      });
+      this.foodsScroll.on('scroll', (pos) => {
+        this.scrollY = Math.abs(Math.round(pos.y));
+      });
+    },
+    _calculateHeight() {
+      let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook');
+      // 定义临时变量
+      let height = 0;
+      this.listHeight.push(height);
+      for (let i = 0; i < foodList.length; i++) {
+        let item = foodList[i];
+        height += item.clientHeight;
+        this.listHeight.push(height);
+      }
+    },
+    selectMenu(index, event) {
+      // console.log(index);
+      if (!event._constructed) {
+        return 0;
+      }
+      let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook');
+      let el = foodList[index];
+      this.foodsScroll.scrollToElement(el);
     }
   }
 };
@@ -96,24 +146,32 @@ export default {
           width: 56px
           line-height: 14px
           padding: 0 6px
-          .icon
-            display: inline-block
-            vertical-align: top
-            width: 12px
-            height: 12px
-            margin-right: 2px
-            background-size: 12px 12px
-            background-repeat: no-repeat
-            &.decrease
-              bg-image('decrease_3')
-            &.discount
-              bg-image('discount_3')
-            &.guarantee
-              bg-image('guarantee_3')
-            &.invoice
-              bg-image('invoice_3')
-            &.special
-              bg-image('special_3')
+          &.current
+            position: relative
+            margin-top: 10
+            z-index: 10
+            background: #fff
+            font-weight: 700
+            .text
+              border-none()
+            .icon
+              display: inline-block
+              vertical-align: top
+              width: 12px
+              height: 12px
+              margin-right: 2px
+              background-size: 12px 12px
+              background-repeat: no-repeat
+              &.decrease
+                bg-image('decrease_3')
+              &.discount
+                bg-image('discount_3')
+              &.guarantee
+                bg-image('guarantee_3')
+              &.invoice
+                bg-image('invoice_3')
+              &.special
+                bg-image('special_3')
           .text
             font-size: 12px
             display: table-cell
