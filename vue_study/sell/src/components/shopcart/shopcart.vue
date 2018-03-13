@@ -6,14 +6,14 @@
           <div class="logo" :class="{hightlight: totalCount > 0}">
             <span class="icon-shopping_cart" :class="{hightlight: totalCount > 0}"></span>
           </div>
-          <div class="num">{{totalCount}}</div>
+          <div class="num" v-show="totalCount > 0">{{totalCount}}</div>
         </div>
-        <div class="price">￥{{totalPrice}}</div>
+        <div class="price" :class="{hightlight: totalPrice > 0}">￥{{totalPrice}}</div>
         <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
       </div>
       <div class="content-right">
-        <div class="pay">
-          ￥{{minPrice}}元起送
+        <div class="pay" :class="payClass">
+          {{payDesc}}
         </div>
       </div>
     </div>
@@ -24,6 +24,7 @@
 export default {
   props: {
     // 从goods组件获得选择的food，传给子组件shopcart ，selectFoods获得food的价格和数量
+    //  selectFoods 很关键，所有的状态都是这个而来，，数据驱动状态，状态驱动视图
     selectFoods: {
       type: Array,
       default() {
@@ -65,6 +66,24 @@ export default {
         count += food.count;
       });
       return count;
+    },
+    // 右侧两种状态
+    payDesc() {
+      if (this.totalPrice === 0) {
+        return `￥${this.minPrice}元起送`;
+      } else if (this.totalPrice < this.minPrice) {
+        let diff = this.minPrice - this.totalPrice;
+        return `还差￥${diff}元起送`;
+      } else {
+        return '去结算';
+      }
+    },
+    payClass() {
+      if (this.totalPrice < this.minPrice) {
+        return 'not-enough';
+      } else {
+        return 'enough';
+      }
     }
   }
 };
@@ -135,6 +154,8 @@ export default {
           font-size: 16px
           font-weight: 700
           color: rgba(255, 255, 255, 0.4)
+          &.hightlight
+            color: #fff
         .desc
           display: inline-block
           vertical-align: top
@@ -154,4 +175,9 @@ export default {
           font-weight: 700
           color: rgba(255, 255, 255, 0.4)
           background: #2b333b
+          &.not-enough
+            background: #2b333b
+          &.enough
+            background: #00b43c
+            color: #fff
 </style>
