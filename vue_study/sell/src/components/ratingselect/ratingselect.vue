@@ -80,7 +80,7 @@ export default {
     },
     negatives() {
       return this.ratings.filter((rating) => {
-        return rating.rateType === POSITIVE;
+        return rating.rateType === NEGATIVE;
       });
     }
   }
@@ -116,7 +116,7 @@ export default {
           &.active
             background: rgb(0, 160, 220)
     .switch
-      padding: 12px 0
+      padding: 12px 12px
       line-height: 24px
       border-bottom: 1px solid rgba(7, 17, 27, 0.1)
       color: rgb(147, 153, 159)

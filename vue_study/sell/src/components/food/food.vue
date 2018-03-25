@@ -36,7 +36,7 @@
                       v-on:contenttoggle="content"></ratingselect>
         <div class="rating-wrapper">
           <ul class="rating-ul" v-show="food.ratings && food.ratings.length">
-            <li v-show="needShow(rating.rateType, rating.text)" class="rating-item" v-for="rating in food.ratings" :key="rating.inedx">
+            <li v-show="needShow(rating.rateType, rating.text)" class="rating-item" v-for="rating in food.ratings" :key="rating.index">
               <div class="user">
                 <span class="name">{{rating.username}}</span>
                 <img :src="rating.avatar" class="avatar" width="12" height="12">

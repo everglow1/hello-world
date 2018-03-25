@@ -28,13 +28,15 @@ export default {
       }
     };
   },
+  // 通过后端api的方式拿到seller
   created() {
     this.$http.get('/api/seller').then((response) => {
       response = response.data;
       // console.log(response);
+      // === 全等 和 = 和 == 的区别
       if (response.errno === ERR_OK) {
         this.seller = response.data;
-        // console.log(this.seller);
+        console.log(this.seller);
       }
     });
   },
