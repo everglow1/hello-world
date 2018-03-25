@@ -65,33 +65,35 @@ import BScroll from 'better-scroll';
 export default {
   props: {
     seller: {
-      type: Object,
-      default() {
-        return [];
-      }
+      type: Object
     }
   },
   components: {
     star,
     split
   },
-  methods: {
+  watch: {
+    // 刚开始刷新页面的时候
+    seller () {
+      this._initScroll();
+      this._initPicscroll();
+    }
   },
-  // ready被mounted替换了
-  mounted() {
-    // console.log(this.seller);
-    // BScroll 第一个参数是dom  在dom被渲染之后，内容被撑开之后，BScroll发挥作用
-    this.$nextTick(() => {
-      this.scroll = new BScroll(this.$refs.sellerr, {
-        click: true
-      });
-    });
-    // console.log(this.seller.pics.length);
-    // this._initPics();
-    this.$nextTick(() => {
-      if (this.seller.pics) {
+  methods: {
+    _initScroll() {
+      if (!this.scroll) {
+        this.$nextTick(() => {
+          // BScroll 第一个参数是dom  在dom被渲染之后，内容被撑开之后，BScroll发挥作用
+          this.scroll = new BScroll(this.$refs.sellerr, {
+            click: true
+          });
+        });
+      }
+    },
+    _initPicscroll() {
+      this.$nextTick(() => {
+        if (this.seller.pics) {
         // console.log(this.seller.pics.length);
-        // let length = this.seller.pic
         // 定义每个图片的宽度，外边距
         let picWidth = 120;
         let margin = 6;
@@ -101,16 +103,31 @@ export default {
         this.$refs.picList.style.width = width + 'px';
         // 运用better-scroll
         this.$nextTick(() => {
-          // 定义一个picScroll
-          this.picScroll = new BScroll(this.$refs.picWrapper, {
+          if (!this.picScroll) {
+             // 定义一个picScroll
+            this.picScroll = new BScroll(this.$refs.picWrapper, {
             // 表示横向滚动
             scrollX: true,
             // 让它既可以竖直方向滚动，又可横向滚动， 横向滚动的时候忽略竖直方向的滚动
             eventPassthrough: 'vertical'
           });
+          } else {
+            this.picScroll.refresh();
+          }
         });
       }
-    });
+      });
+    }
+  },
+  // ready被mounted替换了
+  mounted() {
+    // console.log(this.seller);
+    // console.log(this.seller.pics.length);
+    // this._initPics();
+    // this.$nextTick(() => {
+    // });
+    this._initScroll();
+    this._initPicscroll();
   },
   created() {
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
