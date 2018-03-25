@@ -36,7 +36,7 @@ export default {
       // === 全等 和 = 和 == 的区别
       if (response.errno === ERR_OK) {
         this.seller = response.data;
-        console.log(this.seller);
+        // console.log(this.seller);
       }
     });
   },
