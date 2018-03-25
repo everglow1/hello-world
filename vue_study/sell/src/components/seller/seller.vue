@@ -42,6 +42,17 @@
           </li>
         </ul>
       </div>
+      <split></split>
+      <div class="pic">
+        <h1 class="title">商家实景</h1>
+        <div class="pic-wrapper" ref="picWrapper">
+          <ul class="pic-list" ref="picList">
+            <li class="pic-item" v-for="pic in seller.pics" :key="pic.id">
+              <img :src="pic" alt="商家图片" height="90" width="120">
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -54,12 +65,17 @@ import BScroll from 'better-scroll';
 export default {
   props: {
     seller: {
-      type: Object
+      type: Object,
+      default() {
+        return [];
+      }
     }
   },
   components: {
     star,
     split
+  },
+  methods: {
   },
   // ready被mounted替换了
   mounted() {
@@ -70,10 +86,40 @@ export default {
         click: true
       });
     });
+    // console.log(this.seller.pics.length);
+    // this._initPics();
+    this.$nextTick(() => {
+      if (this.seller.pics) {
+        // console.log(this.seller.pics.length);
+        // let length = this.seller.pic
+        // 定义每个图片的宽度，外边距
+        let picWidth = 120;
+        let margin = 6;
+        // 总的的宽度，等于图片的宽度加外边距 乘于图片的个数减去最后一个外边距
+        let width = (picWidth + margin) * this.seller.pics.length - margin;
+        // 设置ul的宽度
+        this.$refs.picList.style.width = width + 'px';
+        // 运用better-scroll
+        this.$nextTick(() => {
+          // 定义一个picScroll
+          this.picScroll = new BScroll(this.$refs.picWrapper, {
+            // 表示横向滚动
+            scrollX: true,
+            // 让它既可以竖直方向滚动，又可横向滚动， 横向滚动的时候忽略竖直方向的滚动
+            eventPassthrough: 'vertical'
+          });
+        });
+      }
+    });
   },
   created() {
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
   }
+  // watch: {
+  //   'seller'() {
+  //     this._initPics();
+  //   }
+  // }
 };
 </script>
 <style lang="stylus" scoped>
@@ -178,4 +224,24 @@ export default {
             line-height: 16px
             font-size: 12px
             color: rgb(7, 17, 27)
+    .pic
+      padding: 18px
+      .title
+        margin-bottom: 12px
+        line-height: 14px
+        color: rgb(7, 17, 27)
+        font-size: 14px
+      .pic-wrapper
+        width: 100%
+        overflow: hidden
+        white-space: nowrap
+        .pic-list
+          font-size: 0
+          .pic-item
+            display: inline-block
+            margin-right: 6px
+            width: 120px
+            height: 90px
+            &:last-child
+              margin: 0
 </style>
