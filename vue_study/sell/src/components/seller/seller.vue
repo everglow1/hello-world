@@ -53,6 +53,13 @@
           </ul>
         </div>
       </div>
+      <split></split>
+      <div class="info">
+        <h1 class="title">商家信息</h1>
+        <ul>
+          <li class="info-item border-1px" v-for="info in seller.infos" :key="info.id">{{info}}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -132,15 +139,10 @@ export default {
   created() {
     this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
   }
-  // watch: {
-  //   'seller'() {
-  //     this._initPics();
-  //   }
-  // }
 };
 </script>
 <style lang="stylus" scoped>
-@import "../../common/stylus/mixin.styl"
+  @import "../../common/stylus/mixin.styl"
   .seller
     position: absolute
     top: 174px
@@ -261,4 +263,24 @@ export default {
             height: 90px
             &:last-child
               margin: 0
+    .info
+      padding: 18px 18px 0 18px
+      color: rgb(7, 17, 27)
+      .title
+        padding-bottom: 12px
+        line-height: 14px
+        font-size: 14px
+        border-bottom: 1px solid rgba(7, 17, 27, 0.1)
+        // border-1px(rgba(7, 17, 27, 0.1))
+      ul
+        padding: 0
+        margin: 0
+        list-style: none
+        .info-item
+          padding: 16px 12px
+          line-height: 16px
+          border-1px(rgba(7, 17, 27, 0.1))
+          font-size: 12px
+          &:last-child
+            border-none()
 </style>
