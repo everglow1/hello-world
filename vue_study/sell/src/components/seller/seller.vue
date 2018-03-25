@@ -28,6 +28,10 @@
             </div>
           </li>
         </ul>
+        <div class="favorite" @click="toggleFavorite">
+          <span class="icon-favorite" :class="{'active': favorite}"></span>
+          <span class="text">{{favoriteText}}</span>
+        </div>
       </div>
       <split></split>
       <div class="bulletin">
@@ -68,11 +72,28 @@
 import star from '../star/star';
 import split from '../split/split';
 import BScroll from 'better-scroll';
+import {saveToLocal, loadFromLocal} from '../../common/js/store.js';
 
 export default {
+  data() {
+    return {
+      // favorite: false
+      favorite: (() => {
+        // 这个是存储了favorite。
+        return loadFromLocal(this.seller.id, 'favorite', false);
+      })()
+    };
+  },
   props: {
     seller: {
       type: Object
+    }
+  },
+  computed: {
+    // favoriteText文案 依据favorite变量的true or false来判断是收藏还是没有收藏
+    // 返回到dom元素上去
+    favoriteText() {
+      return this.favorite ? '已收藏' : '收藏';
     }
   },
   components: {
@@ -87,6 +108,21 @@ export default {
     }
   },
   methods: {
+    toggleFavorite(event) {
+      // 因为在srcoll里面 所以执行这个逻辑
+      if (!event._constructed) {
+        return;
+      }
+      this.favorite = !this.favorite;
+      saveToLocal(this.seller.id, 'favorite', this.favorite);
+    },
+    // 此方法也行
+    // toggleFavorite() {
+    //   if (this.favorite) {
+    //     this.favorite = true;
+    //   }
+    //   this.favorite = !this.favorite;
+    // },
     _initScroll() {
       if (!this.scroll) {
         this.$nextTick(() => {
@@ -152,6 +188,7 @@ export default {
     overflow: hidden
     .overview
       padding: 18px
+      position: relative
       .title
         margin-bottom: 8px
         line-height: 14px
@@ -197,6 +234,24 @@ export default {
             font-weight: 200
             color: rgb(7, 17, 27)
             line-height: 24px
+      .favorite
+        position: absolute
+        right: 11px
+        top: 18px
+        width: 50px
+        text-align: center
+        .icon-favorite
+          display: block
+          margin-bottom: 4px
+          line-height: 24px
+          font-size: 24px
+          color: #d4d6d9
+          &.active
+            color: rgb(240, 20, 20)
+        .text
+          line-height: 10px
+          font-size: 10px
+          color: rgb(77, 85, 93)
     .bulletin
       padding: 18px 18px 0 18px
       .title

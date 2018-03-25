@@ -19,24 +19,34 @@
 
 <script>
 import header from './components/header/header';
+import {urlParse} from './common/js/util';
 const ERR_OK = 0;
 
 export default {
   data() {
     return {
       seller: {
+        id: (() => {
+          // 通过一个方法拿到queryParm，
+          let queryParm = urlParse();
+          console.log(queryParm);
+          return queryParm.id;
+        })()
       }
     };
   },
   // 通过后端api的方式拿到seller
   created() {
-    this.$http.get('/api/seller').then((response) => {
+    this.$http.get('/api/seller?id=' + this.seller.id).then((response) => {
       response = response.data;
       // console.log(response);
       // === 全等 和 = 和 == 的区别
       if (response.errno === ERR_OK) {
-        this.seller = response.data;
+        // this.seller = response.data;
         // console.log(this.seller);
+        // 给对象扩展属性的方法
+        this.seller = Object.assign({}, this.seller, response.data);
+        console.log(this.seller.id);
       }
     });
   },
