@@ -53,7 +53,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: './',
     // 定义一个port
-    port: 8080,
+    // port: 8080,
 
     /**
      * Source Maps
