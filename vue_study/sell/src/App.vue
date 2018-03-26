@@ -13,7 +13,9 @@
          <router-link to="/seller">商家</router-link>
       </div>
     </div>
-    <router-view :seller="seller"></router-view>
+    <keep-alive>
+      <router-view :seller="seller"></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -29,7 +31,7 @@ export default {
         id: (() => {
           // 通过一个方法拿到queryParm，
           let queryParm = urlParse();
-          console.log(queryParm);
+          // console.log(queryParm);
           return queryParm.id;
         })()
       }
@@ -46,7 +48,7 @@ export default {
         // console.log(this.seller);
         // 给对象扩展属性的方法
         this.seller = Object.assign({}, this.seller, response.data);
-        console.log(this.seller.id);
+        // console.log(this.seller.id);
       }
     });
   },
