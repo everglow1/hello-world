@@ -10,7 +10,7 @@ module.exports = {
 
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: './',
     proxyTable: {},
 
     // Various Dev Server settings
@@ -53,7 +53,7 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: './',
     // 定义一个port
-    port: 9000,
+    port: 8080,
 
     /**
      * Source Maps
