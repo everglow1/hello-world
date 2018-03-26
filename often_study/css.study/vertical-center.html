@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 水平居中 -->
+  <!-- 若是行内元素，自身不具备宽度，高度，由自身内容撑大。 a b span i img input 等 -->
+  <!-- <style>
+    .spanParent {
+      text-align: center;   /*给父元素文本水平居中*/
+      width: 100%;
+      background: red;  
+      /* color: red; */
+    }
+  </style>
+  <div class="spanParent">
+    <span>行内元素水平居中</span>
+  </div> -->
+
+  <!-- 块级元素实现水平居中 -->
+
+  <!-- <style>
+    .box {
+      width: 100px;
+      height: 100px;
+      background: red;
+      margin: 0 auto;  /*水平居中，上下0，左右平均*/
+    }
+  </style>
+  <div class="box">块级元素水平居中</div> -->
+
+  <!-- 垂直居中 -->
+  <!-- 方法一：单行文本内容， 设置line-height等于父元素的高度，注意这是定高的，
+  高度是固定不变的，只适合用于单行文本的元素，比如块级元素里面的文本 -->
+    <!-- <style>
+      .parent {
+        width: 400px;
+        height: 100px;
+        background: red;
+        line-height: 100px;
+        text-align: center;
+      }
+    </style>
+  <div class="parent">
+      <span>文本垂直居中</span>
+  </div> -->
+
+  <!-- 方法二：行内块级元素，设置display： inline-block属性，针对一些img等行内元素比较常用
+      vertical-align: middle 和一个伪元素内容块处于容器的中央。
+      vertical-align 属性设置元素的垂直对齐方式。
+  -->
+  <!-- <style>
+    .parent {
+      width: 500px;
+      height: 500px;
+      border: 1px solid red;
+      /* line-height: 500px; */  /*对img不会变*/
+      text-align: center;
+    }
+    .parent:after, .son {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .parent::after {
+      content: '';
+      height: 100%
+    }
+    .son:hover {
+      color:blue;
+    }
+  </style>
+  <div class="parent">
+    <img src="#" alt="图片" class="son">
+  </div> -->
+<!-- 
+  方法3,子元素可用vertical-align:middle(使元素垂直对齐),和display:tab-cell(让元素以表格形式渲染),
+        父元素使用display:table,让元素以表格的形式渲染 -->
+
+  <!-- <style>
+    .parent{
+      display:table; /*让元素以表格形式渲染*/
+      border:1px solid red;
+      background:red;
+      height:200px;
+      }
+    .son {
+        display:table-cell; /*让元素以表格的单元表格形式渲染*/
+        vertical-align:middle;/*使用元素的垂直对齐*/
+        background:yellow;
+        }
+  </style>
+  <div class="parent">
+      <div class="son">contentcontentcontentcontentcontentcontentcontent</div>
+  </div> -->
+
+  <!-- 方法4,使用Flex布局,display:box(声明弹性盒模型),box-orient:vertical;(父元素设置,用来确定子元素的方向,垂直方向向的,竖着的,
+        horizontal是横着的),box-pack:center;(决定盒子内部剩余空间的对齐表现,这里居中)
+       设为 Flex 布局以后，子元素的float、clear和vertical-align属性将失效。-->
+
+    <!-- <style>
+      .parent{
+        height:400px;
+        display:-webkit-box;  
+        -webkit-box-align:center;
+        display:box;
+        box-align:center;
+        border:1px solid red;
+        /* text-align: center; */
+      }
+    .son {
+      width:100px;
+      height:100px;
+      background:yellow;
+      /* text-align: center; */
+    }    
+    </style>
+    <div class="parent">
+      <div class="son">1</div>
+    </div> -->
+    
+    <!-- 方法5设置父元素相对定位(position:relative),子元素设置绝对定位position:absolute,top:50%,height高度固定
+    ,利用margin负半值的方式，让元素垂直居中 -->
+
+    <!-- <style>
+      .parent{
+        position:relative;
+        width:400px;        /*父元素设置宽度和高度*/
+        height:400px; 
+        border:1px solid red;
+        /* text-align: center;  */
+      }
+      .son{
+        width:100px;
+        height:100px; 
+        position:absolute;
+        top:50%;
+        margin-top:-50px; /*-宽度/2*/
+         background:pink;
+        /* text-align: center; */
+      }
+
+    </style>
+    <div class="parent">
+        <div class="son">de</div>
+   </div> -->
+
+   <!-- 方法6.设置父元素相对定位(position:relative),子元素设置绝对定位
+   margin:auto 0,高度固定,left | top | right | bottom都设置为0， -->
+   <style>
+    .son {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: blue;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto auto;   /* 上下平均，左右为0*/
+    } 
+   </style>
+   <div class="parent">
+      <div class="son">de</div>
+  </div>
+</body>
+</html>
