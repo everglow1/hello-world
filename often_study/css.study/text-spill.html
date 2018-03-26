@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <style>
+    .text-spill {
+      /*单行溢出*/
+      width: 200px;
+      overflow: hidden;
+      /*省略号*/
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      background: blue;
+      /*多行溢出， 利用css扩展属性*/
+      /* width: 500px;
+      background: blue;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden; */
+      /* 使用范围广 */
+      /* position: relative; 
+      line-height: 20px;
+      max-height: 100px;
+      overflow: hidden; */
+    }
+    /* .text-spill:after {
+      content: "...."; 
+      color:#000; 
+      position: absolute; 
+      bottom: 0; 
+      right: 0; 
+      padding-left:40px;
+    } */
+  </style>
+  <div class="text-spill">
+    多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出多行文本溢出
+    出多行文本溢出多行文本溢出多行文本溢出  
+    出多行文本溢出多行文本溢出多行文本溢出  出多行文本溢出多行文本溢出多行文本溢出  出多行文本溢出多行文本溢出多行文本溢出  出多行文本溢出多行文本溢出多行文本溢出  出多行文本溢出多行文本溢出多行文本溢出  
+    出多行文本溢出多行文本溢出多行文本溢出  出多行文本溢出多行文本溢出多行文本溢出  出多行文本溢出多行文本溢出多行文本溢出    
+</body>
+</html>
