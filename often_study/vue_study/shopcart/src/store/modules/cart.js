@@ -11,7 +11,7 @@ const state = {
 }
 
 const getters = {
-
+  shoplist: state => state.shop_list
 }
 
 const mutations = {
