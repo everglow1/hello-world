@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld/>
+    <!-- <img src="./assets/logo.png"> -->
+    <!-- <HelloWorld/> -->
     <productlist></productlist>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+// import HelloWorld from './components/HelloWorld'
 import productlist from './components/ProductList'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld,
+    // HelloWorld,
     productlist
   }
 }
