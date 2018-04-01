@@ -1,19 +1,19 @@
 <template>
   <div class="product">
     <h4>商品信息</h4>
-    <table class="table table-hover table-bordered">
-      <tr>
+    <table class="item-wrapper">
+      <tr class="item">
         <th>id</th>
         <th>名称</th>
         <th>价格</th>
         <th>操作</th>
       </tr>
-      <tr v-for="shop in shoplist" :key="shop.index">
+      <tr class="item" v-for="shop in shoplist" :key="shop.index">
         <td>{{shop.id}}</td>
         <td>{{shop.name}}</td>
         <td>{{shop.price}}</td>
         <td>
-          <div class="btn btn-info" @click="addToCart">加入购物车</div>
+          <div class="btn btn-info" @click="addToCart(shop)">加入购物车</div>
         </td>
       </tr>
     </table>
@@ -21,29 +21,31 @@
 </template>
 
 <script>
-// import {mapGetters} from 'vuex'
+import {mapGetters, mapActions} from 'vuex'
 export default {
   name: 'product',
   computed: {
-    // console.log('nihao')
-    shoplist() {
-      return this.$store.getters.shoplist
-    //   // console.log('nihao')
-    // }
-    // ...mapGetters(['shoplist'])
-  },
-  // created () {
-  //   this.$store.dispatch()
-  // }
+  //   shoplist() {
+  //     // 通过getters拿到store数据.
+  //     return this.$store.getters.shoplist
+  // },
+  ...mapGetters(['shoplist'])
 },
-methods : {
-  addToCart() {
-    
-  }
+methods: {
+  ...mapActions(['addToCart'])
 }
 }
 </script>
 
-<style>
-
+<style lang="stylus" scoped>
+  .table
+    th
+      text-align: center
+    .item-wrapper
+      display: inline
+      background-color: #dfdfdf
+      align-items: center
+      justify-content: center
+      .item
+        flex: 1
 </style>
