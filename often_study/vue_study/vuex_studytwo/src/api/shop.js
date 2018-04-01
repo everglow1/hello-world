@@ -7,6 +7,6 @@ const _products = [
 export default {
   getProducts (cb) {
     setTimeout(() => cb(_products), 100)
-    console.log('shop.js')
+    // console.log('shop.js')
   }
 }
