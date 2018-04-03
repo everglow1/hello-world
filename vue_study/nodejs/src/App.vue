@@ -1,17 +1,25 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <!-- 头部 -->
+    <nodeheader></nodeheader>
+    <!-- <router-link to="./nodearticle">nodearticle</router-link> -->
+    <!-- 主要内容区 -->
+    <router-view name="main"/>
+    <!-- <router-view/> -->
   </div>
 </template>
 
 <script>
+import nodeheader from './components/nodeheader'
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    nodeheader
+  }
 }
 </script>
 
-<style>
+<style lang="stylus" scoped>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
