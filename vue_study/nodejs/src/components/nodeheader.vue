@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <router-link to="/">
-      <img src="../assets/cnodejs.svg" title="node.svg">
+      <img src="../assets/images/cnodejs.png" title="node.svg">
     </router-link>
     <el-button type="text" @click="dialogVisible=true">关于</el-button>
   </div>
