@@ -2,10 +2,11 @@
   <div id="app">
     <!-- 头部 -->
     <nodeheader></nodeheader>
+    <!-- 点击去到某个路由组件 -->
     <!-- <router-link to="./nodearticle">nodearticle</router-link> -->
     <!-- 主要内容区 -->
     <router-view name="main"/>
-    <!-- <router-view/> -->
+    <!-- <router-view name="main"/> -->
   </div>
 </template>
 

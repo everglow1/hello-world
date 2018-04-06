@@ -51,8 +51,7 @@ export default {
     top 0
     left 0
     .img
-      // display inline-block
-      position relative
+      // position relative
       float left
       width 10rem
       margin-left 10rem
