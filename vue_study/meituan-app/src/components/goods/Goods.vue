@@ -7,7 +7,7 @@
       <ul>
         <!-- 专场 -->
         <!-- currentIndex === 0(因为专场就在最上面，下标是固定了的0) -->
-        <li class="menu-item" :class="{'current' : currentIndex === 0}">
+        <li class="menu-item" :class="{'current' : currentIndex === 0}" @click='selectMenu(0)'>
           <p class="text">
             <!-- 有些有图标，有些没有，v-if判断是否显示 -->
             <img class="icon" :src="container.tag_icon" v-if="container.tag_icon" alt="专场图标">
@@ -16,7 +16,7 @@
         </li>
         <!-- 热销之后 -->
         <!-- currentIndex === index + 1(专场是固定0没有进行遍历，这从1开始) -->
-        <li class="menu-item" v-for="(item, index) in goods" :key="index" :class="{'current' : currentIndex === index + 1}">
+        <li class="menu-item" v-for="(item, index) in goods" :key="index" :class="{'current' : currentIndex === index + 1}" @click="selectMenu(index + 1)">
           <p class="text">
             <img class="icon" :src="item.icon" v-if="item.icon" alt="热销图标">
             {{item.name}}
@@ -118,14 +118,25 @@ export default {
   //   }
   // }
   methods: {
+    selectMenu (index) {
+      // 依然要获取元素
+      let foodlist = this.$refs.foodScroll.getElementsByClassName('food-list-hook')
+      let element = foodlist[index]
+      // 滚动到对应的右侧商品 使用better-scroll内置方法scrollToElement 作用是滚动到指定的目标元素
+      this.foodScroll.scrollToElement(element, 250)
+    },
     head_bg (img) {
       // eslint-disable-next-line
       return "background-image: url(" + img + ");"
     },
     // better-scroll 通过创建一个实例化方法来控制需要滚动的地方
     initScroll () {
-      this.menuScroll = new BScroll(this.$refs.menuScroll)
+      this.menuScroll = new BScroll(this.$refs.menuScroll, {
+        // 注意，better-scroll会阻止点击事件，需设置click：true
+        click: true
+      })
       this.foodScroll = new BScroll(this.$refs.foodScroll, {
+        click: true,
         // better-scroll属性，值为3的时候，在滚动的时候，实时派发scroll事件
         probeType: 3
       })
@@ -168,7 +179,7 @@ export default {
         let height2 = this.listHeight[i + 1]
         // 判断是否在上面的区间中 !height2(为了解决越界问题，就是最后一个区间问题)
         if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
-          console.log(i)
+          // console.log(i)
           return i
         }
       }
