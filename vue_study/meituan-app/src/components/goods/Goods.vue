@@ -1,7 +1,8 @@
 <template>
   <div class="goods">
     <!-- 分类列表 -->
-    <div class="menu-wrapper">
+    <!-- ref单独拿到这个元素，在此即整个分类列表 -->
+    <div class="menu-wrapper" ref="menuScroll">
       <!-- 列表形式，使用ul -->
       <ul>
         <!-- 专场 -->
@@ -22,16 +23,18 @@
       </ul>
     </div>
     <!-- 商品列表 -->
-    <div class="foods-wrapper">
+    <!-- ref单独拿到这个元素，在此即整个商品列表 -->
+    <div class="foods-wrapper" ref="foodScroll">
       <ul>
         <!-- 专场 -->
-        <li class="container-list">
+        <!-- food-list-hook用来获取高度而定义的类名 -->
+        <li class="container-list food-list-hook">
           <div v-for="(item, index) in container.operation_source_list" :key="index">
             <img class="img" :src="item.pic_url" alt="专场图片">
           </div>
         </li>
         <!-- 商品具体分类 -->
-        <li class="food-list" v-for="(item,index) in goods" :key="index">
+        <li class="food-list food-list-hook" v-for="(item,index) in goods" :key="index">
           <h3 class="title">{{item.name}}</h3>
           <!-- 具体商品列表 -->
           <ul>
@@ -64,14 +67,22 @@
 </template>
 
 <script>
+import BScroll from 'better-scroll'
 export default {
   data () {
     return {
       // 请求到的数据，重新取名
       container: {},
-      goods: []
+      goods: [],
+      // 定义分类列表的高度
+      listHeight: [],
+      // 将滚动的实例化的对象保存下来，然后才可以使用该对象去添加滚动事件
+      menuScroll: {},
+      foodScroll: {}
     }
   },
+  // 数据观测(data observer)，属性和方法的运算，
+  // watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。dom没渲染
   created () {
     // axios 请求数据
 
@@ -84,6 +95,13 @@ export default {
         if (response.code === 0) {
           this.container = response.data.container_operation_source
           this.goods = response.data.food_spu_tags
+          // 与DOM相关操作写在该函数回调中，dom更新之后
+          this.$nextTick(() => {
+            // 执行滚动方法
+            this.initScroll()
+            // 计算分类高度
+            this.calculateHeight()
+          })
         }
         // console.log(this.goods)
         // console.log(this.container)
@@ -99,6 +117,38 @@ export default {
     head_bg (img) {
       // eslint-disable-next-line
       return "background-image: url(" + img + ");"
+    },
+    // better-scroll 通过创建一个实例化方法来控制需要滚动的地方
+    initScroll () {
+      this.menuScroll = new BScroll(this.$refs.menuScroll)
+      this.foodScroll = new BScroll(this.$refs.foodScroll, {
+        probeType: 3
+      })
+      // foodScroll监听事件  on(添加事件的方法)，第一个参数是事件名
+      // 该方法是better-scroll的内置方法 scroll
+      this.foodScroll.on('scroll', (pos) => {
+        console.log(pos.Y)
+      })
+    },
+    // 计算分类的区间高度
+    calculateHeight () {
+      // 第一步，获取元素
+      let foodlist = this.$refs.foodScroll.getElementsByClassName('food-list-hook')
+      // console.log(foodlist)
+      // 需要进行累加的高度，初始为0
+      let height = 0
+      // 把高度放入定义好的数组
+      this.listHeight.push(height)
+      // 循环整个foodlist列表的
+      for (let i = 0; i < foodlist.length; i++) {
+        // 拿到每个单独的列表
+        let item = foodlist[i]
+        // 累加高度   clientHeight(item的可视高度)
+        height = height + item.clientHeight
+        // 把每个高度放进listHeight数组
+        this.listHeight.push(height)
+      }
+      // console.log(this.listHeight)
     }
   }
 }
