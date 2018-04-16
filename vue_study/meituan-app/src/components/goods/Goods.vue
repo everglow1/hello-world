@@ -60,22 +60,36 @@
                   <span class="unit">/{{food.unit}}</span>
                 </p>
               </div>
+              <!-- 引入加减符号组件，与content同级别 -->
+              <div class="cartcontrol-wrapper">
+                <!-- food传递给子组件，让其加减操作 -->
+                <CartControl :foodd="food"></CartControl>
+              </div>
             </li>
           </ul>
         </li>
       </ul>
     </div>
+    <!-- 购物车 -->
+    <ShopCart :poiInfoo="poiInfo" :selectFoodss="selectFoods"></ShopCart>
   </div>
 </template>
 
 <script>
+// 引入better-scroll外部组件
 import BScroll from 'better-scroll'
+// 引入底部购物车组件
+import ShopCart from '../shopcart/ShopCart'
+// 引入加减符号组件
+import CartControl from '../cartcontrol/CartControl'
 export default {
   data () {
     return {
       // 请求到的数据，重新取名
       container: {},
       goods: [],
+      // 为了shopcart组件能拿到poi_info里的数据，父组件传值给子组件
+      poiInfo: {},
       // 定义分类列表的高度
       listHeight: [],
       // 将滚动的实例化的对象保存下来，然后才可以使用该对象去添加滚动事件
@@ -84,6 +98,10 @@ export default {
       // 用来接收转化后的高度值，因为取到的高度值有小数，负值。
       scrollY: 0
     }
+  },
+  components: {
+    ShopCart,
+    CartControl
   },
   // 数据观测(data observer)，属性和方法的运算，
   // watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。dom没渲染
@@ -99,6 +117,8 @@ export default {
         if (response.code === 0) {
           this.container = response.data.container_operation_source
           this.goods = response.data.food_spu_tags
+          // 为了shopcart组件能拿到poi_info里的数据，父组件传值给子组件
+          this.poiInfo = response.data.poi_info
           // 与DOM相关操作写在该函数回调中，dom更新之后
           this.$nextTick(() => {
             // 执行滚动方法
@@ -109,6 +129,7 @@ export default {
         }
         // console.log(this.goods)
         // console.log(this.container)
+        // console.log(this.poiInfoo)
       })
   },
   // computed: {
@@ -121,6 +142,7 @@ export default {
     selectMenu (index) {
       // 依然要获取元素
       let foodlist = this.$refs.foodScroll.getElementsByClassName('food-list-hook')
+      // 获取下标
       let element = foodlist[index]
       // 滚动到对应的右侧商品 使用better-scroll内置方法scrollToElement 作用是滚动到指定的目标元素
       this.foodScroll.scrollToElement(element, 250)
@@ -140,18 +162,19 @@ export default {
         // better-scroll属性，值为3的时候，在滚动的时候，实时派发scroll事件
         probeType: 3
       })
+      // 第二步，监听滚动位置
       // foodScroll监听事件  on(添加事件的方法)，第一个参数是事件名
       // 该方法是better-scroll的内置方法 scroll
       this.foodScroll.on('scroll', (pos) => {
         // console.log(pos.y)
-        // 对拿到的高度值进行取整，取正
+        // 对拿到的高度值进行取整，取正数
         this.scrollY = Math.abs(Math.round(pos.y))
         // console.log(this.scrollY)
       })
     },
-    // 计算分类的区间高度
+    // 第一步，计算分类的区间高度
     calculateHeight () {
-      // 第一步，获取元素
+      // 第一步，获取元素，计算分类区间高度
       let foodlist = this.$refs.foodScroll.getElementsByClassName('food-list-hook')
       // console.log(foodlist)
       // 需要进行累加的高度，初始为0
@@ -171,6 +194,7 @@ export default {
     }
   },
   computed: {
+    // 第三步，根据滚动位置确认下标，与左侧对应，计算属性返回下标
     // 通过高度区间listHeight，和高度值scrollY对比拿到下标
     currentIndex () {
       for (let i = 0; i < this.listHeight.length; i++) {
@@ -184,6 +208,22 @@ export default {
         }
       }
       return 0
+    },
+    // 该方法用来监听foods是否有变化，再通过绑定传递给子组件，
+    selectFoods () {
+      // 定义一个数组做购物车的容器
+      let foods = []
+      // forEach() 方法用于调用数组的每个元素，并将元素传递给回调函数,该处把myfoods传递给回调函数
+      this.goods.forEach((myfoods) => {
+        // 再进行遍历，拿到myfoods（food_spu_tags）下面的spus
+        myfoods.spus.forEach((food) => {
+          if (food.count > 0) {
+            foods.push(food)
+          }
+        })
+      })
+      // 返回这个数组，让它传给子组件
+      return foods
     }
   }
 }
@@ -292,4 +332,8 @@ export default {
               .unit
                 font-size 12px
                 color #bfbfbf
+          .cartcontrol-wrapper
+            position absolute
+            right 0
+            bottom 0
 </style>
