@@ -6,15 +6,17 @@
       <!-- 列表形式，使用ul -->
       <ul>
         <!-- 专场 -->
-        <li class="menu-item">
+        <!-- currentIndex === 0(因为专场就在最上面，下标是固定了的0) -->
+        <li class="menu-item" :class="{'current' : currentIndex === 0}">
           <p class="text">
             <!-- 有些有图标，有些没有，v-if判断是否显示 -->
             <img class="icon" :src="container.tag_icon" v-if="container.tag_icon" alt="专场图标">
             {{container.tag_name}}
           </p>
         </li>
-        <!-- 热销 -->
-        <li class="menu-item" v-for="(item, index) in goods" :key="index">
+        <!-- 热销之后 -->
+        <!-- currentIndex === index + 1(专场是固定0没有进行遍历，这从1开始) -->
+        <li class="menu-item" v-for="(item, index) in goods" :key="index" :class="{'current' : currentIndex === index + 1}">
           <p class="text">
             <img class="icon" :src="item.icon" v-if="item.icon" alt="热销图标">
             {{item.name}}
@@ -78,7 +80,9 @@ export default {
       listHeight: [],
       // 将滚动的实例化的对象保存下来，然后才可以使用该对象去添加滚动事件
       menuScroll: {},
-      foodScroll: {}
+      foodScroll: {},
+      // 用来接收转化后的高度值，因为取到的高度值有小数，负值。
+      scrollY: 0
     }
   },
   // 数据观测(data observer)，属性和方法的运算，
@@ -122,12 +126,16 @@ export default {
     initScroll () {
       this.menuScroll = new BScroll(this.$refs.menuScroll)
       this.foodScroll = new BScroll(this.$refs.foodScroll, {
+        // better-scroll属性，值为3的时候，在滚动的时候，实时派发scroll事件
         probeType: 3
       })
       // foodScroll监听事件  on(添加事件的方法)，第一个参数是事件名
       // 该方法是better-scroll的内置方法 scroll
       this.foodScroll.on('scroll', (pos) => {
-        console.log(pos.Y)
+        // console.log(pos.y)
+        // 对拿到的高度值进行取整，取正
+        this.scrollY = Math.abs(Math.round(pos.y))
+        // console.log(this.scrollY)
       })
     },
     // 计算分类的区间高度
@@ -149,6 +157,22 @@ export default {
         this.listHeight.push(height)
       }
       // console.log(this.listHeight)
+    }
+  },
+  computed: {
+    // 通过高度区间listHeight，和高度值scrollY对比拿到下标
+    currentIndex () {
+      for (let i = 0; i < this.listHeight.length; i++) {
+        // 获取商品区间的范围
+        let height1 = this.listHeight[i]
+        let height2 = this.listHeight[i + 1]
+        // 判断是否在上面的区间中 !height2(为了解决越界问题，就是最后一个区间问题)
+        if (!height2 || (this.scrollY >= height1 && this.scrollY < height2)) {
+          console.log(i)
+          return i
+        }
+      }
+      return 0
     }
   }
 }
@@ -183,6 +207,13 @@ export default {
             width 15px
             height 15px
             vertical-align middle
+        /* 商品选择时左侧菜单样式 */
+      .current
+        margin-top -1px
+        font-weight bold
+        background white
+        &:first-child
+          margin-top 1px
     .foods-wrapper
       flex 1
       /* 专场样式 */
