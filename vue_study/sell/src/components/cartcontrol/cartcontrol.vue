@@ -52,8 +52,9 @@ export default {
       display: inline-block
       padding: 6px
       transition: all 0.5s ease
-      &.move-enter, &.move-enter-active
-        // transition: all 0.5s ease
+      &.move-leave-active, &.move-enter-active
+        transition: all 0.5s linear
+      .move-enter, .move-leave-to
         transform: translate3d(24px, 0, 0)
       .inner
         display: inline-block

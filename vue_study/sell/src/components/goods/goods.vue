@@ -2,7 +2,7 @@
   <div class="goods">
     <div class="menu-wrapper" ref="menuWrapper">
       <ul class="menu">
-        <li v-for="(item, index) in goods" :key="item.index" class="menu-item" @click="selectMenu(index, $event)" :class="{current: currentIndex == index}">
+        <li v-for="(item, index) in goods" :key="item.index" class="menu-item" @click="selectMenu(index)" :class="{'current': currentIndex === index}">
           <span class="text" border-1px>
             <span v-show="item.type > 0" class="icon" :class="classMap[item.type]"></span>
             {{item.name}}
@@ -15,7 +15,7 @@
         <li v-for="item in goods" :key="item.index" class="food-list food-list-hook">
           <h1 class="title">{{item.name}}</h1>
           <ul class="food-left">
-            <li @click="selectFood(food, $event)" v-for="food in item.foods" :key="food.index" class="food-item border-1px">
+            <li @click="selectFood(index)" v-for="food in item.foods" :key="food.index" class="food-item border-1px">
               <div class="icon">
                 <img width="57" height="57" :src="food.icon">
               </div>
@@ -141,14 +141,12 @@ export default {
         this.listHeight.push(height);
       }
     },
-    selectMenu(index, event) {
+    selectMenu(index) {
       // console.log(index);
-      if (!event._constructed) {
-        return 0;
-      }
       let foodList = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook');
       let el = foodList[index];
-      this.foodsScroll.scrollToElement(el);
+      // 得传参数。
+      this.foodsScroll.scrollToElement(el, 250);
     },
     shopcart(target) {
       this._drop(target);
