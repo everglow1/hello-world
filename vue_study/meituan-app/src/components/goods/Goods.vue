@@ -21,6 +21,10 @@
             <img class="icon" :src="item.icon" v-if="item.icon" alt="热销图标">
             {{item.name}}
           </p>
+          <!-- 左侧菜单商品数量增加减少 -->
+          <i class="num" v-show="calculateCount(item.spus)">
+            {{calculateCount(item.spus)}}
+          </i>
         </li>
       </ul>
     </div>
@@ -132,13 +136,19 @@ export default {
         // console.log(this.poiInfoo)
       })
   },
-  // computed: {
-  //   head_bg () {
-  //     // eslint-disable-next-line
-  //     return "background-image: url(" + this.goods.icon + ");"
-  //   }
-  // }
   methods: {
+    // 得到左侧菜单商品数量增加减
+    calculateCount (spus) {
+      let count = 0
+      // 遍历spus，返回food
+      spus.forEach((food) => {
+        if (food.count > 0) {
+          count = count + food.count
+        }
+      })
+      return count
+    },
+    // 点击左侧获得右侧相应商品分类
     selectMenu (index) {
       // 依然要获取元素
       let foodlist = this.$refs.foodScroll.getElementsByClassName('food-list-hook')
@@ -209,6 +219,7 @@ export default {
       }
       return 0
     },
+    // 点击加减购物车，购物车数据变化
     // 该方法用来监听foods是否有变化，再通过绑定传递给子组件，
     selectFoods () {
       // 定义一个数组做购物车的容器
@@ -217,6 +228,7 @@ export default {
       this.goods.forEach((myfoods) => {
         // 再进行遍历，拿到myfoods（food_spu_tags）下面的spus
         myfoods.spus.forEach((food) => {
+          // food（spus）
           if (food.count > 0) {
             foods.push(food)
           }
@@ -243,6 +255,7 @@ export default {
       flex 0 0 85px
       background #f4f4f4
       .menu-item
+        position relative
         padding 16px 23px 15px 10px
         border-bottom 1px solid #E4E4E4
         .text
@@ -258,7 +271,19 @@ export default {
             width 15px
             height 15px
             vertical-align middle
-        /* 商品选择时左侧菜单样式 */
+        .num
+          position absolute
+          width 15px
+          height 15px
+          right 0
+          top 0
+          line-height 15px
+          font-size 9px
+          text-align center
+          border-radius 50%
+          color white
+          background red
+        /* 商品选中时左侧菜单样式 */
       .current
         margin-top -1px
         font-weight bold

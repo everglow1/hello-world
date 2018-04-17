@@ -50,7 +50,7 @@ export default {
       font-size 26px
       color #b4b4b4
     .move-enter-active, .move-leave-active
-      /* all:针对所有元素，linear：匀速*/
+      /* all:针对所有元素，linear：匀速 transition过渡属性*/
       transition all 0.5s linear
     .move-enter, .move-leave-to
       /* translateX(20px),定义转换，只是用 X 轴的值。*/
