@@ -20,6 +20,31 @@
       <!-- {{poiInfoo.min_price_tip}} -->
       {{pay}}
     </div>
+    <!-- 购物车详情列表 -->
+    <div class="shopcart-list">
+      <div class="list-top" v-if="poiInfoo.discounts2">
+        {{poiInfoo.discounts2[0].info}}
+      </div>
+      <div class="list-header">
+        <h3 class="title">一号口袋</h3>
+        <div class="empty">
+          <img src="./img/ash_bin.png">
+          <span>清空购物车</span>
+        </div>
+      </div>
+      <div class="list-content">
+        <ul>
+          <li class="food-item">
+            <div class="desc-wrapper">
+              <div class="desc-left"></div>
+              <div class="desc-right"></div>
+            </div>
+            <div class="cartcontrol-wrapper"></div>
+          </li>
+        </ul>
+      </div>
+      <div class="list-bottom"></div>
+    </div>
   </div>
 </template>
 
