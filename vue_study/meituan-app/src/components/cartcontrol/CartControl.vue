@@ -2,10 +2,11 @@
   <div class="cartcontrol">
     <transition name="move">
       <!-- v-show="foodd.count"有值显示，不然不显示 -->
-      <div class="cart-decrease icon-remove_circle_outline" @click="decreaseCart" v-show="foodd.count"></div>
+      <div class="cart-decrease icon-remove_circle_outline" @click.stop.prevent="decreaseCart" v-show="foodd.count"></div>
     </transition>
     <div class="cart-count" v-show="foodd.count > 0">{{foodd.count}}</div>
-    <div class="cart-add icon-add_circle" @click="increaseCart">
+    <!-- @click.stop.prevent(阻止冒泡事件) -->
+    <div class="cart-add icon-add_circle" @click.stop.prevent="increaseCart">
       <i class="bg"></i>
     </div>
   </div>

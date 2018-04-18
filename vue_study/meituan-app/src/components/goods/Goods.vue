@@ -44,7 +44,8 @@
           <h3 class="title">{{item.name}}</h3>
           <!-- 具体商品列表 -->
           <ul>
-            <li class="food-item" v-for="(food, index) in item.spus" :key="index">
+            <!-- @click="showDetail(food)" 显示具体商品详情,要显示商品，传递food -->
+            <li class="food-item" v-for="(food, index) in item.spus" :key="index" @click="showDetail(food)">
               <div class="icon" :style="head_bg(food.picture)"></div>
               <!-- 这种用法 -->
               <!-- <div class="icon"> -->
@@ -66,7 +67,7 @@
               </div>
               <!-- 引入加减符号组件，与content同级别 -->
               <div class="cartcontrol-wrapper">
-                <!-- food传递给子组件，让其加减操作 -->
+                <!-- food(上面遍历的)传递给子组件，让其加减操作 -->
                 <CartControl :foodd="food"></CartControl>
               </div>
             </li>
@@ -76,6 +77,9 @@
     </div>
     <!-- 购物车 -->
     <ShopCart :poiInfoo="poiInfo" :selectFoodss="selectFoods"></ShopCart>
+    <!-- 单个商品详情页 -->
+    <!-- 把selectfood的值传递到FoodDetail组件 ref="foodView"(父组件能调用子组件的showView方法)-->
+    <FoodDetail :selectFoods="selectfood" ref="foodView"></FoodDetail>
   </div>
 </template>
 
@@ -86,6 +90,8 @@ import BScroll from 'better-scroll'
 import ShopCart from '../shopcart/ShopCart'
 // 引入加减符号组件
 import CartControl from '../cartcontrol/CartControl'
+// 引入商品详情页
+import FoodDetail from '../fooddetail/FoodDetail'
 export default {
   data () {
     return {
@@ -100,12 +106,15 @@ export default {
       menuScroll: {},
       foodScroll: {},
       // 用来接收转化后的高度值，因为取到的高度值有小数，负值。
-      scrollY: 0
+      scrollY: 0,
+      // 为了传值给具体商品详情页而定义的一个属性
+      selectfood: {}
     }
   },
   components: {
     ShopCart,
-    CartControl
+    CartControl,
+    FoodDetail
   },
   // 数据观测(data observer)，属性和方法的运算，
   // watch/event 事件回调。然而，挂载阶段还没开始，$el 属性目前不可见。dom没渲染
@@ -137,6 +146,12 @@ export default {
       })
   },
   methods: {
+    showDetail (food) {
+      // 把food值赋给一个属性，把这个属性传递给另外一个组件。当点击该事件，selectFood就是该商品了
+      this.selectfood = food
+      // 调用子组件FoodDetail的showView方法
+      this.$refs.foodView.showView()
+    },
     // 得到左侧菜单商品数量增加减
     calculateCount (spus) {
       let count = 0
