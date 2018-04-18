@@ -11,33 +11,37 @@
             <img class="share-bt" src="./img/share.png"/>
             <img class="more-bt" src="./img/more.png"/>
           </div>
-        </div>
-        <!-- 中间部分 -->
-        <div class="content-wrapper">
-          <h3 class="name">{{selectFoods.name}}</h3>
-          <p class="saled">{{selectFoods.month_saled_content}}</p>
-          <img :src="selectFoods.product_label_picture" alt="网友推荐" class="product" v-show="selectFoods.product_label_picture"/>
-          <p class="price">
-            <span class="text">￥{{selectFoods.min_price}}</span>
-            <span class="unit">/{{selectFoods.unit}}</span>
-          </p>
-          <!-- 选规格 -->
-          <!-- 引入加减符号组件 -->
-          <div class="cartcontrol-wrapper">
-            <!-- food传递给子组件，让其加减操作 -->
-            <CartControl :foodd="selectFoods"></CartControl>
+          <!-- 中间部分商品部分细节部分 -->
+          <div class="content-wrapper">
+            <h3 class="name">{{selectFoods.name}}</h3>
+            <p class="saled">{{selectFoods.month_saled_content}}</p>
+            <img :src="selectFoods.product_label_picture" alt="网友推荐" class="product" v-show="selectFoods.product_label_picture"/>
+            <p class="price">
+              <span class="text">￥{{selectFoods.min_price}}</span>
+              <span class="unit">/{{selectFoods.unit}}</span>
+            </p>
+            <!-- 选规格 -->
+            <!-- 引入加减符号组件 -->
+            <div class="cartcontrol-wrapper">
+              <!-- selectFoods传递给子组件，让其加减操作 -->
+              <CartControl :foodd="selectFoods"></CartControl>
+            </div>
+            <!-- 利用样式遮住加减组件 -->
+            <!-- !selectFoods.count || selectFoods.count === 0 (这两种情况显示选规格) -->
+            <div class="buy" v-show="!selectFoods.count || selectFoods.count === 0" @click="addProduct">
+              选规格
+            </div>
           </div>
-          <!-- !selectFoods.count || selectFoods.count === 0 (这两种情况显示选规格) -->
-          <div class="buy" v-show="!selectFoods.count || selectFoods.count === 0">
-            选规格
-          </div>
         </div>
+   
       </div>
     </div>
   </transition>
 </template>
 
 <script>
+// 为了点击选规格时，添加一个商品给购物车，引入vue组件
+import Vue from 'vue'
 // 引入加减符号组件
 import CartControl from '../cartcontrol/CartControl'
 export default {
@@ -64,6 +68,11 @@ export default {
     // 关闭详情页
     closeDetail () {
       this.showFlag = false
+    },
+    // 点击选规格时，添加一个商品给购物车
+    addProduct () {
+      // 使用vue自带的set方法，把count加入selectFoods，并赋值为1
+      Vue.set(this.selectFoods, 'count', 1)
     }
   }
 }
@@ -115,4 +124,42 @@ export default {
         right 50px
       .more-bt
         right 10px
+    .content-wrapper
+      position relative
+      padding 0 0 16px 16px
+      .name
+        line-height 30px
+        font-size 15px
+        font-weight bold
+        color #333333
+      .saled
+        font-size 11px
+        margin-bottom 6px
+      .product
+        height 15px
+        margin-bottom 16px
+      .price
+        font-size 0
+        .text
+          font-size 17px
+          color #fb4e44
+        .unit
+          font-size 11px
+          color #9d9d9d
+    .cartcontrol-wrapper
+      position absolute
+      right 12px
+      bottom 10px
+      padding 2px
+      // 利用样式遮住加减组件
+    .buy
+      position absolute
+      width 64px
+      height 30px
+      right 12px
+      bottom 10px
+      line-height 30px
+      text-align center
+      border-radius 30px
+      background #ffd161
 </style>
