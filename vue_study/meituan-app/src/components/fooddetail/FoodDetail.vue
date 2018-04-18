@@ -1,8 +1,8 @@
 <template>
   <transition name="food-detail">
     <!-- 图片部分 -->
-    <!-- v-show="showFlag" （不直接展示这个页面） -->
-    <div class="fooddetail" v-show="showFlag">
+    <!-- v-show="showFlag" （为了不直接展示这个页面） -->
+    <div class="fooddetail" v-show="showFlag" ref="foodView">
       <div class="food-wrapper">
         <div class="food-content">
           <div class="img-wrapper">
@@ -33,13 +33,55 @@
             </div>
           </div>
         </div>
-   
+        <!-- 横杠组件 -->
+        <Split></Split>
+        <!-- 外卖评价 -->
+        <div class="rating-wrapper">
+          <!-- 评价头部 -->
+          <div class="rating-title">
+            <!-- 评价头部左侧 -->
+            <!-- 访问超过2级，没有数据会报错，需判断是否有该数据，才能访问下一层数据 -->
+            <div class="like-ratio" v-if="selectFoods.rating">
+              <span class="title">{{selectFoods.rating.title}}</span>
+              <span class="retio">
+                ({{selectFoods.rating.like_ratio_desc}}
+                <i>{{selectFoods.rating.like_ratio}}</i>)
+              </span>
+            </div>
+            <!-- 评价头部右侧 -->
+            <div class="snd-title" v-if="selectFoods.rating">
+              <span class="text">{{selectFoods.rating.snd_title}}</span>
+              <span class="icon icon-keyboard_arrow_right"></span>
+            </div>
+          </div>
+          <!-- 评价内容 -->
+          <ul v-if="selectFoods.rating">
+            <!-- 遍历selectFoods.rating.comment_list，拿到评价内容 -->
+            <li class="comment-item" v-for="(comment, index) in selectFoods.rating.comment_list" :key="index">
+              <div class="comment-header">
+                <img class="img" :src="comment.user_icon" v-if="comment.user_icon" alt="用户图标"/>
+                <!-- 替代的图标 -->
+                <img class="img" src="./img/anonymity.png" v-if="!comment.user_icon" alt="用户没有图标时的替代图标"/>
+              </div>
+              <!-- 评价内容 -->
+              <div class="comment-main">
+                <div class="user">{{comment.user_name}}</div>
+                <div class="time">{{comment.comment_time}}</div>
+                <div class="content">{{comment.comment_content}}</div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </transition>
 </template>
 
 <script>
+// 引入横杠组件
+import Split from '../split/Split'
+// 为了评价能滚动，引入better-scroll组件,需初始化，在showView里面初始化，为了一进入该详情页就可以滚动评价
+import BScroll from 'better-scroll'
 // 为了点击选规格时，添加一个商品给购物车，引入vue组件
 import Vue from 'vue'
 // 引入加减符号组件
@@ -58,12 +100,26 @@ export default {
     }
   },
   components: {
-    CartControl
+    CartControl,
+    Split
   },
   methods: {
     showView () {
       // 通过Goods组件点击，更改此状态，即父组件调用子组件的方法
       this.showFlag = true
+      // 滚动评价，放在哪个地方，就是超过这个地方就滚动
+      this.$nextTick(() => {
+        if (!this.scroll) {
+          // eslint-disable-next-line
+          this.scroll = new BScroll(this.$refs.foodView, {
+            click: true,
+            probeType: 3
+          })
+        } else {
+          // 保存缓存的内容，刷新页面。
+          this.scroll.refresh()
+        }
+      })
     },
     // 关闭详情页
     closeDetail () {
@@ -162,4 +218,61 @@ export default {
       text-align center
       border-radius 30px
       background #ffd161
+  .fooddetail .rating-wrapper
+    padding-left 16px
+    .rating-title
+      padding 16px 16px 16px 0
+      .like-ratio
+        float left
+        font-size 0
+        .title
+          font-size 13px
+        .ratio
+          font-size 11px
+          i
+            font-size 11px
+            color #fb4e44
+      .snd-title
+        float right
+        font-size 0
+        .text, .icon
+          display inline-block
+          font-size 13px
+          color #9d9d9d
+        .icon
+          margin-left 12px
+    // ul与rating-title平级，但是无class，所以li的calss与rating-title平级
+    .comment-item
+      display flex
+      padding 15px 14px 17px 0
+      width 100%
+      border-bottom 1px solid #f4f4f4
+      // 盒子content加上了padding和border
+      box-sizing border-box
+      .comment-header
+        flex 0 0 41px
+        margin-left 10px
+        .img
+          // display inline-block
+          width 41px
+          height 41px
+          border-radius 50%
+      .comment-main
+        flex 1
+        margin-top 6px
+        .user
+          float left
+          width 50%
+          font-size 12px
+          color #333333
+        .time
+          float right
+          width 50%
+          font-size 10px
+          text-align right
+          color #666666
+        .content
+          margin-top 17px
+          font-size 13px
+          line-height 19px
 </style>
