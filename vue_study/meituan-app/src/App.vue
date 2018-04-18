@@ -36,7 +36,7 @@ export default {
         if (response.code === 0) {
           this.poiInfo = response.data.poi_info
         }
-        console.log(this.poiInfo)
+        // console.log(this.poiInfo)
       })
   }
 }
