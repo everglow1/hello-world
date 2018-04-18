@@ -5,7 +5,8 @@
     <div class="content-left">
       <!-- :class="{'highligh': totalCount > 0}" (高亮设置有值，购物车样式会变化) -->
       <div class="logo-wrapper" :class="{'highligh': totalCount > 0}">
-        <span class="icon-shopping_cart logo" :class="{'highligh': totalCount > 0}"></span>
+        <!-- @click="toggleList" 购物车详情页点击是否显示 -->
+        <span class="icon-shopping_cart logo" :class="{'highligh': totalCount > 0}" @click="toggleList"></span>
         <!-- Cartcontrol组件传过来的计算属性方法 -->
         <i class="num" v-show="totalCount">{{totalCount}}</i>
       </div>
@@ -21,7 +22,8 @@
       {{pay}}
     </div>
     <!-- 购物车详情列表 -->
-    <div class="shopcart-list">
+    <!-- v-show="listShow" 计算属性返回值，购物车详情是否显示  :class="{'show': listShow}" 绑定样式，列表展示才有该样式-->
+    <div class="shopcart-list" v-show="listShow" :class="{'show': listShow}">
       <div class="list-top" v-if="poiInfoo.discounts2">
         {{poiInfoo.discounts2[0].info}}
       </div>
@@ -32,14 +34,24 @@
           <span>清空购物车</span>
         </div>
       </div>
-      <div class="list-content">
+      <!-- 遍历添加进购物车数组的商品 -->
+      <div class="list-content" v-for="(food, index) in selectFoodss" :key="index">
         <ul>
           <li class="food-item">
             <div class="desc-wrapper">
-              <div class="desc-left"></div>
-              <div class="desc-right"></div>
+              <div class="desc-left">
+                <p class="name">{{food.name}}</p>
+                <!-- 因为有个也有例，有例的没有描述 要么显示个/例，否则显示描述-->
+                <p class="unit" v-show="!food.description">{{food.unit}}</p>
+                <p class="description" v-show="!food.unit">{{food.description}}</p>
+              </div>
+              <div class="desc-right">
+                ￥{{food.min_price}}
+              </div>
             </div>
-            <div class="cartcontrol-wrapper"></div>
+            <div class="cartcontrol-wrapper">
+              <CartControl :foodd="food"></CartControl>
+            </div>
           </li>
         </ul>
       </div>
@@ -49,7 +61,18 @@
 </template>
 
 <script>
+// 引入CartControl组件
+import CartControl from '../cartcontrol/CartControl'
 export default {
+  data () {
+    return {
+      // 购物车是否显示初始状态
+      fold: true
+    }
+  },
+  components: {
+    CartControl
+  },
   props: {
     poiInfoo: {
       type: Object
@@ -68,7 +91,18 @@ export default {
     }
   },
   computed: {
-  // 从selectFoodss中计算购买总个数，父组件Goods传递过来的
+    listShow () {
+      // 判断个数是否为空, 如果为0 不展示列表
+      if (!this.totalCount) {
+        // eslint-disable-next-line
+        this.fold = true
+        return false
+      }
+      // 如果不为0 就展示列表
+      let show = !this.fold
+      return show
+    },
+    // 从selectFoodss中计算购买总个数，父组件Goods传递过来的
     totalCount () {
       let num = 0
       // 遍历传过来的selectFoodss，拿到spus中的min_price shop自定义返回的元素名
@@ -92,6 +126,16 @@ export default {
       } else {
         return this.poiInfoo.min_price_tip
       }
+    }
+  },
+  methods: {
+    // 是否显示购物车详情页开关
+    toggleList () {
+      // 判断购物的的个数是否为空的
+      if (!this.totalCount) {
+        return
+      }
+      this.fold = !this.fold
     }
   }
 }
@@ -162,4 +206,40 @@ export default {
       &.highligh
         background #ffd161
         color #2d2b2a
+    .shopcart-list
+      position absolute
+      left 0
+      top 0
+      width 100%
+      z-index -1
+      &.show
+        transform translateY(-100%)
+      .list-top
+        height 30px
+        line-height 30px
+        text-align center
+        font-size 11px
+        background #f3e6c6
+        color #646158
+      .list-header
+        height 30px
+        background #f4f4f4
+        .title
+          float left
+          padding-left 6px
+          line-height 30px
+          border-left 4px solid #53c123
+          font-size 12px
+        .empty
+          float right
+          margin-right 10px
+          line-height 30px
+          font-size 0
+          img
+            height 14px
+            margin-right 9px
+            vertical-align middle
+          span
+            font-size 12px
+            vertical-align middle
 </style>
