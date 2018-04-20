@@ -11,6 +11,7 @@
           </div>
         </div>
         <!-- 图片 -->
+        <!-- v-if="seller.poi_env" 直接遍历两层，需要判断是否有，不然会报错 -->
         <div class="pics-wrapper" v-if="seller.poi_env">
           <ul class="pics-list">
             <li class="pics-item" v-for="(imgurl, index) in seller.poi_env.thumbnails_url_list" :key="index">
@@ -69,7 +70,7 @@ export default {
           //   }
           // })
         }
-        console.log(this.seller)
+        // console.log(this.seller)
       })
   }
 }
