@@ -5,7 +5,7 @@
       <i class="line"></i>
      </router-link>
      <router-link calss="nav-item" to="/ratings">
-      评价
+      评价({{commentNumm}})
       <i class="line"></i>
      </router-link>
      <router-link calss="nav-item" to="/seller">
@@ -18,7 +18,13 @@
 
 <script>
 export default {
-
+  props: {
+    // 接收app根组件传递过来的值
+    commentNumm: {
+      type: Number,
+      default: 0
+    }
+  }
 }
 </script>
 
