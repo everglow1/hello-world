@@ -13,9 +13,12 @@
         </div>
         <!-- 图片 -->
         <!-- v-if="seller.poi_env" 直接遍历两层，需要判断是否有，不然会报错 -->
-        <div class="pics-wrapper" v-if="seller.poi_env">
-          <ul>
-            <li class="pics-item" v-for="(imgurl, index) in seller.poi_env.thumbnails_url_list" :key="index">
+        <!-- ref="pcisView"为了在这个框内滚动 -->
+        <div class="pics-wrapper" v-if="seller.poi_env" ref="pcisView">
+          <!-- ref="picsList"为了拿到整个图片的宽度 -->
+          <ul ref="picsList">
+            <!-- ref="picsItem"为了拿到单个图片的宽度 -->
+            <li class="pics-item" v-for="(imgurl, index) in seller.poi_env.thumbnails_url_list" :key="index" ref="picsItem">
               <img :src="imgurl"/>
             </li>
           </ul>
@@ -37,43 +40,6 @@
       </div>
       <Split></Split>
       <!-- 第三部分 -->
-      <div class="other-wrapper">
-        <div class="server-wrapper">
-          商家服务
-          <!-- poi_service数组需要遍历，虽然它只有一个内容 -->
-          <div class="poi-server" v-for="(item,index) in seller.poi_service" :key="index">
-            <img :src="item.icon"/>
-            {{item.content}}
-          </div>
-        </div>
-        <div class="discounts-wrapper">
-          <div class="discounts-item" v-for="(item, index) in seller.discounts2" :key="index">
-            <div class="icon">
-              <img :src="item.icon_url"/>
-            </div>
-            <div class="text">{{item.info}}</div>
-          </div>
-        </div>
-      </div>
-      <!-- test -->
-      <div class="other-wrapper">
-        <div class="server-wrapper">
-          商家服务
-          <!-- poi_service数组需要遍历，虽然它只有一个内容 -->
-          <div class="poi-server" v-for="(item,index) in seller.poi_service" :key="index">
-            <img :src="item.icon"/>
-            {{item.content}}
-          </div>
-        </div>
-        <div class="discounts-wrapper">
-          <div class="discounts-item" v-for="(item, index) in seller.discounts2" :key="index">
-            <div class="icon">
-              <img :src="item.icon_url"/>
-            </div>
-            <div class="text">{{item.info}}</div>
-          </div>
-        </div>
-      </div>
       <div class="other-wrapper">
         <div class="server-wrapper">
           商家服务
@@ -120,16 +86,32 @@ export default {
         // console.log(response)
         if (response.code === 0) {
           this.seller = response.data
-          // 初始化时，就触发滚动事件
+          // 数据初始化时，就触发滚动事件
           this.$nextTick(() => {
-            if (!this.scroll) {
-              this.scroll = new BScroll(this.$refs.sellerr, {
-                click: true,
-                probeType: 3
+            // 横向滚动
+            // 判断是否拥有图片，有图片才进行滚动
+            if (this.seller.poi_env.thumbnails_url_list) {
+              // 首先计算整个图片的可视宽度，加边距
+              // 第一，拿到单个图片的可视宽度
+              let imgWidth = this.$refs.picsItem[0].clientWidth
+              // 定义（拿到外边距）
+              let marginRight = 11
+              // 拿到整个图片区的宽度 = （图片的宽度+外边距）x 整个图片的个数 - 最后一个没有外边距
+              let widthh = (imgWidth + marginRight) * this.seller.poi_env.thumbnails_url_list.length - marginRight
+              // 把当前宽度进行偏移 ul宽度
+              this.$refs.picsList.style.width = widthh + 'px'
+              // 初始化一个scroll
+              this.scroll = new BScroll(this.$refs.pcisView, {
+                // 变横向滚动
+                scrollX: true
               })
             } else {
               this.scroll.refresh()
             }
+            // 外层竖向滚动
+            this.sellerr = new BScroll(this.$refs.sellerr, {
+              click: true
+            })
           })
         }
       })
