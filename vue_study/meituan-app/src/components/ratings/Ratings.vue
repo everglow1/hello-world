@@ -88,10 +88,8 @@ import Split from '../split/Split'
 import Star from '../star/Star'
 // 为了显示所有，有图，点评而定义常量，因为有3种情况，全部，有图，点评
 // 所有评价
-// eslint-disable-next-line
 const ALL = 2
 // 有图评价
-// eslint-disable-next-line
 const PICTURE = 1
 // 点评
 // eslint-disable-next-line
@@ -195,6 +193,7 @@ export default {
 <style lang="stylus" scoped>
   .ratings
     position absolute
+    // 设置该属性，当滚动的时候，就不会滚动全图。就只在固定页面滚动
     overflow hidden
     left 0
     top 191px
