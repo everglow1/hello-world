@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>css三种样式优先级</title>
+  <link rel="stylesheet" href="./priority.css">
+  <style>
+      #id {
+        color: red
+      }
+      h1 {
+        color: blue
+      }
+      .class {
+        color: floralwhite
+      }
+      </style>
+</head>
+<body>
+
+  <h1 id="id" class="class" style="color:aliceblue"> I am h1</h1>
+  <!-- 内联式 > 嵌入式 > 外部式  -->
+  <!-- 嵌入式 > 外部式 前提：嵌入式的样式在外部式的后面 -->
+  <!-- !important > id > class > tag -->
+</body>
+</html>
