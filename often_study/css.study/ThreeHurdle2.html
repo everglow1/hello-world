@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* absolute: 元素在文档流不占位置，，跟float一样不占位置了*/
+    /* relative： 相对之前文档流发生偏移，原先依然占位置*/
+    .left {
+      position: absolute;
+      background: yellow;
+      width: 200px;
+      height: 300px;
+      top: 0;
+      left: 0;
+    }
+    .middle {
+      height: 300px;
+      margin: 0 220px;
+      background: red;
+    }
+    .right {
+      position: absolute;
+      height: 300px;
+      width: 200px;
+      top: 0;
+      right: 0;    /*从离右边 0px*/
+      background: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="left">左边栏</div>
+  <div class="middle">中间栏</div>
+  <div class="right">右边栏</div>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+
+</head>
+<body>
+  <!-- 1.父级元素手动定义height，解决父级div无法自动取得高度问题 -->
+  <!-- <style>
+      .div1 {
+        background: #000080;
+        border: 1px solid red;
+        /* 解决代码 */
+        height: 300px;
+      }
+      .div2 {
+        background: #800080;
+        border: 1px solid red;
+        height: 100px;
+        margin-top: 10px
+      }
+      .left {
+        float: left;
+        width: 20%;
+        height: 200px;
+        background: #dddddd;
+      }
+      .right {
+        float: right;
+        width: 30%;
+        height: 80px;
+        background: #ddd
+      }
+    </style>
+  <div class="div1">
+    <div class="left">left</div>
+    <div class="right">right</div>
+  </div>
+  <div class="div2">
+    div2
+  </div> -->
+
+  <!-- 2.添加一个空标签。clear: both -->
+  <style>
+      .div1 {
+        background: #000080;
+        border: 1px solid red;
+      }
+      .div2 {
+        background: #800080;
+        border: 1px solid red;
+        height: 100px;
+        margin-top: 10px
+      }
+      .left {
+        float: left;
+        width: 20%;
+        height: 200px;
+        background: #dddddd;
+      }
+      .right {
+        float: right;
+        width: 30%;
+        height: 80px;
+        background: #ddd;
+      }
+      /* 解决代码 */
+      .clear {
+        clear: both;
+      }
+    </style>
+  <div class="div1">
+    <div class="left">left</div>
+    <div class="right">right</div>
+    <div class="clear"></div>
+  </div>
+  <div class="div2">
+    div2
+  </div>
+
+  <!-- 3.使用伪元素 ：after -->
+  <!-- <style>
+      .div1 {
+        background: #000080;
+        border: 1px solid red;
+        /* zoom: 1;  只是为了兼容ie*/
+      }
+      .div2 {
+        background: #800080;
+        border: 1px solid red;
+        height: 100px;
+        margin-top: 10px
+      }
+      .left {
+        float: left;
+        width: 20%;
+        height: 200px;
+        background: #dddddd;
+      }
+      .right {
+        float: right;
+        width: 30%;
+        height: 80px;
+        background: #ddd
+      }
+      /* 解决代码 */
+      .div1::after {
+        display: block;  /* 使生成的元素以块级元素显示，沾满剩余空间*/
+        clear: both;   /* 清除浮动*/
+        content: '';  /* 生成内容作为最后一个元素为空的*/
+        visibility: hidden;  /* 使生成的内容不可见，并允许可能被生成的内容盖住的内容进行点击*/
+        height:0  /*避免生成内容破坏原有的布局宽度 */
+      }
+    </style>
+  <div class="div1">
+    <div class="left">left</div>
+    <div class="right">right</div>
+  </div>
+  <div class="div2">
+    div2
+  </div> -->
+</body>
+</html>
