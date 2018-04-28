@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>清除浮动</title>
+</head>
+<body>
+  <!-- 1.自己定义父元素高度，让它能包裹住子元素 -->
+  <!-- <style>
+    .div1 {
+      /* 解决代码，设置父元素高度包裹住子元素*/
+      height: 200px;
+      background: blue;
+    }
+    .left {
+      float: left;
+      height: 200px;
+      width: 200px;
+      background: yellow;
+    }
+    .right {
+      float: right;
+      height: 100px;
+      width: 100px;
+      background: green;
+    }
+    .div2 {
+      height: 200px;
+      margin-top: 20px;
+      background: red;
+    }
+  </style>
+  <div class="div1">
+    div1
+    <div class="left">left</div>
+    <div class="right">right</div>
+  </div>
+  <div class="div2">div2</div> -->
+
+  <!-- 2.添加空标签 clear：both  缺点：增加了无意义的标签-->
+  <!-- <style>
+      .div1 {
+        background: blue;
+      }
+      .left {
+        float: left;
+        height: 200px;
+        width: 200px;
+        background: yellow;
+      }
+      .right {
+        float: right;
+        height: 100px;
+        width: 100px;
+        background: green;
+      }
+      .div2 {
+        height: 200px;
+        margin-top: 20px;
+        background: red;
+      }
+      /* 解决代码 */
+      .clear {
+        clear: both;
+      }
+    </style>
+    <div class="div1">
+      div1
+      <div class="left">left</div>
+      <div class="right">right</div>
+
+      <div class="clear"></div>
+    </div>
+    <div class="div2">div2</div> -->
+
+    <!-- 3.父元素设置 overflow -->
+    <!-- <style>
+        .div1 {
+          background: blue;
+          /* 解决代码 */
+          overflow: hidden;
+        }
+        .left {
+          float: left;
+          height: 200px;
+          width: 200px;
+          background: yellow;
+        }
+        .right {
+          float: right;
+          height: 100px;
+          width: 100px;
+          background: green;
+        }
+        .div2 {
+          height: 200px;
+          margin-top: 20px;
+          background: red;
+        }
+      </style>
+      <div class="div1">
+        div1
+        <div class="left">left</div>
+        <div class="right">right</div>
+      </div>
+      <div class="div2">div2</div> -->
+
+  <!-- 4.利用伪元素清除浮动 -->
+  <style>
+      .div1 {
+        background: blue;
+      }
+      .left {
+        float: left;
+        height: 200px;
+        width: 200px;
+        background: yellow;
+      }
+      .right {
+        float: right;
+        height: 100px;
+        width: 100px;
+        background: green;
+      }
+      .div2 {
+        height: 200px;
+        margin-top: 20px;
+        background: red;
+      }
+      /* 解决代码 */
+      .div1::after {
+        display: block;
+        content: '';
+        clear: both;
+        visibility: hidden;
+        height: 0;
+      }
+    </style>
+    <div class="div1">
+      div1
+      <div class="left">left</div>
+      <div class="right">right</div>
+    </div>
+    <div class="div2">div2</div>  
+
+</body>
+</html>
