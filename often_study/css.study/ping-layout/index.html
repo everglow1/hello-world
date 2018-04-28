@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>品字布局</title>
+</head>
+<body>
+  <!-- <style>
+    .main {  
+          position: fixed;  
+          left: 0;  
+          top: 0;  
+          height: 100%;  
+          width: 100%;  
+      }  
+      .wrapper-up {  
+          height: 50%;  
+      }  
+      .wrapper-down {  
+          height: 50%;  
+          position: relative;  
+      }  
+      .div-square-up {  
+          width: 50%;  
+          margin: 0 auto;  
+          border: 2px solid red;  
+          height: 96%;  
+          box-sizing: border-box;  
+      }  
+  
+      .div-square-left {  
+          position: absolute;  
+          left: 0;  
+          width: 48%;  
+          height: 100%;  
+          box-sizing: border-box;  
+          border: 2px solid red;  
+      } 
+      .div-square-right {  
+          position: absolute;  
+          right: 0;  
+          width: 48%;  
+          height: 100%;  
+          border: 2px solid red;  
+          box-sizing: border-box;  
+      }    
+  </style>
+    <div class="main">  
+      <div class="wrapper-up">  
+        <div class="div-square-up"></div>  
+      </div> 
+      <div class="wrapper-down">  
+        <div class="div-square-left"></div>  
+        <div class="div-square-right"></div>  
+      </div>  
+    </div>    -->
+
+    <style>
+      .top, .right, .left {
+        height: 100px;
+        width: 100px;
+      }
+      .top {
+        margin: auto;
+        background: red;
+      }
+      .left {
+        float: left;
+        margin-left: -200px;
+        background: yellow;
+      }
+      .right {
+        float: left;
+        margin-left: 50%;
+        background: blue
+      }
+    </style>
+    <div class="top">上部</div>
+    <div class="right">right</div>
+    <div class="left">left</div>
+</body>
+</html>
