@@ -17,11 +17,22 @@
       /* position: absolute; */
       position: relative;
     }
-    .A .B {
+    .bb {
+      background: blue
+    }
+    .B {
       width: 300px;
-      height: 300px; 
+      height: 300px;
+      /* 相对定位相对于文档原来的位置进行定位，不脱离文档流，
+       * 会遮住父和兄弟元素的文字
+       */
+      top: 0px;
+      left: 0;
       background: red;
       /* position: relative; */
+      /* 绝对定位会脱离文档流，也会遮挡住文字
+       *
+       */
       /* position:absolute; */
     }
     .C {
@@ -35,8 +46,15 @@
 </head>
 <body>
   <div class="A">
-    我是A
+    我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A
+    我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A
+    我是A我是A我是A我是A我是A我是A我是
     <div class="B">我是B</div>
+    <div class="bb">
+        我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A
+         我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A我是A
+         我是A我是A我是A我是A我是A我是A我是A
+       </div>
   </div>
   <div class="C">我是C</div>
 </body>
