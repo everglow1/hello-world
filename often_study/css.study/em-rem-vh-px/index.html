@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>视区单位</title>
+</head>
+<body>
+  <!-- px像素（Pixel）。相对长度单位。像素px是相对于显示器屏幕分辨率而言的。(引自CSS2.0手册) -->
+  <!-- em是相对长度单位。相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置
+       则相对于浏览器的默认字体尺寸。 任意浏览器的默认字体是16px,所以1em = 16px
+       em的值不固定，继承父级元素的大小。
+      -->
+
+
+  <!-- rem: 是CSS3新增的一个相对单位（root em，根em） ，但相对的只是HTML根元素-->
+
+  <!-- vh 视口高度。视口高度为100vh -->
+  <style>
+    body {
+      font-size: 62.5%;
+    }
+    .div1 {
+      font-size: 1em;
+    }
+    .span {
+      font-size: 1rem;
+    }
+    .span1 {
+      font-size: 1em;
+    }
+  </style>
+  <div class="div">
+    <div class="div1">div1
+      <span class="span1">span1</span>
+    </div>
+    <span class="span">span</span>
+  </div>
+</body>
+</html>
