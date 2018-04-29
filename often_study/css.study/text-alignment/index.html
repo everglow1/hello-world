@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>文本对齐</title>
+</head>
+<body>
+  <!-- 1.水平对齐，块级元素 。给定原始宽度，设置左右两边外边距一样 -->
+  <!-- <style>
+    .center {
+      margin: 0 auto;
+      width: 100px;
+    }
+  </style>
+  <div class="center">
+    我是水平对齐
+  </div> -->
+
+  <!-- 2.text-align 对行内元素水平居中（块级元素也可以） -->
+  <!-- <style>
+      .center {
+        text-align: center;
+      }
+    </style>
+    <div class="center">
+       <span>我是水平对齐</span>
+    </div> -->
+
+    <!-- vertical-algin (只对inline-block) -->
+    <!-- <style>
+        .box {
+          padding-left: 20px;
+          line-height: 10px;
+        }
+        .dot {
+          display: inline-block;
+          vertical-align: bottom;
+        }
+      </style>
+      <span class="box">
+        <span class="dot">对比</span>
+        我是一段文字
+      </span> -->
+
+  <!-- 垂直居中 1.设置line-height = height.只适用于单行文本元素 -->
+  <!-- <style>
+    .center {
+      height: 100px;
+      width: 400px;
+      line-height: 100px;
+      text-align: center;
+      background: red;
+    }
+  </style>
+  <div class="center">
+      <span>我是垂直居中</span>
+      <span>我是垂直居中</span>
+  </div>     -->
+
+  <!-- 垂直居中 2.父元素相对定位，子元素绝对定位。上下左右都设置为0. margin auto -->
+  <!-- <style>
+    .center {
+      position: relative;
+      background: red;
+      height: 400px;
+      width: 400px;
+    }
+    .span {
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: green;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto auto;
+
+    }
+  </style>
+  <div class="center">
+      <div class="span">我是垂直居中</div>
+  </div>  -->
+
+  <!-- 垂直居中 3. flex布局-->
+  <!-- 注：vh：视窗的高度（视窗高度是100vh），vw（视窗宽度。 视窗宽度是100vw） -->
+  <style>
+    .center {
+      display: flex;
+      height: 100vh;
+      /* margin: 0; */
+    }
+    .span {
+      margin: auto;
+    }
+  </style>
+  <div class="center">
+      <div class="span">我是垂直居中</div>
+  </div>
+</body>
+</html>
