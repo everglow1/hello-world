@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>清除空白</title>
+</head>
+<body>
+    <!-- 1.移除空格 -->
+  <!-- <style>
+    .s1 {
+      background: red;
+    }
+    .s2 {
+      background: green;
+    }
+  </style>
+  <span class="s1">1</span><span class="s1">2</span> -->
+
+  <!-- 2.父元素font-size：0  会导致子元素看不见，需设置子元素的大小-->
+  <!-- <style>
+    .div {
+      font-size: 0
+    }
+    .s1 {
+      background: red;
+      font-size: 12px;
+    }
+    .s2 {
+      background: green;
+      font-size: 12px;
+    }
+  </style>
+    <div class="div">
+      <span class="s1">1</span>
+      <span class="s1">2</span>
+    </div> -->
+
+    <!-- 3.margin负值  需要设置好像素，不然可能会导致元素不可见-->
+  <style>
+    .s1 {
+      background: red;
+      font-size: 12px;
+      margin-right: -5px;
+    }
+    .s2 {
+      background: green;
+      font-size: 12px;
+      
+    }
+  </style>
+    <div class="div">
+      <span class="s1">1</span>
+      <span class="s1">2</span>
+    </div>
+</body>
+</html>
