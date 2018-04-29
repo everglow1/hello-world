@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>单行文本，多行文本出现省略号</title>
+</head>
+<body>
+  <!-- emm..只能块级元素 -->
+  <!-- 单行文本溢出 -->
+  <!-- <style>
+    div {
+      /* 超出隐藏 */
+      overflow: hidden;  
+      /* 溢出文本出现省略号 */
+      text-overflow:ellipsis;
+      /* 强制不换行 */
+      white-space: nowrap;
+    }
+  </style>
+  <div>我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是
+    文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文
+    本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文本我是文
+    本我是文本我是文本我是文本我是文本我是文本
+  </div> -->
+  
+  <!-- 方法1. 适合于webkit浏览器或者移动端。多行文本溢出省略号 -->
+  <!-- <style>
+    .text {
+      /* 弹性盒模型显示 */
+      display: -webkit-box;
+      /* 盒模型排列方式 */
+      -webkit-box-orient: vertical;
+      /* 想要几行就几行 */
+      -webkit-line-clamp: 2;
+      /* 多出影响 */
+      overflow: hidden;
+    }
+  </style>
+  <div class="text">
+    我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本
+    我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本
+  </div> -->
+
+  <!-- 方法2. 适合各种终端 bug：文字为超出也出现省略号。 -->
+  <style>
+    .text {
+      position: relative;
+
+      line-height: 30px; 
+
+      max-height: 60px;
+
+      overflow: hidden;
+    }
+    .text::after {
+      content: "..."; 
+
+      position: absolute; 
+
+      bottom: 0; 
+
+      right: 0; 
+
+      /* padding-left: 40px; */
+    }
+  </style>
+  <div class="text">
+      我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本
+      我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本我是多行文本
+    </div>
+</body>
+</html>
