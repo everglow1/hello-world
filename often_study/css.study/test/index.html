@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- <script>
+    var clone = document.importNode(template.content, true)
+  </script> -->
+  <!-- h5新增语义化标签，为块级元素 -->
+  <!-- <nav>i am nav</nav><footer>I am footer</footer><aside>I am aside</aside>
+  <section>i am section</section>
+  <template id="template">i am tem</template> -->
+
+  <!-- BFC不被浮动元素覆盖 -->
+  <style>
+      html,body {height:100%; }
+      * { padding:0; margin:0; color:#fff; text-decoration:none; list-style:none; font-family:"微软雅黑" }
+      .aside{background:#f00;width:170px;float:left;height:300px;}
+      .main{background:#090;height:100%;
+      /* 解决代码，使main也为bfc就不被浮动元素覆盖  */
+      overflow: hidden;}
+      </style>
+      </head>
+      
+      <body>
+      <div class="aside">
+      </div>
+      <div class="main">
+      </div>
+</body>
+</html>
