@@ -7,8 +7,30 @@
   <title>flex布局</title>
 </head>
 <body>
-  <!-- display: flex  弹性布局，父容器，子元素自动生成items
+  <!-- display: flex  弹性布局（任何一个容器度可以使用），父容器，子元素自动生成 flex items(项目)
   子元素可设置flex：  放大（0，不放大，1，等比例放大， 2，占据剩余空间多一倍），
-  缩小（0，不缩小，1，等比例缩小），  固定值（宽高可设置为多少多少px）-->
+  缩小（0，不缩小，1，等比例缩小），  固定值（宽高可设置为多少多少px）
+  子元素的float、clear和vertical-align属性失效
+-->
+<!-- 容器属性：
+  flex-direction ：属性决定主轴的方向（即项目的排列方向）。
+  flex-wrap：  flex-wrap属性定义，如果一条轴线排不下，如何换行
+  flex-flow：  属性是flex-direction属性和flex-wrap属性的简写形式，默认值为row nowrap。
+  justify-content：  属性定义了项目在主轴上的对齐方式。
+  align-items：      属性定义项目在交叉轴上如何对齐。
+  align-conten ：    属性定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。
+-->
+
+<!-- 项目属性：
+  order：        定义项目的排列顺序。数值越小，排列越靠前，默认为0。
+  flex-grow：    定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大
+  flex-shrink：  定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小
+  flex-basis：   定义了在分配多余空间之前，项目占据的主轴空间（main size）。
+                 浏览器根据这个属性，计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。  
+  flex：         是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto。后两个属性可选
+  align-self：   允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值为auto，
+                 表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
+
+-->
 </body>
 </html>
