@@ -18,7 +18,7 @@
 
   把你的项目作为一个整体，通过一个给定的主文件（如：index.js），Webpack将从这个文件开始找到你的项目的所有依赖文件，使用loader处理它们，最后打包为一个（或者多个）浏览器可以识别的JavaScript文件
 
-  webpack能识别的只有js。所以需要很多loader。
+  **webpack能识别的只有js。所以需要很多loader。**
 
 #### Webpack4
 
@@ -27,20 +27,31 @@
   webpack --mode=production   // 生产环境（上线用到的）
 
   webpack --config=config/webpack.dev.js    // 打包
-  
+
   webpack-dev-server --config=config/webpack.dev.js   // 启动服务器，并实时更新。 对配置进行修改，都需要重新启动
+
   webpack 
+
   webpack-cli 
+
   webpack-dev-server
 
   babel-preset-env
+
   babel-loader
+
   babel-core
+
   style-loader
+
   css-loader 
+
   html-loader 
-  extract-loader 
+
+  extract-loader
+
   file-loader 
+  
   url-loader
 
   
