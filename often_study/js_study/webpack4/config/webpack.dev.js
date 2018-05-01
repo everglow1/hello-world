@@ -3,6 +3,7 @@ const path = require('path')
 module.exports = {
   // 入口文件,可以有多个（用数组），
   entry: {
+    // main: ['./src/main.js', 'babel-polyfill']
     main: ['./src/main.js']
   },
   // 打包环境： 开发 & 生产
@@ -23,6 +24,17 @@ module.exports = {
   // 配置loader
   module: {
     rules: [
+      // js loader
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }
+        ],
+        // 忽视，不转换
+        exclude: /node_modules/
+      },
       // css loaders
       {
         test: /\.css$/,
@@ -37,26 +49,26 @@ module.exports = {
           // 将HTML文件和js文件进行分割，不会融入到一起
           {loader: 'extract-loader'},
           // html loader,
-          {loader: 'html-loader', options: {attrs: ['img: src']}}
+          {loader: 'html-loader', options: {attrs: ['images: src']}}
         ]
       },
       // img loader
       {
         test: /\.(jpg | png | gif)$/,
         use: [
-          // {
-          //   loader: 'file-loader',
-          //   // 名字，ext原本是什么名字就是什么名字
-          //   options: {name: 'images/[name]-[hash:8].[ext]'}
-          // },
           {
-            loader: 'url-loader',
-            options: {
-              limit: 500,
-              outputPath: 'images/',
-              name: '[name].[ext]'
-            }
-          }
+            loader: 'file-loader',
+            // 名字，ext原本是什么名字就是什么名字
+            options: {name: 'images/[name]-[hash:8].[ext]'}
+          },
+          // {
+          //   loader: 'url-loader',
+          //   options: {
+          //     limit: 500,
+          //     outputPath: 'images/',
+          //     name: '[name].[ext]'
+          //   }
+          // }
         ]
       }
     ]

@@ -23,12 +23,24 @@
 #### Webpack4
 
   webpack --mode=development  // 开发环境（开发环境用的）
+
   webpack --mode=production   // 生产环境（上线用到的）
 
   webpack --config=config/webpack.dev.js    // 打包
+  
   webpack-dev-server --config=config/webpack.dev.js   // 启动服务器，并实时更新。 对配置进行修改，都需要重新启动
   webpack 
   webpack-cli 
   webpack-dev-server
+
+  babel-preset-env
+  babel-loader
+  babel-core
+  style-loader
+  css-loader 
+  html-loader 
+  extract-loader 
+  file-loader 
+  url-loader
 
   

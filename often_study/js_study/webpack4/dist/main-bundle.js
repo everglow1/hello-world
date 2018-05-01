@@ -144,7 +144,7 @@ eval("\nvar content = __webpack_require__(/*! !../node_modules/_css-loader@0.28.
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-eval("// 引入css模块\r\n__webpack_require__(/*! ./main.css */ \"./src/main.css\");\r\n__webpack_require__(/*! ./index.html */ \"./src/index.html\");\r\n// alert('hello webpack4!！！！！！')\n\n//# sourceURL=webpack:///./src/main.js?");
+eval("// 引入css模块\n__webpack_require__(/*! ./main.css */ \"./src/main.css\");\n__webpack_require__(/*! ./index.html */ \"./src/index.html\");\n\nvar a = function () {\n  console.log('hello');\n};\n\n//# sourceURL=webpack:///./src/main.js?");
 
 /***/ }),
 
