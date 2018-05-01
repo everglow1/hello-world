@@ -1,6 +1,21 @@
 {
+  // "plugins": [
+  //   "transform-es2015-arrow-functions",
+  //   "async-to-promises"
+  // ]
+  "presets" :[
+    [
+      "env",
+      {
+        "targets": {
+          "browsers": ["last 2 versions"]
+        },
+        "debug": true
+      }
+    ]
+  ],
   "plugins": [
-    "transform-es2015-arrow-functions",
-    "async-to-promises"
+    // 解决环境变量污染的问题
+    "transform-runtime"
   ]
 }
