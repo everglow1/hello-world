@@ -159,14 +159,59 @@
 // p.then(null, s => console.log(s));
 
 // .reject()方法的参数，会原封不动的作为reject的理由，变成后续方法的参数。这点与.resolve方法不同
-const thenable = {
-  then (resolve, reject) {
-    reject('error');
-  }
-};
-Promise.reject(thenable)
-  .catch(e => {
-    console.log(e === thenable)
-  })
+// const thenable = {
+//   then (resolve, reject) {
+//     reject('error');
+//   }
+// };
+// Promise.reject(thenable)
+//   .catch(e => {
+//     console.log(e === thenable)
+//   })
 // true
 // catch方法的参数不是error这个字符串，而是这个thenable对象
+
+
+// 应用
+// 1.加载图片,将图片的加载写成一个Promise，一旦加载完成，Promise的状态就发生变化。
+const preloadImage = function (path) {
+  return new Promise( function (resolve, reject) {
+    const image = new Image();
+    image.onload = resolve;
+    image.onerror = reject;
+    image.src = path;
+  })
+}
+
+// Generator(生成器函数)函数和Promise结合
+// function* 定义一个生成器函数
+// 使用Generator函数管理流程，遇到异步操作的时候，通常返回一个Promise对象。
+// 1、函数生成器特点是函数名前面有一个‘*’ 2、通过调用函数生成一个控制器 3、调用next()方法开始执行函数 4、遇到yield函数将暂停 5、再次调用next()继续执行函数
+function getFoo () {
+  return new Promise( function (resolve, reject) {
+    resolve('foo');
+  });
+}
+const g = function* () {
+  try {
+    const foo = yield getFoo();
+    console.log(foo);
+  } catch (e) {
+    console.log(e);
+  }
+};
+function run (generator) {
+  const it = generator();
+  function go (result) {
+    if (result.done) {
+      return result.value;
+    }
+    return result.value.then(function (value) {
+      return go(it.next(value));
+    }, function (error) {
+      return go(it.throw(error));
+    })
+  }
+  go(it.next());
+}
+run(g);
