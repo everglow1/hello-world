@@ -535,23 +535,91 @@
 // console.log(person.age)
 
 // 组合get和set做到防止外部读取内部属性
-const handler = {
-  get (target, key) {
-    invariant(key, 'get');
-    return target[key];
-  },
-  set (target, key, value) {
-    invariant(key, 'set');
-    target[key] = value;
-    return true;
-  }
-};
-function invariant (key, action) {
-  if (key[0] === '_') {
-    throw new Error(`Invalid attempt to ${action} private "${key}" property`)
-  }
+// const handler = {
+//   get (target, key) {
+//     invariant(key, 'get');
+//     return target[key];
+//   },
+//   set (target, key, value) {
+//     invariant(key, 'set');
+//     target[key] = value;
+//     return true;
+//   }
+// };
+// function invariant (key, action) {
+//   if (key[0] === '_') {
+//     throw new Error(`Invalid attempt to ${action} private "${key}" property`)
+//   }
+// }
+// const target = {};
+// const proxy = new Proxy(target, handler);
+// // console.log(proxy._por);
+// console.log(proxy._pro = 'c')
+
+// Reflect对象， es6为了操作对象而提供的api。
+
+
+// var it = idMaker();
+
+// it.next().value // 0
+// it.next().value // 1
+// it.next().value // 2
+// // ...
+
+// function idMaker() {
+//   var index = 0;
+
+//   return {
+//     next: function() {
+//       return {value: index++, done: false};
+//     }
+//   };
+// }
+
+// for of循环遍历某种数据结构时，该循环会自动去寻找Iterator接口。
+// 一种数据结构只有部署了iterator接口，我们就称这种数据结构是“可遍历的”
+// 默认的 Iterator 接口部署在数据结构的Symbol.iterator属性，或者说，
+// 一个数据结构只要具有Symbol.iterator属性，就可以认为是“可遍历的”（iterable）
+// 凡是部署了Symbol.iterator属性的数据结构，就称为部署了遍历器接口（比如数组）
+// 原生具备 Iterator 接口的数据结构如下。
+    // Array
+    // Map
+    // Set
+    // String
+    // TypedArray
+    // 函数的 arguments 对象
+    // NodeList 对象
+
+// 对象（Object）之所以没有默认部署 Iterator 接口，是因为对象的哪个属性先遍历，
+// 哪个属性后遍历是不确定的，需要开发者手动指定
+
+// for.. of 循环
+// 一个数据结构只要部署了Symbol.iterator属性，就被视为具有 iterator 接口，
+// 就可以用for...of循环遍历它的成员。也就是说，for...of循环内部调用的是数据结构的Symbol.iterator方法。
+
+// 数组。数组原生具备iterator接口（即默认部署了Symbol.iterator属性），
+// for...of循环本质上就是调用这个接口产生的遍历器。
+// const arr = ['red', 'green', 'blue'];
+// for (let v of arr) {
+//   console.log(v)
+//   // red, green, blue
+// }
+// const obj = {};
+// obj[Symbol.iterator] = arr[Symbol.iterator].bind(arr);
+// for(let v of obj) {
+//   console.log(v);
+//   // 通过对空对象部署数组的arr的Symbol.iterator属性，使之产生一样的属性。
+// }
+
+// for in 循环只能获得对象的键名，不能直接获取键值， for...of循环，允许遍历获得键值
+var arr = ['a', 'b', 'c', 'd'];
+arr.foo = 'hello'
+for (let a in arr) {
+  // console.log(a); // 0 1 2 3
+  // console.log('a'); // a a a a 
 }
-const target = {};
-const proxy = new Proxy(target, handler);
-// console.log(proxy._por);
-console.log(proxy._pro = 'c')
+for (let a of arr) {
+  console.log(a); // a b c d   只返回具有数字索引的属性。
+}
+
+// for  of 获取键名，
