@@ -612,14 +612,69 @@
 // }
 
 // for in 循环只能获得对象的键名，不能直接获取键值， for...of循环，允许遍历获得键值
-var arr = ['a', 'b', 'c', 'd'];
-arr.foo = 'hello'
-for (let a in arr) {
-  // console.log(a); // 0 1 2 3
-  // console.log('a'); // a a a a 
-}
-for (let a of arr) {
-  console.log(a); // a b c d   只返回具有数字索引的属性。
-}
+// var arr = ['a', 'b', 'c', 'd'];
+// arr.foo = 'hello'
+// for (let a in arr) {
+//   // console.log(a); // 0 1 2 3 foo
+//   // console.log('a'); // a a a a a
+// }
+// for (let a of arr) {
+//   console.log(a); // a b c d   只返回具有数字索引的属性。
+// }
 
-// for  of 获取键名，
+// for  of 获取键名，可以使用entries方法和keys方法。
+
+// Set he Map 结构，具有原生Iterator接口。可以直接使用for..of循环
+// Set遍历返回的是值，Map遍历返回的是一个数组。
+// var eng = new Set(['ko', 'nt', 'kit', 'kit']);
+// for (var e of eng) {
+//   console.log(e)
+// }
+// // ko nt kit
+// var es6 = new Map();
+// es6.set('edition', 6);
+// es6.set('commit', 'tc');
+// es6.set('commit', 'tc');
+// es6.set('standard', 'ecma-262');
+// for (var name of es6) {
+//   // console.log(name + ':' + value);    // edition:6  commit:tc standard:ecma-262
+//   console.log(name)   // ['edition', 6] ['commit', 'tc'] ['standard', 'ecma-262']
+// }
+
+// 有些数据结构是在现有结构的基础上，计算生成的，比如，es6的数组，Set，Map都部署了
+
+// entries： 返回一个遍历器对象，用来遍历[键名，键值]组成的数组，对于数组，键名就是索引值，
+//           对于Set，键名与键值相同。Map结构的Iterator接口，默认就是entries方法。
+// keys()返回一个遍历对象，用来遍历所有的键名
+// values() 返回一个遍历对象，用来遍历所有的键值
+
+// let arr = ['a', 'b', 'c'];
+// for (let pair of arr.entries()) {
+//   console.log(pair);
+// }
+// [0, 'a'] [1, 'b'] [2, 'c']
+
+// 类似数组的对象
+// 字符串
+// let str = 'hello';
+// for (let s of str) {
+//   console.log(s); // h e l l o
+// }
+// DOM NodeList对象
+// let paras = document.querySelectorAll('P');
+// for (let p of para) {
+//   p.classList.add('test')
+// }
+// arguments对象    “不定参”，用arguments来表示。不确定函数要传入几个参数
+// function printArgs() {
+//   for (let x of arguments) {
+//     console.log(x);
+//   }
+// }
+// printArgs('a', 'b');    // a b
+
+// 不是所有类似数组的对象都具有Iterator接口， 可以使用Array.from方法转化为数组，
+let arrayLike = {length: 2, 0: 'a', 1: 'b'};
+for(let x of Array.from(arrayLike)) {
+  console.log(x);
+}
