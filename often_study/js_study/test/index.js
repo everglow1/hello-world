@@ -674,7 +674,62 @@
 // printArgs('a', 'b');    // a b
 
 // 不是所有类似数组的对象都具有Iterator接口， 可以使用Array.from方法转化为数组，
-let arrayLike = {length: 2, 0: 'a', 1: 'b'};
-for(let x of Array.from(arrayLike)) {
-  console.log(x);
+// let arrayLike = {length: 2, 0: 'a', 1: 'b'};
+// for(let x of Array.from(arrayLike)) {
+//   console.log(x);
+// }
+
+// 对象遍历不能直接使用for of但是可以用for in 遍历键名
+// let es6 = {
+//   edition: 6,
+//   commit: 'tc39',
+//   standard: 'ecma-262'
+// };
+// // for (let e in es6) {
+// //   console.log(e); // edition commit standard
+// // }
+// // for (let e of es6) {
+// //   console.log(e); //  eror: es6 is not iterable
+// // }
+
+// // 使用Object.keys方法将对象的键名生成一个数组，然后遍历这个数组。
+// for (var key of Object.keys(es6)) {
+//   console.log(key + ':' + es6[key])
+//   // edition:6
+//   // commit:tc39
+//   // standard:ecma-262
+// }
+
+// 与其他遍历语法比较
+// 数组，js提供很多种遍历语法，最原始的就是for循环
+// var myArray = ['2', 'a', 'c', 'd']
+// for (var index = 0; index < myArray.length; index ++) {
+//   console.log(index); // 0 1 2 3
+//   console.log(myArray[index])   // 2 a c d
+// }
+// 内置forEach对象， 但中途无法跳出循环，break， return都不能。
+// myArray.forEach(function (value) {
+//   console.log(value); // 2 a c d
+// })
+// for in 循环遍历数组的键名
+// for...in循环有几个缺点。
+  // 数组的键名是数字，但是for...in循环是以字符串作为键名“0”、“1”、“2”等等。
+  // for...in循环不仅遍历数字键名，还会遍历手动添加的其他键，甚至包括原型链上的键。
+  // 某些情况下，for...in循环会以任意顺序遍历键名。
+// for (var index in myArray) {
+//   // console.log(myArray[index])   // 2 a c d
+//   console.log(index)  // 0 1 2 3
+// }
+// for...in循环主要是为遍历对象而设计的，不适用于遍历数组。
+
+// 1.for of循环相有何for in一样简洁的写法，但是没有for in的缺点。
+// 2.不同于forEach方法，他可以和break和return配合使用。
+// 3.提供了遍历所有数据结构的统一操作接口
+
+// 使用for of配合break跳出循环
+let fibonacci = ['1', '24','34', '12', 'a', 'b', 'c', 'bd']
+for (var n of fibonacci) {
+  // if (n > 5)
+  // break;
+  console.log(n);
 }
