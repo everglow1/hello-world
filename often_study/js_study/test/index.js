@@ -727,9 +727,32 @@
 // 3.提供了遍历所有数据结构的统一操作接口
 
 // 使用for of配合break跳出循环
-let fibonacci = ['1', '24','34', '12', 'a', 'b', 'c', 'bd']
-for (var n of fibonacci) {
-  // if (n > 5)
-  // break;
-  console.log(n);
+// let fibonacci = ['1', '24','34', '12', 'a', 'b', 'c', 'bd']
+// for (var n of fibonacci) {
+//   // if (n > 5)
+//   // break;
+//   console.log(n);
+// }
+
+
+// generator函数(遍历器对象生成函数|状态机)
+// 两个特征， 1.function关键字与函数名之间有一个*号。 2.函数体内部使用yield表达式
+
+// 该函数内部有两个yield表达式（hello和world） 即该函数有三种状态，hello，world和return（结束执行）
+function* helloworld() {
+  yield 'hello';
+  yield 'world';
+  return 'ending';
 }
+var hw = helloworld();
+console.log(hw.next());   // { value: 'hello', done: false }
+console.log(hw.next());   // { value: 'world', done: false }
+console.log(hw.next());   // { value: 'ending', done: true }
+console.log(hw.next());   // { value: 'undefined', done: true    }
+
+// 调用 Generator 函数后，该函数并不执行，
+// 返回的也不是函数运行结果，而是一个指向内部状态的指针对象（遍历器对象Iterator Obiect）
+// 下一步，必须调用遍历器对象的next对象，使得指针移向下一个状态。
+// 每次调用next方法，内部指针就从函数头部或上一次停下来的地方开始执行，
+// 直到遇到下一个yield表达式（或return语句）为止
+// Generator 函数是分段执行的，yield表达式是暂停执行的标记，而next方法可以恢复执行。
