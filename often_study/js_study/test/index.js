@@ -906,3 +906,52 @@
 // }
 
 // 异步操作失败也不中断后面的异步操作，将第一个放在try catch里面
+
+
+// class类
+// 原先的构造函数生成实例对象。
+// function Point(x, y) {
+//   this.x = x;
+//   this.y = y;
+// }
+// Point.prototype.toString = function () {
+//   return '(' + this.x + ',' + this.y + ')'
+// };
+// var p = new Point(1, 2);
+// console.log(p.x)
+
+// 定义类
+// class Point {
+//   constructor(x, y) {
+//     this.x = x;
+//     this.y = y;
+//   }
+//   toString() {
+//     return '(' + this.x + ',' + this.y + ')'
+//   }
+// }
+// let p = new Point(1, 2)
+// console.log(typeof Point)
+// console.log(p.x)
+
+// class Bar {
+//   doStuff() {
+//     console.log('stuff');
+//   }
+// }
+// var b = new Bar();
+// b.doStuff() // "stuff"
+
+// 类和模块的内部，默认就是严格模式
+// 考虑到未来所有的代码，其实都是运行在模块之中，所以 ES6 实际上把整个语言升级到了严格模式。
+
+// constructor方法
+// constructor方法默认返回实例对象（即this），完全可以指定返回另外一个对象。
+// class Foo {
+//   constructor() {
+//     return Object.create(null);
+//   }
+// }
+// console.log(new Foo() instanceof Foo)
+
+// 类必须使用new调用，否则会报错。这是它跟普通构造函数的一个主要区别，后者不用new也可以执行。
