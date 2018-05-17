@@ -739,16 +739,16 @@
 // 两个特征， 1.function关键字与函数名之间有一个*号。 2.函数体内部使用yield表达式
 
 // 该函数内部有两个yield表达式（hello和world） 即该函数有三种状态，hello，world和return（结束执行）
-function* helloworld() {
-  yield 'hello';
-  yield 'world';
-  return 'ending';
-}
-var hw = helloworld();
-console.log(hw.next());   // { value: 'hello', done: false }
-console.log(hw.next());   // { value: 'world', done: false }
-console.log(hw.next());   // { value: 'ending', done: true }
-console.log(hw.next());   // { value: 'undefined', done: true    }
+// function* helloworld() {
+//   yield 'hello';
+//   yield 'world';
+//   return 'ending';
+// }
+// var hw = helloworld();
+// console.log(hw.next());   // { value: 'hello', done: false }
+// console.log(hw.next());   // { value: 'world', done: false }
+// console.log(hw.next());   // { value: 'ending', done: true }
+// console.log(hw.next());   // { value: 'undefined', done: true    }
 
 // 调用 Generator 函数后，该函数并不执行，
 // 返回的也不是函数运行结果，而是一个指向内部状态的指针对象（遍历器对象Iterator Obiect）
@@ -756,3 +756,153 @@ console.log(hw.next());   // { value: 'undefined', done: true    }
 // 每次调用next方法，内部指针就从函数头部或上一次停下来的地方开始执行，
 // 直到遇到下一个yield表达式（或return语句）为止
 // Generator 函数是分段执行的，yield表达式是暂停执行的标记，而next方法可以恢复执行。
+
+// Generator函数也可以不用yield表达式， 就为一个单纯的暂缓执行函数
+// 只有调用next方法时，函数f才会执行
+// yield表达式只能用在 Generator 函数里面，用在其他地方都会报错。
+// function* f() {
+//   console.log('执行了')
+// }
+// var generator = f();
+// setTimeout(function () {
+//   generator.next()
+// }, 2000)
+
+// var arr = [1, [[2, 3],4], [5,6]];
+// var flat = function* (a) {
+//   var length = a.length;
+//   for (var i = 0; i < length; i++) {
+//     var item = a[i];
+//     if (typeof item !== 'number') {
+//       yield* flat(item);
+//     } else {
+//       yield item;
+//     }
+//   }
+// };
+// for (var f of flat(arr)) {
+//   console.log(f);
+// }
+
+// yield表达式如果放在另一个表达式中，必须放在圆括号里面
+// function* demo() {
+//   console.log('hello' + yield); //error
+//   console.log('hello' + (yield)); // ok
+// }
+
+// yield表达式用作函数参数或放在赋值表达式的右边，可以不加括号。
+// function* demo () {
+//   foo (yield 'a', yield 'b');
+//   let input = yield;
+// }
+
+// 任意一个对象的Symbol.iterator方法，等于该对象的遍历器生成函数，调用该函数会返回该对象的一个遍历器对象。
+// Generator函数就是遍历器生成函数，因此可以把Generator赋值给对象的Symbol.iterator属性。
+// 使该对象有Iterator接口。
+// var myIterable = {};
+// myIterable[Symbol.iterator] = function* () {
+//   yield 1;
+//   yield 2;
+//   yield 3;
+// }
+// console.log([...myIterable])
+
+// next 方法的参数
+// yield表达式本身并没有返回值，或者说总数返回undefined。
+// next方法可以带一个参数，该参数就会被当做上一个yield表达式的返回值。
+// function* f() {
+//   for (var i = 0; true; i ++) {
+//     var reset = yield i;
+//     if (reset) {
+//       i = -1;
+//     }
+//   }
+// }
+// var g = f();
+// console.log(g.next());
+// console.log(g.next());
+// console.log(g.next());
+// // 当next方法带一个参数true时，变量reset就被重置为这个参数（即true）
+// // 因此i会等于-1，下一轮循环就会从-1开始递增。
+// console.log(g.next(true));
+
+// for ..of循环
+// for of循环可以自动遍历Generator函数生成的Iterator对象。且不需要调用next方法。
+// function* foo() {
+//   yield 1;
+//   yield 2;
+//   yield 3;
+//   return 4;
+// }
+// for (let v of foo()) {
+//   // 一旦next方法的返回对象的done属性为true，for...of循环就会中止，且不包含该返回对象
+//   console.log(v);   // 1 2 3 4
+// }
+
+
+// async函数是Generator函数的语法糖 es2017引入
+// async表示函数里有异步操作，await表示紧跟在后面的表达式需要等待结果。
+// 调用该函数的时，会返回一个Promise对象
+// async function getStockPriceByName(name) {
+//   const symbol = await getStockSymbol(name);
+//   const stockPrice = await getStockPrice(symbol);
+//   return stockPrice;
+// }
+
+// getStockPriceByName('goog').then(function (result) {
+//   console.log(result);
+// });
+
+// 指定50m后，输出hello world
+// function timeout(ms) {
+//   return new Promise((resolve) => {
+//     setTimeout(resolve, ms)
+//   });
+// }
+// async function asyncPrint(value, ms) {
+//   await timeout(ms);
+//   console.log(value);
+// }
+// asyncPrint('hello world', 50);
+
+// 语法
+// async函数返回一个 Promise 对象。
+// async函数内部return语句返回的值，会成为then方法回调函数的参数。
+// async function f() {
+//   return 'hello';
+// }
+// f().then( v => console.log(v))
+
+// async函数内部抛出错误，会导致Promise对象变为reject状态。抛出的错误会被catch方法的回调函数接收到。
+// async function f() {
+//   throw new Error('error');
+// }
+// f().then(
+//   v => console.log(v),
+//   e => console.log(e)
+// )
+
+// async函数返回的 Promise 对象，必须等到内部所有await命令后面的 Promise 对象执行完，才会发生状态改变
+// 除非遇到return语句或者抛出错误
+// 也就是说，只有async函数内部的异步操作执行完，才会执行then方法指定的回调函数。
+
+// await命令后面是一个Promise对象。
+// 如果不是，会被转成一个立即resolve的 Promise 对象。
+// async function f() {
+//   return await 123;
+// }
+// f().then( v => console.log(v))
+
+// await后面的Promise对象如果变为reject状态，则reject的参数会被catch方法的回调函数接受到
+// async function f() {
+//   await Promise.reject('出错了');
+// }
+// f().then(v => console.log(v)).catch(e => console.log(e));
+
+// 只要一个await语句后面的Promise变为reject，那么整个async函数都会中断执行
+// async function f() {
+//   await Promise.reject('出错了')
+//   await Promise.reject('hello')
+// }
+
+// 异步操作失败也不中断后面的异步操作，将第一个放在try catch里面
