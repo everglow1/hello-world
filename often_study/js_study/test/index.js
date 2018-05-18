@@ -955,3 +955,230 @@
 // console.log(new Foo() instanceof Foo)
 
 // 类必须使用new调用，否则会报错。这是它跟普通构造函数的一个主要区别，后者不用new也可以执行。
+
+
+// ES6模块化
+// CoommonJS模块就是对象，输入时必须查找对象的属性。在运行时确定模块依赖关系等
+// let {stat, exists,readFile} = require('fs');
+// // 等同于
+// let _fs = require('fs')
+// let stat = _fs.stat;
+// let exists = _fs.exists;
+// let readFile = _fs.readFile;
+// // ES6 模块不是对象（所以不能被引用），而是通过export命令显式指定输出的代码，再通过import命令输入。
+// // 在编译时完成模块加载。
+// import { stat, exists, readFile } from 'fs';
+
+// export命令，必须规定对外的接口。必须与模块内部的变量建立一一对应的关系
+// export 1  // error
+
+// var m = 1;
+// export m      // error
+// 直接输出1， 1只是值，不是接口。
+
+// 写法一
+// export var m = 1;
+// // 二
+// var m = 1;
+// export {m};
+// // 三
+// var n = 1; 
+// export {n as m};
+
+// function f() {}
+// export f;   //error
+// export function f() {};   // ok
+// function f() {};
+// export { f };
+
+// export输出的接口，与其对应的值是动态绑定的关系，通过接口，可以取到模块内部的实时的值
+// export var foo = 'bar';
+// setTimeout( () => foo = 'baz', 1000);
+// CommonJS 模块输出的是值的缓存，不存在动态更新
+
+// 模块的整体加载
+// circle.js
+// export function area(radius) {
+//   return Math.PI * radius * radius;
+// }
+// export function circumference(radius) {
+//   return 2 * Math.PI * radius;
+// }
+// // main.js
+// import { area, circumference } from './circle.js'
+// console.log('圆面积：' + area(4))
+// console.log('圆周长：' + circumference(13))
+// // 上面为逐一加载的方法，整体加载如下
+// import * as circle from './circle.js'
+// console.log('圆面积：' + circle.area(4))
+// console.log('圆周长：' + circle.circumference(13))
+
+// export default命令
+// 使用import命令的时候，用户需要知道所要加载的变量名或函数名，否则无法加载。
+// 为了给用户提供方便，让他们不用阅读文档就能加载模块，就要用到export default命令，为模块指定默认输出。
+// export-defalut.js
+// export default function () {
+//   console.log('foo');
+// }
+// import-default.js
+// 其他模块加载该模块时，import命令可以为该匿名函数指定任意名字。
+// import custom from './export-default.js'
+// custom();   // 'foo'
+
+// // export default命令用在非匿名函数前，也是可以的。
+// // export-default.js
+// export default function foo() {
+//   console.log('foo');
+// }
+// // 或者
+// function foo() {
+//   console.log('foo')
+// }
+// export default foo;
+// import-defalut.js
+// foo函数的函数名foo，在模块外部是无效的。加载的时候，视同匿名函数加载。
+// 一个模块只能有一个默认输出，因此export default命令只能使用一次。
+// 所以import命令后面才不用加大括号，因为只可能唯一对应export default命令。
+
+// 本质上 export default就是输出一个叫做default的变量和方法。然后系统为它任意取名
+//  modules.js
+// function add(x, y) {
+//   return x * y;
+// }
+// export {add as defalut};
+// // 等同于
+// export default add;
+
+// // app.js
+// import { defalut as foo } from 'modules';
+// // 等同于
+// import foo from 'modules';
+
+// export default输出的其实是一个叫做default的变量。所以它后面不能跟变量声明语句
+// 正确
+// export var a = 1;
+// // 正确
+// var a = 1;
+// export default a;
+
+// // 错误
+// export default var a = 1;
+
+// // export default命令的本质是将后面的值，赋给default变量
+// // ok
+// export default 42;
+// // error
+// export 42
+
+// export default 命令，输入模块非常直观，以输入lodash模块为例
+// import _ from 'lodash';
+// // 在一条import语句中，同时输入默认方法和其它接口。可以写成这样。
+// import _, {each, each as forEach} from 'lodash';
+
+// // export default也可以用来输出类
+// // MyClass.js
+// export default class {}
+// // main.js
+// import MyClass from 'MyClass';
+// let o = new MyClass;
+
+// export 与import的复合写法
+// 如果在一个模块之中，先输入后输出同一个模块，import语句可以与export语句写在一起。
+// export {foo, bar} from 'my_module';
+// // 可以理解为
+// // foo和bar实际上并没有被导入当前模块，只是相当于对外转发了这两个接口，导致当前模块不能直接使用foo和bar。
+// import {foo, bar} from 'my_module';
+// export {foo, bar};
+
+// // 模块的接口改名和整体输出，也可以采用这种写法
+// // 接口改名
+// export {foo as myFoo} from 'my_module';
+// // 整体输出
+// export * from 'my_module';
+
+// 跨模块常量const
+// const声明的常量只在当前代码块有效。如果要设置跨模块的常量（即跨多个文件），或者说一个值要被多个模块共享
+
+// constants.js 模块
+// export const A = 1;
+// export const B = 2;
+// export const C = 3;
+
+// // test1.js 模块
+// import * as constants from './constants.js';
+// console.log(constants.A);  // 1
+// console.log(constants.B);  // 2
+
+// // test2.js 模块
+// import { A, B } from './constants.js';
+// console.log(A);   // 1;
+// console.log(C);   // 3;
+
+// 如果要使用的常量非常多，可以建一个专门的constants目录，将各种常量写在不同的文件里面，保存在该目录下
+// constants/db.js
+// export const db = {
+//   url: 'http://my.couchdbserver.local:5984',
+//   admin_username: 'admin',
+//   admin_password: 'admin password'
+// };
+
+// // constants/user.js
+// export const users = ['root', 'admin', 'staff', 'ceo', 'chief', 'moderator'];
+// // 然后，将这些文件输出的常量，合并在index.js里面。
+// // constants/index.js
+// export {db} from './db';
+// export {users} from './users';
+
+// // 使用的时候，直接加载index.js就可以
+// // script.js
+// import { db, users} from './index';
+
+
+// import()函数
+// import命令会被 JavaScript 引擎静态分析，先于模块内的其他语句执行（import命令叫做“连接” binding 其实更合适）
+// import和export命令只能在模块的顶层
+// require是运行时加载模块, import是编译时加载的模块
+const path = './' + fileName;
+const myModual = require(path);
+// 上面的语句为动态加载，require到底加载哪一个模块，只有运行时才知道。import做不到这点
+
+// 有一个提案，建议引入import（）函数。完成动态加载、
+import(specifier)
+// import函数的参数specifier，指定所要加载的模块的位置。import命令能够接受什么参数
+// import()函数就能接受什么参数，两者区别主要是后者为动态加载。
+
+// import()返回一个Promise对象
+const main = document.querySelector('main');
+import(`./section-modules/${someVariable}.js`).then(module => {
+  module.loadPageInto(main)
+})
+.catch(err => {
+  main.textContent = err.message;
+})
+// import()函数可以用在任何地方，不仅仅是模块，非模块的脚本也可以使用。它是运行时执行，也就是说，什么时候运行到这一句，就会加载指定的模块
+
+// import()的适用场合
+// 1.按需加载
+// 在需要的时候，再加载某个模块
+button.addEventListener('click', event => {
+  import('./dialogBox.js')
+  .then(dialogBox => {
+    dialogBox.open();
+  })
+  .catch(error => {
+    /* Error handling */
+  })
+});
+// ，import()方法放在click事件的监听函数之中，只有用户点击了按钮，才会加载这个模块。
+// 2.条件加载
+// import()可以放在if代码块，根据不同的情况，加载不同的模块
+if (condition) {
+  import('moduleA').then();
+} else {
+  import('moduleB').then();
+}
+// 3.动态的模块路径
+// import()允许模块路径动态生成,根据函数f的返回结果，加载不同的模块。
+import( f() ).then();
+
+
