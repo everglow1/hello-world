@@ -4,6 +4,8 @@ module.exports = {
     // 可以有多个。可用数组括起来。
     // main: 可随意写
     main: './src/main.js'
+    // main: ['core-js/fn/promise', './src/main.js']
+    // main: ['babel-polyfill', './src/main.js']
   },
   mode: "development",
   // 只有一个
