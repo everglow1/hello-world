@@ -46,5 +46,7 @@ dependencies  是需要发布到生产环境的。
 
   据node团队介绍，本地安装包对于项目的加载会更快。
 
-  
+#### webpack-dev-server
 
+  热更新
+  打包会在缓存，不显示在dist文件。
