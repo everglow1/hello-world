@@ -52,7 +52,26 @@ module.exports = {
           },
           {
             // 会找到html文件，然后借助extract-loader分离，然后file-loader取名
-            loader: 'html-loader'
+            loader: 'html-loader',
+            options: {
+              // 图片需要配置的。
+              attrs: ['img:src']
+            }
+          }
+        ]
+      },
+      // img loader
+      {
+        test: /\.(jpg|gif|png)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              // hash:8(8位的哈希值)
+              name: 'images/[name]-[hash:8].[ext]'
+              // 随便写
+              // name: '[hash:8].[ext]'
+            }
           }
         ]
       }
