@@ -22,6 +22,17 @@ module.exports = {
   },
   module: {
     rules: [
+      // js loader
+      {
+        test: /\.js$/,
+        use: [
+          {
+            loader: 'babel-loader'
+          }
+        ],
+        // 忽略不要转换
+        exclude: /node_modules/
+      },
       // css loaders
       {
         test: /\.css$/, 

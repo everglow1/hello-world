@@ -50,3 +50,13 @@ dependencies  是需要发布到生产环境的。
 
   热更新
   打包会在缓存，不显示在dist文件。
+
+#### babel转译
+
+  babel-cli -g
+  babel-core
+  babel-plugin-transform-es2015-arrow-functions
+  .babelrc文件（它是json文件）， 配置所用
+
+  把es6转译成浏览器能识别的es5，因为并不是所有流篮球都支持es6的语法。
+
