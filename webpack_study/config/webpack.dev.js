@@ -1,4 +1,5 @@
 const path = require('path')
+import webpack from 'webpack'
 module.exports = {
   entry: {
     // 可以有多个。可用数组括起来。
@@ -19,6 +20,7 @@ module.exports = {
   devServer: { 
     // 进入时，默认是dist目录。
     contentBase: 'dist',
+    hot: true,
     // 使报错在开发者工具里面也可以看到
     overlay: true
   },
@@ -89,5 +91,8 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ]
 }
