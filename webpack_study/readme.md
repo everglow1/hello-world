@@ -72,10 +72,12 @@ dependencies  是需要发布到生产环境的。
 
 #### 脚手架
 
+  让我们更好地开发，比如实现服务端和客户端实时渲染啊，实时报错啊什么的。
+
   使用express框架解决后端服务。
 
   配置服务器，启动index.html页面。
 
-  webpack-dev-middleware  // 监听变化。
+  webpack-dev-middleware  // 监听代码变化。
 
-  webpack-hot-middleware  // 热更新
+  webpack-hot-middleware  // 实现热更新

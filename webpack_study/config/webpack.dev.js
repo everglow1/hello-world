@@ -1,5 +1,6 @@
 const path = require('path')
-import webpack from 'webpack'
+// import webpack from 'webpack'
+const webpack = require('webpack')
 module.exports = {
   entry: {
     // 可以有多个。可用数组括起来。
@@ -92,7 +93,9 @@ module.exports = {
       }
     ]
   },
+  // 插件
   plugins: [
+    // 为了热更新
     new webpack.HotModuleReplacementPlugin()
   ]
 }
