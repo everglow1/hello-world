@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "nodemon": "^1.17.5",
+    "webpack-dev-middleware": "^3.1.3"
+  }
+}

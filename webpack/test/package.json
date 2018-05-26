@@ -1,0 +1,32 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "在根目录下，新建src目录/index.js文件。 `webpack --mode=develpoment|production`\r   会自动打包并生成dist目录和main.js的打包文件。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config=config/webpack.dev.js",
+    "start": "webpack-dev-server --inline --hot --config=config/webpack.dev.js",
+    "dev": "nodemon --inspect --watch config --watch src/server src/server/main.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-register": "^6.26.0",
+    "babel-runtime": "^6.26.0",
+    "css-loader": "^0.28.11",
+    "express": "^4.16.3",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "raw-loader": "^0.5.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.9.1",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-hot-middleware": "^2.22.2"
+  }
+}
