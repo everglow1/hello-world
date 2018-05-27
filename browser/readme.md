@@ -126,4 +126,10 @@ history对象保存了浏览器的历史记录，JavaScript可以调用history�
   insertBefore
   如果我们要把子节点插入到指定的位置怎么办？可以使用parentElement.insertBefore(newElement, referenceElement);，子节点会插入到referenceElement之前。
 
-  
+   **删除DOM**
+
+   删除一个DOM节点就比插入要容易得多。
+
+  要删除一个节点，首先要获得该节点本身以及它的父节点，然后，调用父节点的removeChild把自己删掉：
+
+    

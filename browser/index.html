@@ -24,7 +24,7 @@
 
   </script> -->
 
-  <p id = "js">script</p>
+  <!-- <p id = "js">script</p>
   <div id="list">
     <p id="java">java</p>
     <p id="python">python</p>
@@ -43,12 +43,26 @@
     // list.appendChild(hask);
 
     // 插入到指定位置的节点
-    var list = document.getElementById('list');
-    var ref = document.getElementById('python');
-    var hhh = document.createElement('p');
-    hhh.id = 'hhh';
-    hhh.innerHTML = 'hahaha';
-    list.insertBefore(hhh, ref);
+    // var list = document.getElementById('list');
+    // var ref = document.getElementById('python');
+    // var hhh = document.createElement('p');
+    // hhh.id = 'hhh';
+    // hhh.innerHTML = 'hahaha';
+    // list.insertBefore(hhh, ref);
+
+
+  </script> -->
+
+  <!-- 删除DOM -->
+  <div class="id">
+    <p>1</p>
+    <p>2</p>
+    <img src="" alt="">
+  </div>
+  <script>
+    var parent = document.getElementById('id');
+    parent.removeChild(parent.children[0]);
+    // parent.removeChild(parent.children[1])
   </script>
 </body>
 </html>
