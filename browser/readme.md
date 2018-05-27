@@ -112,4 +112,18 @@ history对象保存了浏览器的历史记录，JavaScript可以调用history�
 
   第二种是修改innerText或textContent属性，这样可以自动对字符串进行HTML编码，保证无法设置任何HTML标签
 
+  **插入DOM**
 
+  当我们获得了某个DOM节点，想在这个DOM节点内插入新的DOM，应该如何做？
+
+  如果这个DOM节点是空的，例如，<div></div>，那么，直接使用innerHTML = '<span>child</span>'就可以修改DOM节点的内容，相当于“插入”了新的DOM节点。
+
+  如果这个DOM节点不是空的，那就不能这么做，因为innerHTML会直接替换掉原来的所有子节点。
+
+
+  有两个办法可以插入新的节点。一个是使用appendChild，把一个子节点添加到父节点的最后一个子节点
+
+  insertBefore
+  如果我们要把子节点插入到指定的位置怎么办？可以使用parentElement.insertBefore(newElement, referenceElement);，子节点会插入到referenceElement之前。
+
+  

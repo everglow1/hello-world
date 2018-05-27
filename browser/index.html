@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <p id="p-id">you</p>
+  <script>
+    var p = document.getElementById('p-id');
+    // 设置文本为 name
+    p.innerHTML = 'name'
+    // 设置html，修改p标签的结构
+    p.innerHTML = 'name <span style= "color: red">hhh</span>yyy ';
+
+    // 通过innerText设置文。
+   
+
+    p.style.color = 'black';
+    p.style.fontSize = '20px';
+    p.style.paddingTop = '2em';
+
+  </script> -->
+
+  <p id = "js">script</p>
+  <div id="list">
+    <p id="java">java</p>
+    <p id="python">python</p>
+    <p id="schema">schema</p>
+  </div>
+  <script>
+    // 插入一个已有的节点
+    // var js = document.getElementById('js');
+    // var list = document.getElementById('list').appendChild(js);
+
+    // 插入一个新的节点
+    // var list = document.getElementById('list');
+    // var hask = document.createElement('p');
+    // hask.id = 'haske';
+    // hask.innerText = 'hask';
+    // list.appendChild(hask);
+
+    // 插入到指定位置的节点
+    var list = document.getElementById('list');
+    var ref = document.getElementById('python');
+    var hhh = document.createElement('p');
+    hhh.id = 'hhh';
+    hhh.innerHTML = 'hahaha';
+    list.insertBefore(hhh, ref);
+  </script>
+</body>
+</html>
