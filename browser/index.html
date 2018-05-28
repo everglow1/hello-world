@@ -54,7 +54,7 @@
   </script> -->
 
   <!-- 删除DOM -->
-  <div class="id">
+  <!-- <div class="id">
     <p>1</p>
     <p>2</p>
     <img src="" alt="">
@@ -63,6 +63,83 @@
     var parent = document.getElementById('id');
     parent.removeChild(parent.children[0]);
     // parent.removeChild(parent.children[1])
+  </script> -->
+
+  <!-- 操作表单 -->
+  <!-- <input type="text" id="email">
+  <input type="color" value="#ff0000">
+  <label><input type="radio", name="week", id="mon", value="1">Monday</label>
+  <label><input type="radio", name="week", id="tuesday", value="2">Tuesday</label>
+  <script>
+    var mon = document.getElementById('mon');
+    var tue = document.getElementById('tuesday');
+    var input = document.getElementById('email');
+    input.value = 'tets@example.com';
+    console.log(mon.value);
+    console.log(tue.value);
+    mon.checked = true;
+    // tue.checked = true;
+  </script> -->
+
+  <!-- 提交表单 -->
+  <!-- 方式一是通过<form>元素的submit()方法提交一个表单 例如，响应一个<button>的click事件-->
+  <!-- <form id="test-form">
+    <input type="text" name="test">
+    <button type="button" onclick="doSubmitForm()">sumbit</button>
+  </form>
+  <script>
+    function doSubmitForm() {
+      var form = document.getElementById('test-form');
+      // ...
+      form.submit()
+    }
+  </script> -->
+
+  <!-- 第二种方式是响应<form>本身的onsubmit事件，在提交form时作修改 -->
+  <!-- <form id="test-form" onsubmit="checkForm()">
+    <input type="text" name="test">
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    function checkForm() {
+      var form = document.getElementById('test-form')
+      // ...
+      // 可修改form的input
+      return true;
+    }
+  </script> -->
+
+  <!-- 利用MD5来隐藏数据 -->
+  <!-- <form id="login" method="post" onsubmit="checkForm()">
+    <input type="text" id="username" name="username">
+    <input type="password" id="passward" name="passward">
+    <button type="submit">Submit</button>
+  </form>
+  <script>
+    function checkForm() {
+      var pwd = document.getElementById('passward');
+      // 把用户输入的明文变为MD5；
+      pwd.value = toMD5(pwd.value);
+      return true;
+    }
+  </script> -->
+
+  <!-- 利用hidden来隐藏数据 -->
+  <form id="login" method="post" onsubmit="return checkForm()">
+    <input type="text" id="username" name="username">
+    <input type="password" id="input-password" name="hhh">
+    <input type="hidden" id="md5-password" name="password">
+    <button type="sumbit">Sumbit</button>
+  </form>
+  <script>
+    function checkForm() {
+      var input_pwd = document.getElementById('input-password');
+      var md5_pwd = document.getElementById('md5-password');
+      // 把用户输入的明文变为MD5
+      md5_pwd.value = toMD5(input_pwd.value);
+      // ...
+      return true;
+    }
   </script>
 </body>
 </html>

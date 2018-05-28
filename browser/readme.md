@@ -124,7 +124,7 @@ history对象保存了浏览器的历史记录，JavaScript可以调用history�
   有两个办法可以插入新的节点。一个是使用appendChild，把一个子节点添加到父节点的最后一个子节点
 
   insertBefore
-  如果我们要把子节点插入到指定的位置怎么办？可以使用parentElement.insertBefore(newElement, referenceElement);，子节点会插入到referenceElement之前。
+  如果我们要把子节点插入到 指定的位置怎么办？可以使用parentElement.insertBefore(newElement, referenceElement);，子节点会插入到referenceElement之前。
 
    **删除DOM**
 
@@ -132,4 +132,43 @@ history对象保存了浏览器的历史记录，JavaScript可以调用history�
 
   要删除一个节点，首先要获得该节点本身以及它的父节点，然后，调用父节点的removeChild把自己删掉：
 
-    
+#### 操作表单
+
+  用JavaScript操作表单和操作DOM是类似的，因为表单本身也是DOM树。
+
+  不过表单的输入框、下拉框等可以接收用户输入，所以用JavaScript来操作表单，可以获得用户输入的内容，或者对一个输入框设置新的内容。
+
+  **获取值**
+
+  如果我们获得了一个<input>节点的引用，就可以直接调用value获得对应的用户输入值
+
+  **设置值**
+
+  设置值和获取值类似，对于text、password、hidden以及select，直接设置value就可以
+
+  对于单选框和复选框，设置checked为true或false即可。
+
+  **HTML5控件**
+
+  HTML5新增了大量标准控件，常用的包括date、datetime、datetime-local、color等，它们都使用<input>标签；
+
+  `<input type="date" value="2015-07-01">`
+
+  **提交表单**
+
+  最后，JavaScript可以以两种方式来处理表单的提交（ajax也可以）
+
+  方式一是通过<form>元素的submit()方法提交一个表单，例如，响应一个<button>的click事件，在JavaScript代码中提交表单
+
+#### 操作文件
+
+
+#### ajax
+
+  用JavaScript执行异步网络请求
+
+  Web的运作原理：一次HTTP请求对应一个页面。
+
+  如果要让用户留在当前页面中，同时发出新的HTTP请求，就必须用JavaScript发送这个新请求，接收到数据后，再用JavaScript更新页面，这样一来，用户就感觉自己仍然停留在当前页面，但是数据却可以不断地更新。
+
+  
