@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React状态组件应用</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <!-- 可以写react的代码 -->
+    <script src="../js/react.min.js"></script>
+    <!-- 对react的东西插入到dom -->
+    <script src="../js/react-dom.min.js"></script>
+    <!-- 将我们的react的语法转化为js的语法 -->
+    <script src="../js/browser.min.js"></script>
+</head>
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+    var Comment = React.createClass({
+      getInitialState: function () {
+        return ({
+          editing: false
+        })
+      },
+      edit: function () {
+        this.setState({
+          editing: true
+        })
+      },
+      remove: function () {
+        alert('removing comment!')
+      },
+      save: function () {
+        // alert('save success')
+        this.setState({
+          // editing: !this.state.editing
+          editing: false
+        })
+      },
+      renderNorma: function () {
+        return (
+          <div className="commentContainer">
+              <div>{this.props.children}</div>
+            <button onClick={this.edit} className="button-primary">Edit</button>
+            <button onClick={this.remove} className="button-danger">Remove</button>
+          </div>
+        )
+      },
+      rendeForm: function () {
+        return (
+          <div className="commentContainer">
+            <textarea defaultValue={this.props.children}></textarea>
+            <button onClick={this.save} className="button-success">Save</button>
+          </div>
+        )
+      },
+        render: function () {
+          if (this.state.editing) {
+            return this.rendeForm();
+          } else {
+            return this.renderNorma();
+          }
+        }
+    })
+    ReactDOM.render(
+        <div className="board">
+            <Comment title="美国队长" genre="action">Hello Everyone</Comment>
+            <Comment title="美国队长" genre="action">Welcome to</Comment>
+            <Comment title="美国队长" genre="action">希望可以快速学会react</Comment>
+        </div>,
+        document.getElementById('container')
+    );
+    </script>
+</body>
+</html>
