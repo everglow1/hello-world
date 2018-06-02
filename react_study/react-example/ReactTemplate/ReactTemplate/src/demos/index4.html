@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React多组件嵌套</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <!-- 可以写react的代码 -->
+    <script src="../js/react.min.js"></script>
+    <!-- 对react的东西插入到dom -->
+    <script src="../js/react-dom.min.js"></script>
+    <!-- 将我们的react的语法转化为js的语法 -->
+    <script src="../js/browser.min.js"></script>
+</head>
+<body>
+    <div id="container"></div>
+    <script type="text/babel">
+    // Board父组件，Comment子组件
+    var Board = React.createClass({
+      getInitialState: function () {
+        return ({
+          comments: ['Hello Every!', 'Welcome to', '好好学习react']
+        })
+      },
+      eachComment: function (text, i) {
+        return (
+          <Comment key={i} index={i}>{text}</Comment>
+        )
+      },
+      render: function () {
+        return (
+          <div className="board">
+            {
+              this.state.comments.map(this.eachComment)
+            }
+          </div>
+        );
+      }
+    })
+
+    var Comment = React.createClass({
+      getInitialState: function () {
+        return ({
+          editing: false
+        })
+      },
+      edit: function () {
+        this.setState({
+          editing: true
+        })
+      },
+      remove: function () {
+        alert('removing comment!')
+      },
+      save: function () {
+        var val = this.refs.newText.value;
+        console.log('value:' + val)
+        this.setState({
+          // editing: !this.state.editing
+          editing: false
+        })
+      },
+      renderNorma: function () {
+        return (
+          <div className="commentContainer">
+            <div>{this.props.children}</div>
+            <button onClick={this.edit} className="button-primary">Edit</button>
+            <button onClick={this.remove} className="button-danger">Remove</button>
+          </div>
+        )
+      },
+      rendeForm: function () {
+        return (
+          <div className="commentContainer">
+            <textarea ref="newText" defaultValue={this.props.children}></textarea>
+            <button onClick={this.save} className="button-success">Save</button>
+          </div>
+        )
+      },
+        render: function () {
+          if (this.state.editing) {
+            return this.rendeForm();
+          } else {
+            return this.renderNorma();
+          }
+        }
+    })
+    ReactDOM.render(
+        <Board/>,
+        document.getElementById('container')
+    );
+    </script>
+</body>
+</html>
