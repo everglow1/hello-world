@@ -19,20 +19,49 @@
     var Board = React.createClass({
       getInitialState: function () {
         return ({
-          comments: ['Hello Every!', 'Welcome to', '好好学习react']
+          comments: []
+        })
+      },
+      updateComment: function (newText, i) {
+        // console.log(newText)
+        // 把状态数组拿到。赋值给新数组
+        var arr = this.state.comments;
+        arr[i] = newText;
+        // 更新状态
+        this.setState({
+          comments: arr
+        })
+      },
+      removeComment: function (i) {
+        var arr = this.state.comments;
+        arr.splice(i, 1)
+        // 更新状态
+        this.setState({
+          comments: arr
+        })
+      },
+      add: function (text) {
+        var arr = this.state.comments;
+        arr.push(text)
+        // 更新状态
+        this.setState({
+          comments: arr
         })
       },
       eachComment: function (text, i) {
         return (
-          <Comment key={i} index={i}>{text}</Comment>
+          <Comment deleteFromBoard={this.removeComment} undateCommentText={this.updateComment} key={i} index={i}>{text}</Comment>
         )
       },
       render: function () {
         return (
-          <div className="board">
-            {
-              this.state.comments.map(this.eachComment)
-            }
+          <div>
+            <button className="button-info create" onClick={this.add.bind(null, 'DefalutText')}>Add New</button>
+            <div className="board">
+              {
+                this.state.comments.map(this.eachComment)
+              }
+            </div>
           </div>
         );
       }
@@ -50,11 +79,13 @@
         })
       },
       remove: function () {
-        alert('removing comment!')
+        // alert('removing comment!')
+        this.props.deleteFromBoard(this.props.index);
       },
       save: function () {
         var val = this.refs.newText.value;
-        console.log('value:' + val)
+        // console.log('value:' + val)
+        this.props.undateCommentText(val, this.props.index)
         this.setState({
           // editing: !this.state.editing
           editing: false
