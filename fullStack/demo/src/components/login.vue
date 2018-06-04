@@ -32,6 +32,7 @@ export default {
   methods: {
     loginAccount () {
       console.log('登录')
+      
     },
     createAccount () {
       console.log('注册')
