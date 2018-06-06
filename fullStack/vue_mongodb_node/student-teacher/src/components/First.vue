@@ -3,14 +3,6 @@
     <h1>学生学籍信息管理系统</h1>
     <el-collapse v-model="activeNames" @change="handleChange">
       <el-collapse-item title="您的身份是?" name="1">
-        <!-- <el-col :span="24" >
-          <el-card shadow="always" class="student" @click="toStudent">
-            学生
-          </el-card>
-          <el-card shadow="always" class="student">
-            管理员
-          </el-card>
-        </el-col> -->
         <el-button @click="toStudent" class="btn">学生</el-button><br/>
         <el-button @click="toAdmin" class="btn">管理员</el-button>
       </el-collapse-item>
@@ -36,7 +28,6 @@ export default {
     },
     toStudent() {
       this.$router.push('Login');
-      console.log('登录')
     },
     toAdmin() {
       this.$router.push('Logina');
