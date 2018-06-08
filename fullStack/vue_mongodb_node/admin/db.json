@@ -1,0 +1,54 @@
+{
+  "users": [
+    {
+      "name": "Herry",
+      "phone": "1111222333",
+      "email": "hernry@gmail.com",
+      "id": 1,
+      "age": 20,
+      "companId": 1
+    },
+    {
+      "name": "Keyjui",
+      "phone": "1111222333",
+      "email": "hernry@gmail.com",
+      "id": 2,
+      "age": 20,
+      "companId": 2
+    },
+    {
+      "name": "youzhijun",
+      "phone": "1111222333",
+      "email": "1530305055@qq.com",
+      "id": 3,
+      "age": 20,
+      "companId": 3,
+      "companyId": "4"
+    },
+    {
+      "name": "Kity",
+      "phone": "1111222333",
+      "email": "hernry@gmail.com",
+      "id": 4,
+      "age": 20,
+      "companId": 3
+    }
+  ],
+  "companies": [
+    {
+      "id": 1,
+      "name": "Apple",
+      "description": "Apple is good!"
+    },
+    {
+      "id": 2,
+      "name": "Microft",
+      "description": "Apple is good!"
+    },
+    {
+      "id": 3,
+      "name": "Goole",
+      "description": "Apple is good!"
+    }
+  ]
+}
