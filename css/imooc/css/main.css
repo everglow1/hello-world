@@ -132,12 +132,10 @@ body {
 .course {
   width: 410px;
   border: 1px solid #e8e8e8;
-  background-color: bisque;
   margin: 0 7px;
 }
 .sidebar {
   width: 230px;
-  background-color: blue;
 }
 .news .title {
   height: 35px;
@@ -162,7 +160,7 @@ body {
   margin-top: 10px; 
   line-height: 22px;
 }
-.pic-news img {
+.pic-news img, .course-pic img {
   float: left;
   margin: 0 5px;
 }
@@ -188,4 +186,50 @@ body {
 .new-list span {
   color: #999;
   float: right;
+}
+.course .title {
+  height: 35px;
+  border-bottom: 2px solid #e8e8e8;
+}
+.course-pic {
+  height: 120px;
+  margin-top: 10px;
+  line-height: 18px;
+}
+.course-pic-text a {
+  color: #c00;
+}
+.course-type {
+  height: 37px;
+  width: 372px;
+  background: url(../images/product_type_bg.jpg) no-repeat;
+  margin: 20px auto;
+}
+.course-type li {
+  float: left;
+  text-align: center;
+  margin: 0 15px;
+  line-height: 27px;
+}
+.video {
+  height: 185px;
+  border: 1px solid #e8e8e8;
+}
+.video .title {
+  padding-left: 20px;
+  height: 35px;
+  line-height: 35px;
+  font-family: "微软雅黑";
+  font-weight: bold;
+  color: #786f66;
+  border-bottom: 2px solid #e8e8e8;
+}
+.video-content {
+  height: 150px;
+  padding: 10px 0 0 5px;
+}
+.sidebar-ad {
+  height: 55px;
+  border: 1px solid #e8e8e8;
+  margin-top: 10px;
 }
