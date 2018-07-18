@@ -1,0 +1,3 @@
+myFocus.set({
+  id: 'pic'
+})
