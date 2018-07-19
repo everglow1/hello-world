@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/4.1.0/echarts-en.common.min.js"></script>
+  <title>图表</title>
+</head>
+<body>
+   <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+   <div id="main" style="width: 600px;height:400px;"></div>
+   <script type="text/javascript">
+       // 基于准备好的dom，初始化echarts实例
+       var myChart = echarts.init(document.getElementById('main'));
+
+       // 指定图表的配置项和数据
+       var option = {
+        //  标题
+           title: {
+            //  标题
+               text: '温度',
+              //  是否显示，默认为true
+               show: true,
+              //  副标题
+               subtext: '鸟巢温度',
+              //  颜色
+               textStyle: {
+                 fontSize: 20,
+                color: 'black',
+                // fontStyle: 'italic',
+               },
+              //  定位
+              
+              // 颜色
+              borderColor: 'blue',
+              // 边框
+              // borderWidth: 5
+
+           },
+           tooolbox:{
+            show: true,
+            feature: {
+              dataZoom: {
+                yAxisIndex: 'none'
+              },
+              dataView: {readOnly: false},
+              magicType: {
+                type: ['line']
+              },
+              restore: {},
+              saveAsImage: {}
+            }
+           },
+          //  随鼠标显示
+           tooltip: {
+            //  trigger: 'axis'
+           },
+           legend: {},
+           xAxis: {
+              boundaryGap: false,
+              data: ["00:00","04:00","08:00","12:00","16:00","20:00","24:00"]
+           },
+           yAxis: {
+             type: 'value',
+            //  data:['0°C','10°C','20°C','20°C','40°C','°C'],
+              axisLabel: {
+                formatter: '{value}°C'
+              }
+           },
+           series: [
+             {
+              // 表示图的形状，柱状图/线性图/。。。
+                type: 'line',
+                data: ['20','10', '18','30','18','34'],
+                // 平滑的曲线
+                smooth: true,
+                // symbol: 'diamond',
+                // 坐标的显示方式
+                // symbolSize: [20, 10],
+                markPoint: {
+                  // 标记中的图标显示方式
+                  // symbol: 'roundRect',
+                  data: [
+                    {type: 'max', name: '最大值'},
+                    {type: 'min', name: '最小值', }
+                  ]
+                }
+              }
+           ],
+          //  线的颜色
+           color: '#c4ccd3',
+          //  图表背景颜色
+          //  backgroundColor: 'rgb(128, 128, 128)'
+       };
+
+       // 使用刚指定的配置项和数据显示图表。
+       myChart.setOption(option);
+   </script>
+  </script>
+</body>
+</html>
